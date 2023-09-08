@@ -12,7 +12,9 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => locator<HomeCubit>()),
+        BlocProvider(
+          create: (context) => locator<HomeCubit>(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MainTheme.light,
       onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
-      initialRoute: NavigatorConst.home,
+      initialRoute: NavigatorConst.initialScreeen,
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(

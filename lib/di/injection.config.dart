@@ -16,15 +16,16 @@ import 'package:shared_preferences/shared_preferences.dart' as _i9;
 import '../data/api/api.dart' as _i3;
 import '../data/api/auth_api.dart' as _i4;
 import '../data/api/main_api.dart' as _i6;
-import '../data/preferences/token_preferences.dart' as _i10;
-import '../domain/repository/auth/auth/auth_repository.dart' as _i11;
+import '../data/preferences/token_preferences.dart' as _i11;
+import '../domain/repository/auth/auth/auth_repository.dart' as _i12;
 import '../domain/repository/auth/auth/auth_repository_implementation.dart'
-    as _i12;
+    as _i13;
 import '../domain/repository/main_repository.dart' as _i7;
 import '../domain/service/main_serivce.dart' as _i8;
-import '../presentation/auth/login/bloc/login_bloc_bloc.dart' as _i13;
+import '../presentation/auth/login/bloc/login_bloc_bloc.dart' as _i14;
 import '../presentation/home/cubit/home_cubit.dart' as _i5;
-import 'data_module.dart' as _i14;
+import '../presentation/splash/cubit/splash_screen_cubit.dart' as _i10;
+import 'data_module.dart' as _i15;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -48,16 +49,17 @@ extension GetItInjectableX on _i1.GetIt {
       () => dataModule.prefs,
       preResolve: true,
     );
-    gh.factory<_i10.TokenPreference>(
-        () => _i10.TokenPreference(gh<_i9.SharedPreferences>()));
-    gh.factory<_i11.AuthRepository>(() => _i12.AuthRepositoryImpl(
+    gh.factory<_i10.SplashScreenCubit>(() => _i10.SplashScreenCubit());
+    gh.factory<_i11.TokenPreference>(
+        () => _i11.TokenPreference(gh<_i9.SharedPreferences>()));
+    gh.factory<_i12.AuthRepository>(() => _i13.AuthRepositoryImpl(
           gh<_i4.AuthApi>(),
-          gh<_i10.TokenPreference>(),
+          gh<_i11.TokenPreference>(),
         ));
-    gh.factory<_i13.LoginBlocBloc>(
-        () => _i13.LoginBlocBloc(gh<_i11.AuthRepository>()));
+    gh.factory<_i14.LoginBlocBloc>(
+        () => _i14.LoginBlocBloc(gh<_i12.AuthRepository>()));
     return this;
   }
 }
 
-class _$DataModule extends _i14.DataModule {}
+class _$DataModule extends _i15.DataModule {}

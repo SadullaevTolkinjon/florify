@@ -1,3 +1,5 @@
+import 'package:florify/presentation/notification/notification_page.dart';
+import 'package:florify/presentation/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/presentation/home/home_page.dart';
@@ -14,11 +16,23 @@ class OngenerateRoutes {
     switch (settings.name) {
       case NavigatorConst.home:
         return sampleRoute(const HomePage());
+      case NavigatorConst.initialScreeen:
+        return sampleRoute(const SplashScreen());
+      case NavigatorConst.notificationPage:
+        return sampleRoute(const NotificationPage());
     }
+
     return null;
   }
 
   sampleRoute(Widget route) {
-    return MaterialPageRoute(builder: (context) => route);
+    return PageRouteBuilder(
+      transitionDuration: const Duration(milliseconds: 200),
+      reverseTransitionDuration: const Duration(microseconds: 200),
+      pageBuilder: (context, animation, secondaryAnimation) => FadeTransition(
+        opacity: animation,
+        child: route,
+      ),
+    );
   }
 }
