@@ -31,8 +31,9 @@ class ProductContainer extends StatelessWidget {
           ),
         ),
         padding: EdgeInsets.symmetric(
-            horizontal: AppSizes.getW(context) * 0.012,
-            vertical: AppSizes.getW(context) * 0.016),
+          horizontal: AppSizes.getW(context) * 0.014,
+          vertical: AppSizes.getW(context) * 0.016,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,9 +70,12 @@ class ProductContainer extends StatelessWidget {
             ),
             Text(
               "Свежий бриз",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
               style: TextStyle(
-                  fontSize: AppSizes.getH(context) * 0.016,
-                  fontWeight: FontWeight.w600),
+                fontSize: AppSizes.getH(context) * 0.016,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             _buildPadding(context, 0.01),
             Container(

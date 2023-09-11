@@ -24,9 +24,10 @@ class LikeBtn extends StatelessWidget {
             Radius.circular(10),
           ),
         ),
-        height: 24,
-        width: 24,
+        height: 28,
+        width: 28,
         child: SvgPicture.asset(
+          
           IconConstants.like,
         ),
       ),

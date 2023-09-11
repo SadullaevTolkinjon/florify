@@ -1,4 +1,5 @@
 import 'package:florify/presentation/notification/notification_page.dart';
+import 'package:florify/presentation/product_details/product_details_page.dart';
 import 'package:florify/presentation/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
@@ -20,6 +21,8 @@ class OngenerateRoutes {
         return sampleRoute(const SplashScreen());
       case NavigatorConst.notificationPage:
         return sampleRoute(const NotificationPage());
+      case NavigatorConst.productDetails:
+        return sampleRoute(const ProductDetailsPage());
     }
 
     return null;

@@ -5,6 +5,9 @@ import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/presentation/home/components/app_bar.dart';
 import 'package:florify/presentation/home/components/category_title.dart';
 import 'package:florify/presentation/home/components/category_widget.dart';
+import 'package:florify/presentation/home/components/home_categories.dart';
+import 'package:florify/presentation/home/components/home_products.dart';
+import 'package:florify/presentation/widgets/categories_btn.dart';
 import 'package:florify/presentation/widgets/like_btn.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:florify/presentation/widgets/product_container.dart';
@@ -23,43 +26,10 @@ class HomeView extends StatelessWidget {
           _buildAppBar(),
           _buildCategories(),
           _buildCategoryTitle(),
-          SliverToBoxAdapter(
-            child: MyPadding(
-              height: AppSizes.getH(context) * 0.016,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Row(
-              children: [
-                Text(
-                  "Tavfsiyalar",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: ColorConstants.selectedNavBarColor,
-                  ),
-                )
-              ],
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: MyPadding(
-              height: AppSizes.getH(context) * 0.012,
-            ),
-          ),
-          SliverGrid(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => ProductContainer(
-                ontap: () {},
-              ),
-            ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisExtent: AppSizes.getH(context) * 0.31,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-          )
+          _buildPadding(context, 0.016),
+          _buildHomeCategories(),
+          _buildPadding(context, 0.012),
+          _buildHomeProducts(),
         ],
       ),
     );
@@ -75,5 +45,21 @@ class HomeView extends StatelessWidget {
 
   Widget _buildCategoryTitle() {
     return const CategoryTitle();
+  }
+
+  Widget _buildHomeProducts() {
+    return const HomeProducts();
+  }
+
+  Widget _buildHomeCategories() {
+    return const HomeCategories();
+  }
+
+  Widget _buildPadding(BuildContext context, double height) {
+    return SliverToBoxAdapter(
+      child: MyPadding(
+        height: AppSizes.getH(context) * height,
+      ),
+    );
   }
 }
