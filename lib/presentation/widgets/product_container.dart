@@ -50,7 +50,8 @@ class ProductContainer extends StatelessWidget {
                 image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: CachedNetworkImageProvider(
-                      "https://www.petitefleursg.com//image/cache/catalog/Product%20Photos/orangetulip-700x700.jpg"),
+                    "https://dostavka-tsvety.ru/wp-content/uploads/2019/12/13b832a2f9fcffd057117c09dff04f8d.jpeg",
+                  ),
                 ),
               ),
               child: Stack(
