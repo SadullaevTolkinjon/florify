@@ -1,8 +1,5 @@
-import 'dart:ui';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
-import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/presentation/catalog/components/catalog_component.dart';
 import 'package:florify/presentation/home/components/search_bar.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';

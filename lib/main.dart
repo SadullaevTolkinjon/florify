@@ -2,7 +2,6 @@ import 'package:florify/di/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
-import 'package:florify/di/injection.dart';
 import 'package:florify/presentation/home/cubit/home_cubit.dart';
 import 'package:florify/utils/router/router.dart';
 import 'package:florify/utils/theme/main_theme.dart';
