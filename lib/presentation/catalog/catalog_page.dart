@@ -1,3 +1,4 @@
+import 'package:florify/presentation/catalog/catalog_view.dart';
 import 'package:flutter/material.dart';
 
 class CatalogPage extends StatelessWidget {
@@ -5,14 +6,8 @@ class CatalogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        title: Text(
-          "Catalog page",
-        ),
-      ),
+    return const Scaffold(
+     body: CatalogView(  ),
     );
   }
 }

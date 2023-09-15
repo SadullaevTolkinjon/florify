@@ -1,5 +1,4 @@
-
-
+import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,9 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants/icons/icon_constants.dart';
 
 class HomeSearchBar extends StatelessWidget {
-  const HomeSearchBar({super.key, required this.ontap});
+  const HomeSearchBar({super.key, required this.ontap,this.title});
   final Function ontap;
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +17,7 @@ class HomeSearchBar extends StatelessWidget {
         ontap();
       },
       child: Container(
-        height: 60,
+        height: AppSizes.getH(context) * 0.06,
         decoration: BoxDecoration(
           color: ColorConstants.grey,
           borderRadius: const BorderRadius.all(
@@ -28,11 +28,11 @@ class HomeSearchBar extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(IconConstants.search),
-            const MyPadding(
-              width: 16.0,
+             MyPadding(
+              width: AppSizes.getH(context)*0.014,
             ),
             Text(
-              "Search flowers",
+             title?? "Search flowers",
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,

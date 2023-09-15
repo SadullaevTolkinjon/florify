@@ -94,8 +94,8 @@ class ProductDetailsAppbar extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      right: 24,
-                      bottom: 24,
+                      right: AppSizes.getH(context)*0.020,
+                      bottom: AppSizes.getH(context)*0.024,
                       child: Container(
                         padding:  EdgeInsets.all(AppSizes.getH(context)*.003),
                         decoration: BoxDecoration(
