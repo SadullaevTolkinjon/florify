@@ -1,5 +1,6 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
+import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/presentation/card/components/app_bar.dart';
 import 'package:florify/presentation/card/components/korzina_products_widget.dart';
 import 'package:florify/presentation/card/components/price_row_title.dart';
@@ -115,7 +116,9 @@ class CardView extends StatelessWidget {
           vertical: AppSizes.getH(context) * 0.020),
       sliver: SliverToBoxAdapter(
         child: ElevatedBtnWidget(
-          ontap: () {},
+          ontap: () {
+            Navigator.pushNamed(context, NavigatorConst.oformiliniya);
+          },
           height: AppSizes.getH(context) * 0.055,
           width: double.infinity,
           color: ColorConstants.selectedNavBarColor,

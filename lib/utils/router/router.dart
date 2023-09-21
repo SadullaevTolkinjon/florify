@@ -1,5 +1,8 @@
 import 'package:florify/presentation/notification/notification_page.dart';
+import 'package:florify/presentation/order_complete/oformileniya_page.dart';
 import 'package:florify/presentation/product_details/product_details_page.dart';
+import 'package:florify/presentation/promokod_add_page/promokod_add_page.dart';
+import 'package:florify/presentation/promokod_page/promokod_page.dart';
 import 'package:florify/presentation/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
@@ -23,6 +26,12 @@ class OngenerateRoutes {
         return sampleRoute(const NotificationPage());
       case NavigatorConst.productDetails:
         return sampleRoute(const ProductDetailsPage());
+      case NavigatorConst.oformiliniya:
+        return sampleRoute(const OformileniyPage());
+        case NavigatorConst.promokodPage:
+        return sampleRoute(const PromokodPage());
+          case NavigatorConst.promokodAddPage:
+        return sampleRoute(const PromokodAddPage());
     }
 
     return null;

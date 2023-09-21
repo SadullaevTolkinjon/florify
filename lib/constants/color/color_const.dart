@@ -23,4 +23,5 @@ class ColorConstants {
    static Color dotColor = const Color(0XFFD9D9D9);
    static Color orange = const Color(0XFFFFA500);
    static Color bascetColor = const Color(0XFF5C0099);
+   static Color green3 = const Color(0XFF088178);
 }

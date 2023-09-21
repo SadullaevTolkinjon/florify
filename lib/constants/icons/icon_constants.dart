@@ -22,5 +22,7 @@ class IconConstants {
   static const String comment_star = "assets/icons/comment_star.svg";
   static const String bag_white = "assets/icons/bag_icon_s.svg";
     static const String close = "assets/icons/close.svg";
+        static const String empty_star = "assets/icons/empty_star.svg";
+
 
 }

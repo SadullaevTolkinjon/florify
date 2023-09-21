@@ -16,6 +16,7 @@ class NotificationBtn extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: badges.Badge(
+          position: badges.BadgePosition.topEnd(),
           badgeContent: Text(
             "2",
             style: TextStyle(

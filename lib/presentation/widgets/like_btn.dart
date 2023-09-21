@@ -8,8 +8,10 @@ class LikeBtn extends StatelessWidget {
   const LikeBtn({
     super.key,
     required this.ontap,
+    this.isBorder
   });
   final Function ontap;
+ final bool? isBorder;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,6 +21,7 @@ class LikeBtn extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
+          border: Border.all(color:isBorder==null||isBorder==false?ColorConstants.white: ColorConstants.black.withOpacity(0.2)),
           color: ColorConstants.white,
           borderRadius: const BorderRadius.all(
             Radius.circular(10),

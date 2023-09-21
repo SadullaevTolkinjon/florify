@@ -22,6 +22,8 @@ class CommentsTitleBtn extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               title,
