@@ -1,8 +1,10 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
+import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/presentation/promokod_add_page/components/floating_btn.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PromokodAddPage extends StatelessWidget {
   const PromokodAddPage({super.key});
@@ -29,7 +31,7 @@ class PromokodAddPage extends StatelessWidget {
                     AppSizes.geth(context, 0.024),
                   ),
                   child: Container(
-                    height: AppSizes.geth(context, 0.180),
+                    height: AppSizes.geth(context, 0.2),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
@@ -60,36 +62,61 @@ class PromokodAddPage extends StatelessWidget {
                           cursorColor: ColorConstants.kgrey,
                           onChanged: (v) {},
                           decoration: InputDecoration(
-                              filled: true,
-                              hoverColor: ColorConstants.blue,
-                              focusColor: ColorConstants.kgrey,
-                              fillColor: ColorConstants.white,
-                              hintText: "Promokod",
-                              border: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: ColorConstants.black.withOpacity(0.1)),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: ColorConstants.black.withOpacity(0.1)),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              disabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: ColorConstants.black.withOpacity(0.1)),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: ColorConstants.black.withOpacity(0.1)),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)))),
+                            filled: true,
+                            hoverColor: ColorConstants.blue,
+                            focusColor: ColorConstants.kgrey,
+                            fillColor: ColorConstants.white,
+                            hintText: "Promokod",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorConstants.black.withOpacity(0.1)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorConstants.black.withOpacity(0.1)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorConstants.black.withOpacity(0.1)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: ColorConstants.black.withOpacity(0.1)),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                        MyPadding(
+                          height: AppSizes.geth(context, 0.01),
+                        ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(IconConstants.info),
+                            MyPadding(
+                              width: AppSizes.geth(context, 0.008),
+                            ),
+                            Expanded(
+                              child: Text(
+                                "Promokod “Bonus va promokodlar” sahifasida saqlanadi",
+                                style: TextStyle(
+                                  fontSize: AppSizes.geth(context, 0.016),
+                                ),
+                              ),
+                            )
+                          ],
                         )
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

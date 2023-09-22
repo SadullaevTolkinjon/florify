@@ -21,8 +21,11 @@ class IconConstants {
   static const String shop_icon = "assets/icons/shop_icon.svg";
   static const String comment_star = "assets/icons/comment_star.svg";
   static const String bag_white = "assets/icons/bag_icon_s.svg";
-    static const String close = "assets/icons/close.svg";
-        static const String empty_star = "assets/icons/empty_star.svg";
-
-
+  static const String close = "assets/icons/close.svg";
+  static const String empty_star = "assets/icons/empty_star.svg";
+  static const String info = "assets/icons/info_icon.svg";
+  static const String ru_flag = "assets/icons/ru_flag.svg";
+  static const String uz_flag = "assets/icons/uz_flag.svg";
+  static const String selected_lang = "assets/icons/selected_lang.svg";
+  static const String unselected_lang = "assets/icons/unselected_lang.svg";
 }
