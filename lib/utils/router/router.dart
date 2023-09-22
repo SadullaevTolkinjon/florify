@@ -1,3 +1,4 @@
+import 'package:florify/presentation/my_comments/my_comments_page.dart';
 import 'package:florify/presentation/notification/notification_page.dart';
 import 'package:florify/presentation/oferta/oferta_page.dart';
 import 'package:florify/presentation/order_complete/oformileniya_page.dart';
@@ -38,6 +39,8 @@ class OngenerateRoutes {
         return sampleRoute(const OfertaPage());
       case NavigatorConst.securityPage:
         return sampleRoute(const SecurityPage());
+      case NavigatorConst.my_comments_page:
+        return sampleRoute(const MyCommentsPage());
     }
 
     return null;
