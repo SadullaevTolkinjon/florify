@@ -34,17 +34,23 @@ class ProfileView extends StatelessWidget {
             isBorderable: true,
           ),
           ProfileBtn(
-            ontap: () {},
+            ontap: () {
+              Navigator.pushNamed(context, NavigatorConst.notificationPage);
+            },
             title: "Bildirishnomalar",
             isBorderable: true,
           ),
           ProfileBtn(
-            ontap: () {},
+            ontap: () {
+              Navigator.pushNamed(context, NavigatorConst.my_comments_page);
+            },
             title: "Qoldirgan sharhlarim",
             isBorderable: true,
           ),
           ProfileBtn(
-            ontap: () {},
+            ontap: () {
+              Navigator.pushNamed(context, NavigatorConst.edit_profile_page);
+            },
             title: "Profil",
             isBorderable: true,
           ),
@@ -57,7 +63,7 @@ class ProfileView extends StatelessWidget {
             ontap: () {
               showModalSheetWidget(
                 context,
-               const ChooseLanguage(),
+                const ChooseLanguage(),
                 isDismissible: false,
               );
             },

@@ -28,4 +28,6 @@ class IconConstants {
   static const String uz_flag = "assets/icons/uz_flag.svg";
   static const String selected_lang = "assets/icons/selected_lang.svg";
   static const String unselected_lang = "assets/icons/unselected_lang.svg";
+   static const String accept = "assets/icons/accept.svg";
+    static const String reject = "assets/icons/reject.svg";
 }

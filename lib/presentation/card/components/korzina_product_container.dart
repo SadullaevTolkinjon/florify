@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
@@ -56,8 +55,7 @@ class KorzinaProducts extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
-                              fontSize:
-                                  AppSizes.getH(context) * 0.018,
+                              fontSize: AppSizes.getH(context) * 0.018,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -74,27 +72,8 @@ class KorzinaProducts extends StatelessWidget {
                         top: AppSizes.getH(context) * 0.035,
                         right: AppSizes.getW(context) * 0.28,
                         left: 0,
-                        child: Container(
-                          height: AppSizes.getH(context) * 0.020,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                            color: ColorConstants.blue100
-                                .withOpacity(0.2),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppSizes.getW(context) * 0.04,
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Store: Fendi",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: ColorConstants
-                                    .selectedNavBarColor),
-                          ),
+                        child: const ShopNameWidget(
+                          shopName: "Store: Fendi",
                         ),
                       ),
                       Positioned(
@@ -113,8 +92,7 @@ class KorzinaProducts extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   style: TextStyle(
-                                    fontSize: AppSizes.getH(context) *
-                                        0.018,
+                                    fontSize: AppSizes.getH(context) * 0.018,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -128,9 +106,7 @@ class KorzinaProducts extends StatelessWidget {
                                       child: CounterBtn(
                                         icon: Icon(
                                           Icons.add,
-                                          size:
-                                              AppSizes.getH(context) *
-                                                  0.020,
+                                          size: AppSizes.getH(context) * 0.020,
                                         ),
                                         ontap: () {},
                                       ),
@@ -140,15 +116,12 @@ class KorzinaProducts extends StatelessWidget {
                                       child: Center(
                                         child: Text(
                                           "12",
-                                          overflow:
-                                              TextOverflow.ellipsis,
+                                          overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
                                           style: TextStyle(
-                                            fontSize: AppSizes.getH(
-                                                    context) *
-                                                0.018,
-                                            fontWeight:
-                                                FontWeight.w600,
+                                            fontSize:
+                                                AppSizes.getH(context) * 0.018,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ),
@@ -158,9 +131,7 @@ class KorzinaProducts extends StatelessWidget {
                                       child: CounterBtn(
                                         icon: Icon(
                                           Icons.add,
-                                          size:
-                                              AppSizes.getH(context) *
-                                                  0.020,
+                                          size: AppSizes.getH(context) * 0.020,
                                         ),
                                         ontap: () {},
                                       ),
@@ -183,6 +154,34 @@ class KorzinaProducts extends StatelessWidget {
             height: 0,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ShopNameWidget extends StatelessWidget {
+  const ShopNameWidget({super.key, required this.shopName});
+  final String shopName;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: AppSizes.getH(context) * 0.020,
+      
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5),
+        ),
+        color: ColorConstants.blue100.withOpacity(0.2),
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSizes.getW(context) * 0.04,
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        shopName,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(color: ColorConstants.selectedNavBarColor),
       ),
     );
   }

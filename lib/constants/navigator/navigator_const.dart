@@ -9,5 +9,8 @@ class NavigatorConst {
   static const String promokodAddPage = "/promokodaddPage";
   static const String oferta = "/oferta";
   static const String securityPage = "/securityPage";
-    static const String my_comments_page = "/my_comments_page";
+  static const String my_comments_page = "/my_comments_page";
+  static const String edit_profile_page = "/edit_profile_page";
+    static const String call_to_us_page = "/call_to_us_page";
+
 }

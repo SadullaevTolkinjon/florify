@@ -1,3 +1,5 @@
+import 'package:florify/presentation/call_to_us/call_to_us_page.dart';
+import 'package:florify/presentation/edit_profile/edit_profile_page.dart';
 import 'package:florify/presentation/my_comments/my_comments_page.dart';
 import 'package:florify/presentation/notification/notification_page.dart';
 import 'package:florify/presentation/oferta/oferta_page.dart';
@@ -22,27 +24,54 @@ class OngenerateRoutes {
     var args = settings.arguments;
     switch (settings.name) {
       case NavigatorConst.home:
-        return sampleRoute(const HomePage());
+        return sampleRoute(
+          const HomePage(),
+        );
       case NavigatorConst.initialScreeen:
-        return sampleRoute(const SplashScreen());
+        return sampleRoute(
+          const SplashScreen(),
+        );
       case NavigatorConst.notificationPage:
-        return sampleRoute(const NotificationPage());
+        return sampleRoute(
+          const NotificationPage(),
+        );
       case NavigatorConst.productDetails:
-        return sampleRoute(const ProductDetailsPage());
+        return sampleRoute(
+          const ProductDetailsPage(),
+        );
       case NavigatorConst.oformiliniya:
-        return sampleRoute(const OformileniyPage());
+        return sampleRoute(
+          const OformileniyPage(),
+        );
       case NavigatorConst.promokodPage:
-        return sampleRoute(const PromokodPage());
+        return sampleRoute(
+          const PromokodPage(),
+        );
       case NavigatorConst.promokodAddPage:
-        return sampleRoute(const PromokodAddPage());
+        return sampleRoute(
+          const PromokodAddPage(),
+        );
       case NavigatorConst.oferta:
-        return sampleRoute(const OfertaPage());
+        return sampleRoute(
+          const OfertaPage(),
+        );
       case NavigatorConst.securityPage:
-        return sampleRoute(const SecurityPage());
+        return sampleRoute(
+          const SecurityPage(),
+        );
       case NavigatorConst.my_comments_page:
-        return sampleRoute(const MyCommentsPage());
+        return sampleRoute(
+          const MyCommentsPage(),
+        );
+      case NavigatorConst.edit_profile_page:
+        return sampleRoute(
+          EditProfilePage(),
+        );
+      case NavigatorConst.call_to_us_page:
+        return sampleRoute(
+          const CallToUsPage(),
+        );
     }
-
     return null;
   }
 
