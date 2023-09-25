@@ -53,6 +53,9 @@ dependencies:
   expandable_text: ^2.3.0
   modal_bottom_sheet: ^3.0.0-pre
   flutter_rating_bar: ^4.0.1
+  step_progress_indicator: ^1.0.2
+  pinput: ^3.0.1
+  flutter_timer_countdown: ^1.0.5
 
 dev_dependencies:
   flutter_test:

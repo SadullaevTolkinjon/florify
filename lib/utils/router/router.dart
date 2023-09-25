@@ -1,14 +1,20 @@
+import 'package:florify/presentation/auth/sign_up/sign_in_page.dart';
+import 'package:florify/presentation/auth/verfy_sms/sms_verify_view.dart';
+import 'package:florify/presentation/auth/verfy_sms/verfy_sms_page.dart';
 import 'package:florify/presentation/call_to_us/call_to_us_page.dart';
 import 'package:florify/presentation/edit_profile/edit_profile_page.dart';
 import 'package:florify/presentation/my_comments/my_comments_page.dart';
 import 'package:florify/presentation/notification/notification_page.dart';
 import 'package:florify/presentation/oferta/oferta_page.dart';
+import 'package:florify/presentation/onboarding/onboarding_page.dart';
 import 'package:florify/presentation/order_complete/oformileniya_page.dart';
+import 'package:florify/presentation/order_history/order_history_page.dart';
 import 'package:florify/presentation/product_details/product_details_page.dart';
 import 'package:florify/presentation/promokod_add_page/promokod_add_page.dart';
 import 'package:florify/presentation/promokod_page/promokod_page.dart';
 import 'package:florify/presentation/security_page/security_page.dart';
 import 'package:florify/presentation/splash/splash_screen.dart';
+import 'package:florify/presentation/write_comments/write_comments_page.dart';
 import 'package:flutter/material.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/presentation/home/home_page.dart';
@@ -71,7 +77,28 @@ class OngenerateRoutes {
         return sampleRoute(
           const CallToUsPage(),
         );
+      case NavigatorConst.onboarding:
+        return sampleRoute(
+          const OnboardingPage(),
+        );
+      case NavigatorConst.sign_up_page:
+        return sampleRoute(
+          const SignUpPage(),
+        );
+      case NavigatorConst.smsVerfyPage:
+        return sampleRoute(
+          const VerifySmsPage(),
+        );
+      case NavigatorConst.orderHistoryPage:
+        return sampleRoute(
+          const OrderHistoryPage(),
+        );
+          case NavigatorConst.writeCommentsPage:
+        return sampleRoute(
+          const WriteCommentsPage(),
+        );
     }
+
     return null;
   }
 

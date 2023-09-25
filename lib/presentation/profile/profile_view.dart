@@ -22,7 +22,9 @@ class ProfileView extends StatelessWidget {
           const ImageAppbar(),
           const NameTitle(),
           ProfileBtn(
-            ontap: () {},
+            ontap: () {
+               Navigator.pushNamed(context, NavigatorConst.orderHistoryPage);
+            },
             title: "Mening buyurtmalarim",
             isBorderable: true,
           ),
@@ -90,7 +92,9 @@ class ProfileView extends StatelessWidget {
             isBorderable: true,
           ),
           ProfileBtn(
-            ontap: () {},
+            ontap: () {
+              Navigator.pushNamed(context, NavigatorConst.call_to_us_page);
+            },
             title: "Biz bilan bog'lanish",
             isBorderable: true,
           ),

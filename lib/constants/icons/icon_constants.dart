@@ -30,4 +30,7 @@ class IconConstants {
   static const String unselected_lang = "assets/icons/unselected_lang.svg";
    static const String accept = "assets/icons/accept.svg";
     static const String reject = "assets/icons/reject.svg";
+    static const String instagram = "assets/icons/instagram.svg";
+    static const String telegram = "assets/icons/telegram.svg";
+    static const String whatsap = "assets/icons/whatsap.svg";
 }
