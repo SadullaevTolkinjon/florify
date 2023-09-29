@@ -174,12 +174,13 @@ class _WriteCommentsViewState extends State<WriteCommentsView> {
             ),
             const Spacer(),
             SafeArea(
-                child: ElevatedBtnWidget(
-                    ontap: () {},
-                    height: AppSizes.geth(context, 0.055),
-                    width: double.infinity,
-                    color: ColorConstants.selectedNavBarColor,
-                    title: "Sharh qoldirish")),
+              child: ElevatedBtnWidget(
+                  ontap: () {},
+                  height: AppSizes.geth(context, 0.055),
+                  width: double.infinity,
+                  color: ColorConstants.selectedNavBarColor,
+                  title: "Sharh qoldirish"),
+            ),
             MyPadding(
               height: AppSizes.geth(context, 0.01),
             ),

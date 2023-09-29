@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/api/main_api.dart';
@@ -9,10 +11,20 @@ class MainService {
   final MainApi _mainApi;
   MainService(this._mainApi);
 
-  fetchSavedBooks() async {
-    final response = await _mainApi.getCategory();
+  getCategories() async {
+    final response = await _mainApi.getCategories();
+    Iterable list = jsonDecode(response.body);
+    return List<CategoryModel>.from(list.map((e) => CategoryModel.fromJson(e)));
+  }
+  getCategoryProducts(String id) async {
+    final response = await _mainApi.getCategoryProducts(id);
     var data = jsonDecode(response.body);
-    return data;
+    return CategoryModel.fromJson(data);
+  }
+   getProductDetails(int id) async {
+    final response = await _mainApi.fetchProductDetails(id);
+    var data = jsonDecode(response.body);
+    return ProductDetailModel.fromJson(data);
   }
 
   // Future getCustomers(int page, int id) async {

@@ -13,5 +13,6 @@ class DetailsBuildable extends DetailsState with _$DetailsBuildable {
     @Default(false) bool isUser,
     @Default(0) int currentIndex,
      @Default(0) int selectedTab,
+     ProductDetailModel? product,
   }) = _DetailsBuildable;
 }

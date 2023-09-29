@@ -9,6 +9,7 @@ import 'package:florify/presentation/profile/components/logout_btn.dart';
 import 'package:florify/presentation/profile/components/name_title.dart';
 import 'package:florify/presentation/profile/components/profile_btn.dart';
 import 'package:florify/presentation/widgets/modal_bootom_sheet.dart';
+import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -23,7 +24,7 @@ class ProfileView extends StatelessWidget {
           const NameTitle(),
           ProfileBtn(
             ontap: () {
-               Navigator.pushNamed(context, NavigatorConst.orderHistoryPage);
+              Navigator.pushNamed(context, NavigatorConst.orderHistoryPage);
             },
             title: "Mening buyurtmalarim",
             isBorderable: true,
@@ -100,6 +101,11 @@ class ProfileView extends StatelessWidget {
           ),
           LogoutBtn(
             ontap: () {},
+          ),
+          SliverToBoxAdapter(
+            child: MyPadding(
+              height: AppSizes.geth(context, 0.025),
+            ),
           )
         ],
       ),

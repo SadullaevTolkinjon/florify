@@ -1,3 +1,4 @@
+import 'package:florify/constants/behaviour/app_behaviour.dart';
 import 'package:florify/di/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
       theme: MainTheme.light,
       onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
       initialRoute: NavigatorConst.initialScreeen,
+       scrollBehavior: AppBehaviour(),
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(

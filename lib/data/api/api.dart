@@ -11,8 +11,8 @@ class Api {
 
   // Api(this._token);
 
-  final _host = "api.takhfid.uz";
-  final _root = "";
+  final _host = "florify.onrender.com";
+  final _root = "/api";
 
   final _timeout = const Duration(seconds: 15);
 
@@ -61,7 +61,8 @@ class Api {
 
   Future<Map<String, String>> get _headers async {
     final headers = <String, String>{
-      "Content-Type": "application/json; charset=UTF-8"
+      "Content-Type": "application/json"
+      ,"accept":"/"
     };
 
     // final token = await _token.get();

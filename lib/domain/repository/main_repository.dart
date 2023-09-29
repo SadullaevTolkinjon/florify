@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/main_api.dart';
-
 
 @Injectable()
 class MainRepository {
@@ -10,13 +10,12 @@ class MainRepository {
 
   MainRepository(this._mainApi);
   getCategories() async {
-    final response = await _mainApi.getCategory();
-    var data = jsonDecode(response.body);
-    Iterable list = data["result"];
-    return list;
+    final response = await _mainApi.getCategories();
+
+    Iterable list = jsonDecode(response.body);
+    return List<CategoryModel>.from(list.map((e) => CategoryModel.fromJson(e)));
   }
 
- 
   // Future<List<Stat>> getStats(int page, int size) async {
   //   final response = await _mainApi.getStats(page, size);
   //   Iterable list = jsonDecode(response.body);

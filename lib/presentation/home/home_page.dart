@@ -1,3 +1,8 @@
+import 'package:florify/presentation/card/card_page.dart';
+import 'package:florify/presentation/catalog/catalog_page.dart';
+import 'package:florify/presentation/favorite/favorite_page.dart';
+import 'package:florify/presentation/home/home_view.dart';
+import 'package:florify/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florify/presentation/home/components/bottom_nav_bar.dart';
@@ -21,7 +26,16 @@ class HomePage extends StatelessWidget {
             buildable.success
           ],
           builder: (context, state) {
-            return buildHomeUi(state.currentIndex);
+            return IndexedStack(
+              index: state.currentIndex,
+              children: const [
+                HomeView(),
+                CatalogPage(),
+                CardPage(),
+                FavoritePapge(),
+                ProfilePage()
+              ],
+            );
           },
         ),
       ),

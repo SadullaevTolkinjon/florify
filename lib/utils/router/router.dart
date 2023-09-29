@@ -1,5 +1,5 @@
+import 'package:florify/presentation/all_category_product/all_category_product_page.dart';
 import 'package:florify/presentation/auth/sign_up/sign_in_page.dart';
-import 'package:florify/presentation/auth/verfy_sms/sms_verify_view.dart';
 import 'package:florify/presentation/auth/verfy_sms/verfy_sms_page.dart';
 import 'package:florify/presentation/call_to_us/call_to_us_page.dart';
 import 'package:florify/presentation/edit_profile/edit_profile_page.dart';
@@ -12,6 +12,7 @@ import 'package:florify/presentation/order_history/order_history_page.dart';
 import 'package:florify/presentation/product_details/product_details_page.dart';
 import 'package:florify/presentation/promokod_add_page/promokod_add_page.dart';
 import 'package:florify/presentation/promokod_page/promokod_page.dart';
+import 'package:florify/presentation/search/search_page.dart';
 import 'package:florify/presentation/security_page/security_page.dart';
 import 'package:florify/presentation/splash/splash_screen.dart';
 import 'package:florify/presentation/write_comments/write_comments_page.dart';
@@ -43,7 +44,9 @@ class OngenerateRoutes {
         );
       case NavigatorConst.productDetails:
         return sampleRoute(
-          const ProductDetailsPage(),
+          ProductDetailsPage(
+            productId: args as int,
+          ),
         );
       case NavigatorConst.oformiliniya:
         return sampleRoute(
@@ -93,9 +96,19 @@ class OngenerateRoutes {
         return sampleRoute(
           const OrderHistoryPage(),
         );
-          case NavigatorConst.writeCommentsPage:
+      case NavigatorConst.writeCommentsPage:
         return sampleRoute(
           const WriteCommentsPage(),
+        );
+      case NavigatorConst.searchPage:
+        return sampleRoute(
+          const SearchPage(),
+        );
+      case NavigatorConst.allCategoryProductsView:
+        return sampleRoute(
+          AllCategoryProductPage(
+            categorydata: args as List,
+          ),
         );
     }
 

@@ -16,5 +16,7 @@ class NavigatorConst {
   static const String sign_up_page = "/sign_up_page";
   static const String smsVerfyPage = "/smsVerifyPage";
   static const String orderHistoryPage = "/orderHistoryPage";
-   static const String writeCommentsPage = "/writeCommentsPage";
+  static const String writeCommentsPage = "/writeCommentsPage";
+  static const String searchPage = "/searchPage";
+  static const String allCategoryProductsView = "/allCategoryProductsView";
 }

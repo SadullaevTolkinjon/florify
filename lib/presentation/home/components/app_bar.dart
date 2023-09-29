@@ -13,7 +13,7 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
-       pinned: false,
+      pinned: false,
       floating: true,
       snap: true,
       elevation: 0,
@@ -23,7 +23,9 @@ class HomeAppBar extends StatelessWidget {
             Expanded(
               flex: 8,
               child: HomeSearchBar(
-                ontap: () {},
+                ontap: () {
+                  Navigator.pushNamed(context, NavigatorConst.searchPage);
+                },
               ),
             ),
             const MyPadding(

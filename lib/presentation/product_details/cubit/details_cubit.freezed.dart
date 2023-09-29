@@ -24,6 +24,7 @@ mixin _$DetailsBuildable {
   bool get isUser => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
   int get selectedTab => throw _privateConstructorUsedError;
+  ProductDetailModel? get product => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailsBuildableCopyWith<DetailsBuildable> get copyWith =>
@@ -44,7 +45,10 @@ abstract class $DetailsBuildableCopyWith<$Res> {
       dynamic error,
       bool isUser,
       int currentIndex,
-      int selectedTab});
+      int selectedTab,
+      ProductDetailModel? product});
+
+  $ProductDetailModelCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -68,6 +72,7 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
     Object? isUser = null,
     Object? currentIndex = null,
     Object? selectedTab = null,
+    Object? product = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -102,7 +107,23 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as int,
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductDetailModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductDetailModelCopyWith<$Res>? get product {
+    if (_value.product == null) {
+      return null;
+    }
+
+    return $ProductDetailModelCopyWith<$Res>(_value.product!, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
   }
 }
 
@@ -122,7 +143,11 @@ abstract class _$$_DetailsBuildableCopyWith<$Res>
       dynamic error,
       bool isUser,
       int currentIndex,
-      int selectedTab});
+      int selectedTab,
+      ProductDetailModel? product});
+
+  @override
+  $ProductDetailModelCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -144,6 +169,7 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
     Object? isUser = null,
     Object? currentIndex = null,
     Object? selectedTab = null,
+    Object? product = freezed,
   }) {
     return _then(_$_DetailsBuildable(
       loading: null == loading
@@ -178,6 +204,10 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as int,
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductDetailModel?,
     ));
   }
 }
@@ -193,7 +223,8 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       this.error,
       this.isUser = false,
       this.currentIndex = 0,
-      this.selectedTab = 0});
+      this.selectedTab = 0,
+      this.product});
 
   @override
   @JsonKey()
@@ -218,10 +249,12 @@ class _$_DetailsBuildable implements _DetailsBuildable {
   @override
   @JsonKey()
   final int selectedTab;
+  @override
+  final ProductDetailModel? product;
 
   @override
   String toString() {
-    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab)';
+    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab, product: $product)';
   }
 
   @override
@@ -239,7 +272,8 @@ class _$_DetailsBuildable implements _DetailsBuildable {
             (identical(other.currentIndex, currentIndex) ||
                 other.currentIndex == currentIndex) &&
             (identical(other.selectedTab, selectedTab) ||
-                other.selectedTab == selectedTab));
+                other.selectedTab == selectedTab) &&
+            (identical(other.product, product) || other.product == product));
   }
 
   @override
@@ -252,7 +286,8 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       const DeepCollectionEquality().hash(error),
       isUser,
       currentIndex,
-      selectedTab);
+      selectedTab,
+      product);
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +305,8 @@ abstract class _DetailsBuildable implements DetailsBuildable {
       final dynamic error,
       final bool isUser,
       final int currentIndex,
-      final int selectedTab}) = _$_DetailsBuildable;
+      final int selectedTab,
+      final ProductDetailModel? product}) = _$_DetailsBuildable;
 
   @override
   bool get loading;
@@ -288,6 +324,8 @@ abstract class _DetailsBuildable implements DetailsBuildable {
   int get currentIndex;
   @override
   int get selectedTab;
+  @override
+  ProductDetailModel? get product;
   @override
   @JsonKey(ignore: true)
   _$$_DetailsBuildableCopyWith<_$_DetailsBuildable> get copyWith =>

@@ -1,6 +1,8 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/di/injection.dart';
+import 'package:florify/domain/model/product_detail/product_details_model.dart';
+import 'package:florify/presentation/product_details/components/comments_widget.dart';
 import 'package:florify/presentation/product_details/components/desc_title_btn.dart';
 import 'package:florify/presentation/product_details/cubit/details_cubit.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
@@ -11,8 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants/app_sizes/app_sizes_const.dart';
 
 class DiscriptionWidget extends StatelessWidget {
-  const DiscriptionWidget({super.key});
-
+  const DiscriptionWidget({super.key, required this.product});
+  final ProductDetailModel product;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -62,9 +64,11 @@ class DiscriptionWidget extends StatelessWidget {
                     ),
                     state.selectedTab == 0
                         ? Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ExpandableText(
-                                "'Qizil olov' guldastasi aralashmasi!Yorqin va quyoshli kungaboqar unga quvonch va nekbinlik bilan tegadigan har bir kishini tom ma'noda yuqtiradi. Qadimgi Azteklar tomonidan hurmatga sazovor bo'lgan bu ajoyib gul boy ijobiy ramziylik bilan o‘ralgan",
+                                product.description ?? "",
                                 expandText: 'batafsil',
                                 collapseText: 'kamroq',
                                 maxLines: 4,
@@ -79,7 +83,7 @@ class DiscriptionWidget extends StatelessWidget {
                               )
                             ],
                           )
-                        : const SizedBox(),
+                        : const CommentsWidget()
                   ],
                 ),
               ),

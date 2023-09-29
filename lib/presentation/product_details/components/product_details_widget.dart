@@ -1,13 +1,14 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/constants/icons/icon_constants.dart';
+import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/presentation/product_details/components/info_container.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
-  const ProductDetailsWidget({super.key});
-
+  const ProductDetailsWidget({super.key, required this.product});
+  final ProductDetailModel product;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -18,7 +19,7 @@ class ProductDetailsWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "'Qizil olov' guldastasi aralashmasi",
+              product.name ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -34,7 +35,7 @@ class ProductDetailsWidget extends StatelessWidget {
               spacing: AppSizes.getW(context) * 0.008,
               children: [
                 ...List.generate(
-                  4,
+                  5,
                   (index) => Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
@@ -71,10 +72,10 @@ class ProductDetailsWidget extends StatelessWidget {
                 MyPadding(
                   width: AppSizes.getH(context) * 0.030,
                 ),
-                const InfoDetailsContainer(
+                InfoDetailsContainer(
                   iconPath: IconConstants.shopping,
                   title: "Mavjud",
-                  count: "14",
+                  count: "${product.quantity ?? 0}",
                 ),
                 MyPadding(
                   width: AppSizes.getH(context) * 0.030,

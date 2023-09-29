@@ -1,4 +1,3 @@
-
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/api.dart';
@@ -7,8 +6,16 @@ import 'package:florify/data/api/api.dart';
 class MainApi {
   final Api _api;
   MainApi(this._api);
-  Future<Response> getCategory() async {
-    var data = await _api.get(path: 'category/top');
+  Future<Response> getCategories() async {
+    var data = await _api.get(path: 'category');
+    return data;
+  }
+   Future<Response> getCategoryProducts(String id) async {
+    var data = await _api.get(path: 'category/$id');
+    return data;
+  }
+   Future<Response> fetchProductDetails(int id) async {
+    var data = await _api.get(path: 'product/${id.toString()}');
     return data;
   }
 

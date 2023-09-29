@@ -12,7 +12,7 @@ class HomeProducts extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (context, index) => ProductContainer(
                 ontap: () {
-                  Navigator.pushNamed(context, NavigatorConst.productDetails);
+                  Navigator.pushNamed(context, NavigatorConst.productDetails,arguments: 2);
                 },
               ),
             ),

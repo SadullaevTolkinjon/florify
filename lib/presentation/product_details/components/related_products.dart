@@ -42,7 +42,7 @@ final String title;
                         ontap: () {
                           Navigator.pushNamed(
                             context,
-                            NavigatorConst.productDetails,
+                            NavigatorConst.productDetails,arguments: 2
                           );
                         },
                       ),

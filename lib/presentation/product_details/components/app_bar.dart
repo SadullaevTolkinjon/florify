@@ -4,6 +4,7 @@ import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/data/local/permanent_db.dart';
 import 'package:florify/di/injection.dart';
+import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/presentation/product_details/cubit/details_cubit.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
 import 'package:florify/presentation/widgets/custom_icon_btn.dart';
@@ -15,8 +16,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants/color/color_const.dart';
 
 class ProductDetailsAppbar extends StatelessWidget {
-  const ProductDetailsAppbar({super.key});
-
+  const ProductDetailsAppbar({super.key, required this.product});
+  final ProductDetailModel product;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -43,7 +44,7 @@ class ProductDetailsAppbar extends StatelessWidget {
                           imageUrl: flowers[index],
                         ),
                       ),
-                      itemCount: flowers.length,
+                      itemCount: product.image!.length,
                       onPageChanged: (index) {
                         BlocProvider.of<DetailsCubit>(context)
                             .changeImages(index);
@@ -81,7 +82,8 @@ class ProductDetailsAppbar extends StatelessWidget {
                                 ),
                                 CustomIconBtn(
                                   ontap: () {
-                                    Navigator.pop(context);
+                                    BlocProvider.of<DetailsCubit>(context)
+                                        .share("Something");
                                   },
                                   icon: SvgPicture.asset(
                                     IconConstants.share,
@@ -94,10 +96,10 @@ class ProductDetailsAppbar extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      right: AppSizes.getH(context)*0.020,
-                      bottom: AppSizes.getH(context)*0.024,
+                      right: AppSizes.getH(context) * 0.020,
+                      bottom: AppSizes.getH(context) * 0.024,
                       child: Container(
-                        padding:  EdgeInsets.all(AppSizes.getH(context)*.003),
+                        padding: EdgeInsets.all(AppSizes.getH(context) * .003),
                         decoration: BoxDecoration(
                           color: ColorConstants.white,
                           borderRadius: BorderRadius.all(
@@ -107,7 +109,7 @@ class ProductDetailsAppbar extends StatelessWidget {
                           ),
                         ),
                         child: DotsIndicator(
-                          dotsCount: flowers.length,
+                          dotsCount: product.image!.length,
                           position: state.currentIndex,
                           decorator: DotsDecorator(
                             activeColor: ColorConstants.black,

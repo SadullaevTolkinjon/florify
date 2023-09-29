@@ -5,4 +5,6 @@ class ImagesConst {
   static const String onbording2 = "assets/images/onbording2.png";
   static const String onbording3 = "assets/images/onbording3.png";
   static const String onboarding2 = "assets/images/onboarding2.jpeg";
+    static const String no_internet = "assets/images/no_internet.png";
+
 }

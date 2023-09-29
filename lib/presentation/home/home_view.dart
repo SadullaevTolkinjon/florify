@@ -1,29 +1,68 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
+import 'package:florify/di/injection.dart';
+import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/presentation/home/components/app_bar.dart';
 import 'package:florify/presentation/home/components/category_title.dart';
 import 'package:florify/presentation/home/components/category_widget.dart';
 import 'package:florify/presentation/home/components/home_categories.dart';
 import 'package:florify/presentation/home/components/home_products.dart';
+import 'package:florify/presentation/home/cubit/home_cubit.dart';
+import 'package:florify/presentation/widgets/buildable.dart';
+import 'package:florify/presentation/widgets/error_widget.dart';
+import 'package:florify/presentation/widgets/loader_widget.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.getW(context) * 0.019),
-      child: CustomScrollView(
-        slivers: [
-          _buildAppBar(),
-          _buildCategories(),
-          _buildCategoryTitle(),
-          _buildPadding(context, 0.016),
-          _buildHomeCategories(),
-          _buildPadding(context, 0.012),
-          _buildHomeProducts(),
-        ],
+    return BlocProvider(
+      create: (context) {
+        var cubit = locator<HomeCubit>();
+        cubit.fetchCategories();
+        return cubit;
+      },
+      child: BlocListener<HomeCubit, HomeState>(
+        listener: (context, state) {},
+        child: Buildable<HomeCubit, HomeState, HomeBuildableState>(
+          properties: (buildable) => [
+            buildable.categories,
+            buildable.loading,
+            buildable.success,
+            buildable.failed,
+            buildable.error,
+          ],
+          builder: (context, state) {
+            if (state.loading) {
+              return const LoaderWidget();
+            }
+            if (state.failed) {
+              return ErrorWidgetCustom(
+                ontap: () {
+                  BlocProvider.of<HomeCubit>(context).fetchCategories();
+                },
+              );
+            }
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.getW(context) * 0.019),
+              child: CustomScrollView(
+                slivers: [
+                  _buildAppBar(),
+                  _buildCategories(state.categories),
+                  _buildCategoryTitle(),
+                  _buildPadding(context, 0.016),
+                  _buildHomeCategories(),
+                  _buildPadding(context, 0.012),
+                  _buildHomeProducts(),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -32,8 +71,10 @@ class HomeView extends StatelessWidget {
     return const HomeAppBar();
   }
 
-  Widget _buildCategories() {
-    return const CategoryWidget();
+  Widget _buildCategories(List<CategoryModel> categories) {
+    return CategoryWidget(
+      categories: categories,
+    );
   }
 
   Widget _buildCategoryTitle() {
