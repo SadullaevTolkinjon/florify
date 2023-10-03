@@ -54,7 +54,9 @@ class OnboardingView extends StatelessWidget {
                       ),
                     ),
                   ),
-                 TitleOnboarding(currentIndex: state.currentIndex,),
+                  TitleOnboarding(
+                    currentIndex: state.currentIndex,
+                  ),
                   Positioned(
                     bottom: AppSizes.geth(context, 0.08),
                     child: Container(
@@ -112,5 +114,4 @@ class OnboardingView extends StatelessWidget {
     ImagesConst.onbording2,
     ImagesConst.onbording3,
   ];
- 
 }

@@ -90,8 +90,8 @@ class EditProfilePage extends StatelessWidget {
           SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: AppSizes.geth(context, 0.02),
-              ),
+                  horizontal: AppSizes.geth(context, 0.02),
+                  vertical: AppSizes.geth(context, 0.01)),
               child: ElevatedBtnWidget(
                 ontap: () {},
                 height: AppSizes.geth(context, 0.06),
@@ -100,7 +100,7 @@ class EditProfilePage extends StatelessWidget {
                 title: "O'zgartirish",
               ),
             ),
-          )
+          ),
         ],
       ),
     );

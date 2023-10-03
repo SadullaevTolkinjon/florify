@@ -19,4 +19,5 @@ class NavigatorConst {
   static const String writeCommentsPage = "/writeCommentsPage";
   static const String searchPage = "/searchPage";
   static const String allCategoryProductsView = "/allCategoryProductsView";
+    static const String shopDetails = "/shopDetailsPage";
 }

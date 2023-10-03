@@ -9,7 +9,7 @@ final int currentIndex;
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 0,
+      top:  AppSizes.geth(context, 0.01),
       right: AppSizes.geth(context, 0.02),
       left: AppSizes.geth(context, 0.02),
       child: SafeArea(

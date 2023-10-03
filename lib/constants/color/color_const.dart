@@ -7,7 +7,7 @@ class ColorConstants {
   static Color white = const Color(0XFFFFFFFF);
   static Color boxShadow1 = const Color.fromARGB(0, 0, 0, 6);
   static Color grey = const Color(0XFFF7F7F9);
-  static Color blue = const Color(0XFF24B0ED);
+  static Color blue = const Color(0XFF243CB9);
   static Color green = const Color(0XFF67C926);
   static Color kTextColor = const Color(0XFF9196AD);
   static Color blue100 = const Color(0XFF6282E5);

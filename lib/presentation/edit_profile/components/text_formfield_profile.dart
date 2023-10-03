@@ -4,16 +4,18 @@ import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 
 class TextFormfieldProfile extends StatelessWidget {
-  const TextFormfieldProfile(
+  TextFormfieldProfile(
       {super.key,
       required this.validator,
       required this.controller,
       required this.hintText,
-      required this.helperText});
+      required this.helperText,
+      this.heleperTextColor});
   final Function(String?)? validator;
   final TextEditingController controller;
   final String hintText;
   final String helperText;
+  Color? heleperTextColor;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +26,7 @@ class TextFormfieldProfile extends StatelessWidget {
           helperText,
           style: TextStyle(
             fontSize: AppSizes.geth(context, 0.016),
-            color: ColorConstants.black.withOpacity(0.3),
+            color: heleperTextColor ?? ColorConstants.black.withOpacity(0.3),
           ),
         ),
         MyPadding(

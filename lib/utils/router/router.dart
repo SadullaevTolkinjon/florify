@@ -14,6 +14,7 @@ import 'package:florify/presentation/promokod_add_page/promokod_add_page.dart';
 import 'package:florify/presentation/promokod_page/promokod_page.dart';
 import 'package:florify/presentation/search/search_page.dart';
 import 'package:florify/presentation/security_page/security_page.dart';
+import 'package:florify/presentation/shop_detail/shop_details_page.dart';
 import 'package:florify/presentation/splash/splash_screen.dart';
 import 'package:florify/presentation/write_comments/write_comments_page.dart';
 import 'package:flutter/material.dart';
@@ -109,6 +110,10 @@ class OngenerateRoutes {
           AllCategoryProductPage(
             categorydata: args as List,
           ),
+        );
+      case NavigatorConst.shopDetails:
+        return sampleRoute(
+          const ShopDetailsPage(),
         );
     }
 

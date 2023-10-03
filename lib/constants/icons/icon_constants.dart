@@ -33,5 +33,10 @@ class IconConstants {
   static const String instagram = "assets/icons/instagram.svg";
   static const String telegram = "assets/icons/telegram.svg";
   static const String whatsap = "assets/icons/whatsap.svg";
-    static const String search_icon = "assets/icons/search_icon.svg";
+  static const String search_icon = "assets/icons/search_icon.svg";
+  static const String location = "assets/icons/location.svg";
+  static const String check = "assets/icons/check.svg";
+  static const String no_check = "assets/icons/no_check.svg";
+   static const String card_ = "assets/icons/card_.svg";
+     static const String tabriknoma = "assets/icons/tabriknoma.svg";
 }
