@@ -32,7 +32,8 @@ class ErrorWidgetCustom extends StatelessWidget {
             height: AppSizes.geth(context, 0.02),
           ),
           Text(
-            "Wi-Fi yoki mobil tarmoqqa ulanishni tekshiring va qaytadan urining.s",
+            "Wi-Fi yoki mobil tarmoqqa ulanishni tekshiring va qaytadan urining.!",
+            textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: AppSizes.geth(context, 0.016),
                 fontWeight: FontWeight.w400),

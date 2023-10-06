@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
+import 'package:florify/domain/model/card_product_model/card_product_model.dart';
 import 'package:florify/presentation/card/components/counter_btn.dart';
 import 'package:florify/presentation/card/components/remove_btn.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
@@ -9,8 +10,15 @@ import 'package:flutter/material.dart';
 class KorzinaProducts extends StatelessWidget {
   const KorzinaProducts({
     super.key,
+    required this.deleteBtn,
+    required this.product,
+    required this.incrementBtn,
+    required this.decrementBtn,
   });
-
+  final Function deleteBtn;
+  final CardProduct product;
+  final Function incrementBtn;
+  final Function decrementBtn;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,7 +73,9 @@ class KorzinaProducts extends StatelessWidget {
                         right: 0,
                         top: 0,
                         child: RemoveBtn(
-                          ontap: () {},
+                          ontap: () {
+                            deleteBtn();
+                          },
                         ),
                       ),
                       Positioned(
@@ -88,7 +98,7 @@ class KorzinaProducts extends StatelessWidget {
                               Expanded(
                                 flex: 6,
                                 child: Text(
-                                  "1000000 so'm",
+                                  "${product.price} so'm",
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   style: TextStyle(
@@ -108,14 +118,16 @@ class KorzinaProducts extends StatelessWidget {
                                           Icons.add,
                                           size: AppSizes.getH(context) * 0.020,
                                         ),
-                                        ontap: () {},
+                                        ontap: () {
+                                          decrementBtn();
+                                        },
                                       ),
                                     ),
                                     Expanded(
                                       flex: 3,
                                       child: Center(
                                         child: Text(
-                                          "12",
+                                          "${product.sum_quantity}",
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 1,
                                           style: TextStyle(
@@ -133,7 +145,9 @@ class KorzinaProducts extends StatelessWidget {
                                           Icons.add,
                                           size: AppSizes.getH(context) * 0.020,
                                         ),
-                                        ontap: () {},
+                                        ontap: () {
+                                          incrementBtn();
+                                        },
                                       ),
                                     )
                                   ],
@@ -166,7 +180,6 @@ class ShopNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: AppSizes.getH(context) * 0.020,
-      
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
           Radius.circular(5),

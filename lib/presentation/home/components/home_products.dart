@@ -8,20 +8,24 @@ class HomeProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SliverGrid(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => ProductContainer(
-                ontap: () {
-                  Navigator.pushNamed(context, NavigatorConst.productDetails,arguments: 2);
-                },
-              ),
-            ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisExtent: AppSizes.getH(context) * 0.31,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-          );
+    return SliverGrid(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => ProductContainer(
+          ontap: () {
+            Navigator.pushNamed(
+              context,
+              NavigatorConst.productDetails,
+              arguments: index + 1,
+            );
+          },
+        ),
+      ),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisExtent: AppSizes.getH(context) * 0.31,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+      ),
+    );
   }
 }

@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:florify/data/preferences/token_preferences.dart';
+import 'package:florify/domain/model/card_product_model/card_product_model.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
+import 'package:florify/presentation/card/card_page.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/api/main_api.dart';
@@ -9,24 +12,41 @@ import '../../data/api/main_api.dart';
 @Injectable()
 class MainService {
   final MainApi _mainApi;
-  MainService(this._mainApi);
+  final TokenPreference _preference;
+  MainService(this._mainApi, this._preference);
 
   getCategories() async {
     final response = await _mainApi.getCategories();
     Iterable list = jsonDecode(response.body);
     return List<CategoryModel>.from(list.map((e) => CategoryModel.fromJson(e)));
   }
+
   getCategoryProducts(String id) async {
     final response = await _mainApi.getCategoryProducts(id);
     var data = jsonDecode(response.body);
     return CategoryModel.fromJson(data);
   }
-   getProductDetails(int id) async {
+
+  getProductDetails(int id) async {
     final response = await _mainApi.fetchProductDetails(id);
     var data = jsonDecode(response.body);
     return ProductDetailModel.fromJson(data);
   }
 
+  renderToProductJson(List<String> listJson) {
+    List<CardProduct> renderedList = listJson
+        .map(
+          (json) => CardProduct.fromJson(jsonDecode(json)),
+        )
+        .toList();
+    return renderedList;
+  }
+
+  Future<List<String>> getLocalCardProducts() async {
+    List<String> data = await _preference.getCardProducts() ?? [];
+
+    return data;
+  }
   // Future getCustomers(int page, int id) async {
   //   final response = await _mainApi.getBooks(page, id);
   //   var data = jsonDecode(response.body);

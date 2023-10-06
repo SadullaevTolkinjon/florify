@@ -9,6 +9,7 @@ import 'package:florify/presentation/product_details/cubit/details_cubit.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
 import 'package:florify/presentation/widgets/error_widget.dart';
 import 'package:florify/presentation/widgets/loader_widget.dart';
+import 'package:florify/presentation/widgets/snackbar_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,22 @@ class ProductDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<DetailsCubit, DetailsState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is DetailsBuildable) {
+          if (state.savedToCard) {
+            SnackbarWidgets.showSuccess(
+              context,
+              "Mahsulot savatga qo'shildi",
+            );
+          }
+          if (state.product_is_exist_in_card) {
+            SnackbarWidgets.showInfo(
+              context,
+              "Mahsulot allaqachon savatchada mavjud",
+            );
+          }
+        }
+      },
       child: Buildable<DetailsCubit, DetailsState, DetailsBuildable>(
         properties: (buildable) => [
           buildable.loading,
@@ -71,7 +87,9 @@ class ProductDetailsView extends StatelessWidget {
                   ],
                 ),
               ),
-              const HomeFloatingBtn()
+              HomeFloatingBtn(
+                product: state.product!,
+              )
             ],
           );
         },

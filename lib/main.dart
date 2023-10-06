@@ -1,5 +1,6 @@
 import 'package:florify/constants/behaviour/app_behaviour.dart';
 import 'package:florify/di/injection.dart';
+import 'package:florify/presentation/card/cubit/card_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
@@ -14,6 +15,9 @@ void main() async {
       providers: [
         BlocProvider(
           create: (context) => locator<HomeCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => locator<CardCubit>(),
         ),
       ],
       child: const MyApp(),
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: MainTheme.light,
       onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
       initialRoute: NavigatorConst.initialScreeen,
-       scrollBehavior: AppBehaviour(),
+      scrollBehavior: AppBehaviour(),
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(

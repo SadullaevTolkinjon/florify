@@ -25,6 +25,8 @@ mixin _$DetailsBuildable {
   int get currentIndex => throw _privateConstructorUsedError;
   int get selectedTab => throw _privateConstructorUsedError;
   ProductDetailModel? get product => throw _privateConstructorUsedError;
+  bool get savedToCard => throw _privateConstructorUsedError;
+  bool get product_is_exist_in_card => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailsBuildableCopyWith<DetailsBuildable> get copyWith =>
@@ -46,7 +48,9 @@ abstract class $DetailsBuildableCopyWith<$Res> {
       bool isUser,
       int currentIndex,
       int selectedTab,
-      ProductDetailModel? product});
+      ProductDetailModel? product,
+      bool savedToCard,
+      bool product_is_exist_in_card});
 
   $ProductDetailModelCopyWith<$Res>? get product;
 }
@@ -73,6 +77,8 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
     Object? currentIndex = null,
     Object? selectedTab = null,
     Object? product = freezed,
+    Object? savedToCard = null,
+    Object? product_is_exist_in_card = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -111,6 +117,14 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductDetailModel?,
+      savedToCard: null == savedToCard
+          ? _value.savedToCard
+          : savedToCard // ignore: cast_nullable_to_non_nullable
+              as bool,
+      product_is_exist_in_card: null == product_is_exist_in_card
+          ? _value.product_is_exist_in_card
+          : product_is_exist_in_card // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -144,7 +158,9 @@ abstract class _$$_DetailsBuildableCopyWith<$Res>
       bool isUser,
       int currentIndex,
       int selectedTab,
-      ProductDetailModel? product});
+      ProductDetailModel? product,
+      bool savedToCard,
+      bool product_is_exist_in_card});
 
   @override
   $ProductDetailModelCopyWith<$Res>? get product;
@@ -170,6 +186,8 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
     Object? currentIndex = null,
     Object? selectedTab = null,
     Object? product = freezed,
+    Object? savedToCard = null,
+    Object? product_is_exist_in_card = null,
   }) {
     return _then(_$_DetailsBuildable(
       loading: null == loading
@@ -208,6 +226,14 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductDetailModel?,
+      savedToCard: null == savedToCard
+          ? _value.savedToCard
+          : savedToCard // ignore: cast_nullable_to_non_nullable
+              as bool,
+      product_is_exist_in_card: null == product_is_exist_in_card
+          ? _value.product_is_exist_in_card
+          : product_is_exist_in_card // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -224,7 +250,9 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       this.isUser = false,
       this.currentIndex = 0,
       this.selectedTab = 0,
-      this.product});
+      this.product,
+      this.savedToCard = false,
+      this.product_is_exist_in_card = false});
 
   @override
   @JsonKey()
@@ -251,10 +279,16 @@ class _$_DetailsBuildable implements _DetailsBuildable {
   final int selectedTab;
   @override
   final ProductDetailModel? product;
+  @override
+  @JsonKey()
+  final bool savedToCard;
+  @override
+  @JsonKey()
+  final bool product_is_exist_in_card;
 
   @override
   String toString() {
-    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab, product: $product)';
+    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab, product: $product, savedToCard: $savedToCard, product_is_exist_in_card: $product_is_exist_in_card)';
   }
 
   @override
@@ -273,7 +307,12 @@ class _$_DetailsBuildable implements _DetailsBuildable {
                 other.currentIndex == currentIndex) &&
             (identical(other.selectedTab, selectedTab) ||
                 other.selectedTab == selectedTab) &&
-            (identical(other.product, product) || other.product == product));
+            (identical(other.product, product) || other.product == product) &&
+            (identical(other.savedToCard, savedToCard) ||
+                other.savedToCard == savedToCard) &&
+            (identical(
+                    other.product_is_exist_in_card, product_is_exist_in_card) ||
+                other.product_is_exist_in_card == product_is_exist_in_card));
   }
 
   @override
@@ -287,7 +326,9 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       isUser,
       currentIndex,
       selectedTab,
-      product);
+      product,
+      savedToCard,
+      product_is_exist_in_card);
 
   @JsonKey(ignore: true)
   @override
@@ -306,7 +347,9 @@ abstract class _DetailsBuildable implements DetailsBuildable {
       final bool isUser,
       final int currentIndex,
       final int selectedTab,
-      final ProductDetailModel? product}) = _$_DetailsBuildable;
+      final ProductDetailModel? product,
+      final bool savedToCard,
+      final bool product_is_exist_in_card}) = _$_DetailsBuildable;
 
   @override
   bool get loading;
@@ -326,6 +369,10 @@ abstract class _DetailsBuildable implements DetailsBuildable {
   int get selectedTab;
   @override
   ProductDetailModel? get product;
+  @override
+  bool get savedToCard;
+  @override
+  bool get product_is_exist_in_card;
   @override
   @JsonKey(ignore: true)
   _$$_DetailsBuildableCopyWith<_$_DetailsBuildable> get copyWith =>

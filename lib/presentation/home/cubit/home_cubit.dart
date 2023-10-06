@@ -35,4 +35,5 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
       );
     }
   }
+ 
 }
