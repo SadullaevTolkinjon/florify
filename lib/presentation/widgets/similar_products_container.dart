@@ -1,5 +1,3 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
@@ -31,7 +29,7 @@ class SimilarProductsContainer extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: CachedNetworkImageProvider(
-                    "https://www.theflowerland.com.au/cdn/shop/products/IMG_20210621_160842_1-01_edit_634838780430733-01_large_crop_center.jpg?v=1626068130",
+                    "https://i.pinimg.com/originals/bb/de/8c/bbde8cc7e560642be73e5e7429797194.jpg",
                   ),
                 ),
               ),

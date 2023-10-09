@@ -6,14 +6,17 @@ class TokenPreference {
   final SharedPreferences _sharedPreferences;
 
   TokenPreference(this._sharedPreferences);
-  final String _key = "token";
+  final String _key = "user";
   final String _cardProducts = "cardProducts";
-  set(String value) async {
+  setUser(String value) async {
     await _sharedPreferences.setString(_key, value);
   }
 
-  get() async {
+  getUser() async {
     return _sharedPreferences.getString(_key);
+  }
+  removeUser()async{
+    await _sharedPreferences.remove(_key);
   }
 
   setCardProducts(List<String> value) async {

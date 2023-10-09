@@ -25,6 +25,7 @@ mixin _$CardProduct {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
+  int? get sum_price => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
   String? get color => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
@@ -52,6 +53,7 @@ abstract class $CardProductCopyWith<$Res> {
       String? name,
       String? description,
       int? price,
+      int? sum_price,
       int? quantity,
       String? color,
       DateTime? date,
@@ -80,6 +82,7 @@ class _$CardProductCopyWithImpl<$Res, $Val extends CardProduct>
     Object? name = freezed,
     Object? description = freezed,
     Object? price = freezed,
+    Object? sum_price = freezed,
     Object? quantity = freezed,
     Object? color = freezed,
     Object? date = freezed,
@@ -109,6 +112,10 @@ class _$CardProductCopyWithImpl<$Res, $Val extends CardProduct>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sum_price: freezed == sum_price
+          ? _value.sum_price
+          : sum_price // ignore: cast_nullable_to_non_nullable
               as int?,
       quantity: freezed == quantity
           ? _value.quantity
@@ -160,6 +167,7 @@ abstract class _$$_CardProductCopyWith<$Res>
       String? name,
       String? description,
       int? price,
+      int? sum_price,
       int? quantity,
       String? color,
       DateTime? date,
@@ -186,6 +194,7 @@ class __$$_CardProductCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? price = freezed,
+    Object? sum_price = freezed,
     Object? quantity = freezed,
     Object? color = freezed,
     Object? date = freezed,
@@ -215,6 +224,10 @@ class __$$_CardProductCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sum_price: freezed == sum_price
+          ? _value.sum_price
+          : sum_price // ignore: cast_nullable_to_non_nullable
               as int?,
       quantity: freezed == quantity
           ? _value.quantity
@@ -261,6 +274,7 @@ class _$_CardProduct implements _CardProduct {
       this.name,
       this.description,
       this.price,
+      this.sum_price,
       this.quantity,
       this.color,
       this.date,
@@ -284,6 +298,8 @@ class _$_CardProduct implements _CardProduct {
   final String? description;
   @override
   final int? price;
+  @override
+  final int? sum_price;
   @override
   final int? quantity;
   @override
@@ -310,7 +326,7 @@ class _$_CardProduct implements _CardProduct {
 
   @override
   String toString() {
-    return 'CardProduct(id: $id, sum_quantity: $sum_quantity, name: $name, description: $description, price: $price, quantity: $quantity, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, image: $image)';
+    return 'CardProduct(id: $id, sum_quantity: $sum_quantity, name: $name, description: $description, price: $price, sum_price: $sum_price, quantity: $quantity, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, image: $image)';
   }
 
   @override
@@ -325,6 +341,8 @@ class _$_CardProduct implements _CardProduct {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.sum_price, sum_price) ||
+                other.sum_price == sum_price) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.color, color) || other.color == color) &&
@@ -349,6 +367,7 @@ class _$_CardProduct implements _CardProduct {
       name,
       description,
       price,
+      sum_price,
       quantity,
       color,
       date,
@@ -379,6 +398,7 @@ abstract class _CardProduct implements CardProduct {
       final String? name,
       final String? description,
       final int? price,
+      final int? sum_price,
       final int? quantity,
       final String? color,
       final DateTime? date,
@@ -401,6 +421,8 @@ abstract class _CardProduct implements CardProduct {
   String? get description;
   @override
   int? get price;
+  @override
+  int? get sum_price;
   @override
   int? get quantity;
   @override

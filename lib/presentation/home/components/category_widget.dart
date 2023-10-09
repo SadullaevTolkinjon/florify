@@ -19,7 +19,7 @@ class CategoryWidget extends StatelessWidget {
           spacing: AppSizes.geth(context, 0.01),
           children: [
             ...List.generate(
-              categories.length,
+              categories.length > 3 ? 3 : categories.length,
               (index) => CategoryProduct(
                 ontap: () {
                   Navigator.pushNamed(

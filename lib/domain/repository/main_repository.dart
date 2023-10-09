@@ -11,11 +11,34 @@ class MainRepository {
   MainRepository(this._mainApi);
   getCategories() async {
     final response = await _mainApi.getCategories();
-
     Iterable list = jsonDecode(response.body);
     return List<CategoryModel>.from(list.map((e) => CategoryModel.fromJson(e)));
   }
 
+  verfyPhoneNumber(String phone) async {
+    final response = await _mainApi.verfyPhone(phone);
+    var data = jsonDecode(response.body);
+    return data;
+  }
+
+  phoneValidator(String value) {
+    if (value.isEmpty) {
+      return "Shouldn't be empty";
+    } else if (value.length < 12) {
+      return "The phone must be at least 12 characters";
+    }
+  }
+   pinValidator(String value) {
+    if (value.isEmpty) {
+      return "Shouldn't be empty";
+    }
+  }
+
+  verfySms(String phone,String sms) async {
+    final response = await _mainApi.verfySms(phone,sms);
+    var data = jsonDecode(response.body);
+    return data;
+  }
   // Future<List<Stat>> getStats(int page, int size) async {
   //   final response = await _mainApi.getStats(page, size);
   //   Iterable list = jsonDecode(response.body);

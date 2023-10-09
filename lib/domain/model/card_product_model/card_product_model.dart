@@ -11,6 +11,7 @@ class CardProduct with _$CardProduct {
     String? name,
     String? description,
     int? price,
+    int? sum_price,
     int? quantity,
     String? color,
     DateTime? date,

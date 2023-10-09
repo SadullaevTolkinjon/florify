@@ -13,6 +13,7 @@ _$_CardProduct _$$_CardProductFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       description: json['description'] as String?,
       price: json['price'] as int?,
+      sum_price: json['sum_price'] as int?,
       quantity: json['quantity'] as int?,
       color: json['color'] as String?,
       date:
@@ -37,6 +38,7 @@ Map<String, dynamic> _$$_CardProductToJson(_$_CardProduct instance) =>
       'name': instance.name,
       'description': instance.description,
       'price': instance.price,
+      'sum_price': instance.sum_price,
       'quantity': instance.quantity,
       'color': instance.color,
       'date': instance.date?.toIso8601String(),

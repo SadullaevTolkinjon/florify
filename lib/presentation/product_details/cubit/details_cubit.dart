@@ -87,6 +87,7 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
       updated_at: product.updated_at,
       image: product.image,
       sum_quantity: 1,
+      sum_price: product.price
     );
     String productJson = jsonEncode(cardProduct.toJson());
     List ids = [];

@@ -56,9 +56,9 @@ class CardCubit extends BuildableCubit<CardState, CardBuildableState> {
     List<CardProduct> products = _service.renderToProductJson(savedProducts);
     products = products.map((product) {
       if (products.indexOf(product) == index) {
-        return product.copyWith(
-          sum_quantity: product.sum_quantity! + 1,
-        );
+        return product.copyWith( sum_price: product.price! * product.sum_quantity!,
+            sum_quantity: product.sum_quantity! + 1,
+           );
       }
       return product;
     }).toList();
@@ -68,7 +68,6 @@ class CardCubit extends BuildableCubit<CardState, CardBuildableState> {
     build(
       (buildable) => buildable.copyWith(
         prodcuts: products,
-        price: calculateAllPrice(products),
       ),
     );
   }
@@ -80,11 +79,12 @@ class CardCubit extends BuildableCubit<CardState, CardBuildableState> {
     products = products.map((product) {
       if (products.indexOf(product) == index) {
         if (product.sum_quantity == 1) {
-          return product;
+          return product.copyWith(sum_price: product.price!*product.sum_quantity!);
         } else {
           return product.copyWith(
-            sum_quantity: product.sum_quantity! - 1,
-          );
+             sum_price: product.price! * product.sum_quantity!,
+              sum_quantity: product.sum_quantity! - 1,
+             );
         }
       }
       return product;
@@ -92,8 +92,11 @@ class CardCubit extends BuildableCubit<CardState, CardBuildableState> {
     List<String> listJson =
         products.map((product) => jsonEncode(product.toJson())).toList();
     await _preference.setCardProducts(listJson);
-    build((buildable) => buildable.copyWith(
-        prodcuts: products, price: calculateAllPrice(products)));
+    build(
+      (buildable) => buildable.copyWith(
+        prodcuts: products,
+      ),
+    );
   }
 
   calculateAllPrice(List<CardProduct> products) {

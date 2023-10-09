@@ -10,5 +10,6 @@ class SmsVerifyBuildable extends SmsVerifyState with _$SmsVerifyBuildable {
     @Default(false) bool success,
     @Default(false) bool failed,
     @Default(false) bool isCompleted,
+     dynamic error,
   }) = _SmsVerifyBuildable;
 }

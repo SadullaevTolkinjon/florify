@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerifySmsPage extends StatelessWidget {
-  const VerifySmsPage({super.key});
-
+  const VerifySmsPage({super.key,required this.phoneNumber});
+final String phoneNumber;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => locator<SmsVerifyCubit>(),
-      child: const SmsVerfyView(),
+      child:  SmsVerfyView(phoneNumber: phoneNumber,),
     );
   }
 }

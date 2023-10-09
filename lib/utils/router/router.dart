@@ -91,7 +91,7 @@ class OngenerateRoutes {
         );
       case NavigatorConst.smsVerfyPage:
         return sampleRoute(
-          const VerifySmsPage(),
+           VerifySmsPage(phoneNumber: args as String,),
         );
       case NavigatorConst.orderHistoryPage:
         return sampleRoute(

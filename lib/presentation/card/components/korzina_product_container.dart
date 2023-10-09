@@ -98,7 +98,7 @@ class KorzinaProducts extends StatelessWidget {
                               Expanded(
                                 flex: 6,
                                 child: Text(
-                                  "${product.price} so'm",
+                                  "${product.sum_price} so'm",
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   style: TextStyle(

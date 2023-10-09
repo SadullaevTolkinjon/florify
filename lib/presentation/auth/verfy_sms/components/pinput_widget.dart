@@ -8,8 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 
 class PinputField extends StatelessWidget {
-  const PinputField({super.key});
+  const PinputField({
+    super.key,
+    required this.controller,
+  });
 
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -19,9 +23,8 @@ class PinputField extends StatelessWidget {
         onChanged: (pin) {
           BlocProvider.of<SmsVerifyCubit>(context).editingCompleted2(pin);
         },
-        validator: (value) {
-          return "";
-        },
+        controller: controller,
+       
         disabledPinTheme: PinTheme(
           height: AppSizes.geth(context, 0.074),
           width: AppSizes.geth(context, 0.074),

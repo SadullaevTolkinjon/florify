@@ -28,16 +28,19 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_remainingTime.inSeconds > 0) {
-          _remainingTime = _remainingTime - const Duration(seconds: 1);
-        } else {
-          isResent = true;
-          _timer.cancel();
-        }
-      });
-    });
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        setState(() {
+          if (_remainingTime.inSeconds > 0) {
+            _remainingTime = _remainingTime - const Duration(seconds: 1);
+          } else {
+            isResent = true;
+            _timer.cancel();
+          }
+        });
+      },
+    );
   }
 
   @override

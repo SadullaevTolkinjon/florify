@@ -37,7 +37,7 @@ class Api {
     Map<String, dynamic>? body,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.http(_host, "$_root/$path", params);
+    final uri = Uri.https(_host, "$_root/$path", params);
     final headers = await _headers;
     final result = await _httpClient
         .post(uri, headers: headers, body: jsonEncode(body))
@@ -61,8 +61,8 @@ class Api {
 
   Future<Map<String, String>> get _headers async {
     final headers = <String, String>{
-      "Content-Type": "application/json"
-      ,"accept":"/"
+      "Content-Type": "application/json",
+      "accept": "/"
     };
 
     // final token = await _token.get();
@@ -87,7 +87,13 @@ class Api {
       // case 402:
       //   throw NameUnavailableException();
       default:
-        throw Exception();
+        throw Exception(
+          [
+            "Error",
+            response.statusCode,
+            response.body,
+          ],
+        );
     }
   }
 }

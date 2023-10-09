@@ -10,12 +10,37 @@ class MainApi {
     var data = await _api.get(path: 'category');
     return data;
   }
-   Future<Response> getCategoryProducts(String id) async {
+
+  Future<Response> getCategoryProducts(String id) async {
     var data = await _api.get(path: 'category/$id');
     return data;
   }
-   Future<Response> fetchProductDetails(int id) async {
+
+  Future<Response> fetchProductDetails(int id) async {
     var data = await _api.get(path: 'product/${id.toString()}');
+    return data;
+  }
+
+  Future<Response> verfyPhone(String phone) async {
+    final body = {"phone": phone};
+    var data = await _api.post(
+      path: 'client/sendSMS',
+      body: body,
+    );
+
+    return data;
+  }
+
+  Future<Response> verfySms(String phone, String sms) async {
+    final body = {
+      "phone": phone,
+      "code": sms,
+    };
+    var data = await _api.post(
+      path: 'client/login',
+      body: body,
+    );
+
     return data;
   }
 
