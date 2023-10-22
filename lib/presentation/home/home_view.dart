@@ -34,6 +34,7 @@ class HomeView extends StatelessWidget {
             buildable.success,
             buildable.failed,
             buildable.error,
+            buildable.selectedCategory
           ],
           builder: (context, state) {
             if (state.loading) {
@@ -55,9 +56,15 @@ class HomeView extends StatelessWidget {
                   _buildCategories(state.categories),
                   _buildCategoryTitle(),
                   _buildPadding(context, 0.016),
-                  _buildHomeCategories(),
+                  _buildHomeCategories(
+                    state.categories,
+                    state.selectedCategory,
+                  ),
                   _buildPadding(context, 0.012),
-                  _buildHomeProducts(),
+                  _buildHomeProducts(
+                    state.categories,
+                    state.selectedCategory,
+                  ),
                 ],
               ),
             );
@@ -81,12 +88,18 @@ class HomeView extends StatelessWidget {
     return const CategoryTitle();
   }
 
-  Widget _buildHomeProducts() {
-    return const HomeProducts();
+  Widget _buildHomeProducts(List<CategoryModel> categories, int index) {
+    return HomeProducts(
+      categories: categories,
+      selectedCategory: index,
+    );
   }
 
-  Widget _buildHomeCategories() {
-    return const HomeCategories();
+  Widget _buildHomeCategories(List<CategoryModel> categories, int index) {
+    return HomeCategories(
+      categories: categories,
+      selectedCategory: index,
+    );
   }
 
   Widget _buildPadding(BuildContext context, double height) {

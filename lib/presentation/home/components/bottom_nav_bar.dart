@@ -2,6 +2,7 @@ import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/constants/images/images_const.dart';
 import 'package:florify/presentation/card/cubit/card_cubit.dart';
+import 'package:florify/presentation/favorite/cubit/favorite_cubit.dart';
 import 'package:florify/presentation/home/components/navbar_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +29,9 @@ builtBottomBar() {
           BlocProvider.of<HomeCubit>(context, listen: false).changeTabs(value);
           if (value == 2) {
             BlocProvider.of<CardCubit>(context).getCardProducts();
+          }
+          if (value == 3) {
+            BlocProvider.of<FavoriteCubit>(context).checkLikeIds();
           }
         },
         items: [

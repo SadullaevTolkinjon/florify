@@ -1,9 +1,13 @@
+import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/presentation/home/cubit/home_cubit.dart';
 import 'package:florify/presentation/widgets/categories_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCategories extends StatelessWidget {
-  const HomeCategories({super.key});
-
+  const HomeCategories({super.key, required this.categories,required this.selectedCategory});
+  final List<CategoryModel> categories;
+  final int selectedCategory;
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -12,10 +16,13 @@ class HomeCategories extends StatelessWidget {
         child: Row(
           children: [
             ...List.generate(
-              3,
+              categories.length,
               (index) => CategoriesBtn(
-                isSelected: index == 0 ? true : false,
-                ontap: () {},
+                title: categories[index].uz ?? "",
+                isSelected: selectedCategory == index ? true : false,
+                ontap: () {
+                  context.read<HomeCubit>().selectCategory(index);
+                },
               ),
             )
           ],

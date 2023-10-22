@@ -8,10 +8,11 @@ class CategoriesBtn extends StatelessWidget {
   const CategoriesBtn({
     super.key,
     required this.isSelected,
-    required this.ontap,
+    required this.ontap,required this.title
   });
   final bool isSelected;
   final Function ontap;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,7 +22,7 @@ class CategoriesBtn extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 20),
         child: Text(
-          "Tavfsiyalar",
+          title,
           style: TextStyle(
             fontSize: AppSizes.getH(context)*0.018,
             fontWeight: FontWeight.w500,

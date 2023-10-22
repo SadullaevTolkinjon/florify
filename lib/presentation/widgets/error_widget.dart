@@ -54,3 +54,54 @@ class ErrorWidgetCustom extends StatelessWidget {
     );
   }
 }
+
+
+class LoginErrorWidgetCustom extends StatelessWidget {
+  const LoginErrorWidgetCustom({super.key, required this.ontap});
+  final Function ontap;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.geth(context, 0.05)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            child: Image.asset(ImagesConst.no_internet),
+          ),
+          MyPadding(
+            height: AppSizes.geth(context, 0.02),
+          ),
+          Text(
+            "Ro'yxatdan o'tmagansiz",
+            style: TextStyle(
+                fontSize: AppSizes.geth(context, 0.02),
+                fontWeight: FontWeight.w600),
+          ),
+          MyPadding(
+            height: AppSizes.geth(context, 0.02),
+          ),
+          Text(
+            "Iltimos yoqtirgan mahsulotlarni ko'rish uchun iltimos ro'yxatdan o'ting!",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: AppSizes.geth(context, 0.016),
+                fontWeight: FontWeight.w400),
+          ),
+          MyPadding(
+            height: AppSizes.geth(context, 0.04),
+          ),
+          ElevatedBtnWidget(
+              ontap: () {
+                ontap();
+              },
+              height: AppSizes.geth(context, 0.055),
+              width: AppSizes.geth(context, 0.15),
+              color: ColorConstants.selectedNavBarColor,
+              title: "Royxatdan o'tish")
+        ],
+      ),
+    );
+  }
+}

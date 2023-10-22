@@ -22,6 +22,8 @@ mixin _$FavoriteBuildable {
   bool get failed => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
   int get selectedTab => throw _privateConstructorUsedError;
+  List<FavoriteModel> get likes => throw _privateConstructorUsedError;
+  List<String>? get likeIds => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FavoriteBuildableCopyWith<FavoriteBuildable> get copyWith =>
@@ -40,7 +42,9 @@ abstract class $FavoriteBuildableCopyWith<$Res> {
       bool success,
       bool failed,
       dynamic error,
-      int selectedTab});
+      int selectedTab,
+      List<FavoriteModel> likes,
+      List<String>? likeIds});
 }
 
 /// @nodoc
@@ -62,6 +66,8 @@ class _$FavoriteBuildableCopyWithImpl<$Res, $Val extends FavoriteBuildable>
     Object? failed = null,
     Object? error = freezed,
     Object? selectedTab = null,
+    Object? likes = null,
+    Object? likeIds = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -88,6 +94,14 @@ class _$FavoriteBuildableCopyWithImpl<$Res, $Val extends FavoriteBuildable>
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as int,
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
+      likeIds: freezed == likeIds
+          ? _value.likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -106,7 +120,9 @@ abstract class _$$_FavoriteBuildableCopyWith<$Res>
       bool success,
       bool failed,
       dynamic error,
-      int selectedTab});
+      int selectedTab,
+      List<FavoriteModel> likes,
+      List<String>? likeIds});
 }
 
 /// @nodoc
@@ -126,6 +142,8 @@ class __$$_FavoriteBuildableCopyWithImpl<$Res>
     Object? failed = null,
     Object? error = freezed,
     Object? selectedTab = null,
+    Object? likes = null,
+    Object? likeIds = freezed,
   }) {
     return _then(_$_FavoriteBuildable(
       loading: null == loading
@@ -152,6 +170,14 @@ class __$$_FavoriteBuildableCopyWithImpl<$Res>
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as int,
+      likes: null == likes
+          ? _value._likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
+      likeIds: freezed == likeIds
+          ? _value._likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -165,7 +191,11 @@ class _$_FavoriteBuildable implements _FavoriteBuildable {
       this.success = false,
       this.failed = false,
       this.error,
-      this.selectedTab = 0});
+      this.selectedTab = 0,
+      final List<FavoriteModel> likes = const [],
+      final List<String>? likeIds = const []})
+      : _likes = likes,
+        _likeIds = likeIds;
 
   @override
   @JsonKey()
@@ -184,10 +214,29 @@ class _$_FavoriteBuildable implements _FavoriteBuildable {
   @override
   @JsonKey()
   final int selectedTab;
+  final List<FavoriteModel> _likes;
+  @override
+  @JsonKey()
+  List<FavoriteModel> get likes {
+    if (_likes is EqualUnmodifiableListView) return _likes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likes);
+  }
+
+  final List<String>? _likeIds;
+  @override
+  @JsonKey()
+  List<String>? get likeIds {
+    final value = _likeIds;
+    if (value == null) return null;
+    if (_likeIds is EqualUnmodifiableListView) return _likeIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'FavoriteBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, selectedTab: $selectedTab)';
+    return 'FavoriteBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, selectedTab: $selectedTab, likes: $likes, likeIds: $likeIds)';
   }
 
   @override
@@ -202,12 +251,22 @@ class _$_FavoriteBuildable implements _FavoriteBuildable {
             (identical(other.failed, failed) || other.failed == failed) &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.selectedTab, selectedTab) ||
-                other.selectedTab == selectedTab));
+                other.selectedTab == selectedTab) &&
+            const DeepCollectionEquality().equals(other._likes, _likes) &&
+            const DeepCollectionEquality().equals(other._likeIds, _likeIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, isModal_hud, success,
-      failed, const DeepCollectionEquality().hash(error), selectedTab);
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      isModal_hud,
+      success,
+      failed,
+      const DeepCollectionEquality().hash(error),
+      selectedTab,
+      const DeepCollectionEquality().hash(_likes),
+      const DeepCollectionEquality().hash(_likeIds));
 
   @JsonKey(ignore: true)
   @override
@@ -224,7 +283,9 @@ abstract class _FavoriteBuildable implements FavoriteBuildable {
       final bool success,
       final bool failed,
       final dynamic error,
-      final int selectedTab}) = _$_FavoriteBuildable;
+      final int selectedTab,
+      final List<FavoriteModel> likes,
+      final List<String>? likeIds}) = _$_FavoriteBuildable;
 
   @override
   bool get loading;
@@ -238,6 +299,10 @@ abstract class _FavoriteBuildable implements FavoriteBuildable {
   dynamic get error;
   @override
   int get selectedTab;
+  @override
+  List<FavoriteModel> get likes;
+  @override
+  List<String>? get likeIds;
   @override
   @JsonKey(ignore: true)
   _$$_FavoriteBuildableCopyWith<_$_FavoriteBuildable> get copyWith =>

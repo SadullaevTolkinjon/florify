@@ -1,14 +1,16 @@
 import 'dart:convert';
 
+import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/user/user_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/main_api.dart';
 
 @Injectable()
 class MainRepository {
   final MainApi _mainApi;
-
-  MainRepository(this._mainApi);
+  final TokenPreference _preference;
+  MainRepository(this._mainApi, this._preference);
   getCategories() async {
     final response = await _mainApi.getCategories();
     Iterable list = jsonDecode(response.body);
@@ -28,17 +30,47 @@ class MainRepository {
       return "The phone must be at least 12 characters";
     }
   }
-   pinValidator(String value) {
+
+  pinValidator(String value) {
     if (value.isEmpty) {
       return "Shouldn't be empty";
     }
   }
 
-  verfySms(String phone,String sms) async {
-    final response = await _mainApi.verfySms(phone,sms);
+  verfySms(String phone, String sms) async {
+    final response = await _mainApi.verfySms(phone, sms);
+    var data = jsonDecode(response.body);
+    return UserModel.fromJson(data);
+  }
+
+  removePlus(String input) {
+    List list1 = [];
+    list1 = input.split("");
+    if (list1[0] == "+") {
+      list1.removeAt(0);
+      return list1.join();
+    } else {
+      return list1.join();
+    }
+  }
+
+  getUser() async {
+    var json = await _preference.getUser();
+    return json;
+  }
+
+  dislike(int productId, String clientId) async {
+    final response = await _mainApi.dislike(productId, clientId);
     var data = jsonDecode(response.body);
     return data;
   }
+
+  pressLike(int productId, String clientId) async {
+    final response = await _mainApi.pressLike(productId, clientId);
+    var data = jsonDecode(response.body);
+    return data;
+  }
+
   // Future<List<Stat>> getStats(int page, int size) async {
   //   final response = await _mainApi.getStats(page, size);
   //   Iterable list = jsonDecode(response.body);

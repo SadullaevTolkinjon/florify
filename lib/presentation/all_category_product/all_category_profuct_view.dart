@@ -60,6 +60,7 @@ class AllCategoryProductView extends StatelessWidget {
                   SliverGrid(
                     delegate: SliverChildBuilderDelegate(
                         (context, index) => ProductContainer(
+                              product: state.data!.product![index],
                               ontap: () {
                                 Navigator.pushNamed(
                                   context,

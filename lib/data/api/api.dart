@@ -24,7 +24,7 @@ class Api {
     required String path,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.http(_host, "$_root/$path",
+    final uri = Uri.https(_host, "$_root/$path",
         params?.map((key, value) => MapEntry(key, value.toString())));
     final headers = await _headers;
     final result =
@@ -58,10 +58,22 @@ class Api {
         .timeout(_timeout);
     return propagateErrors(result);
   }
+  Future<Response> delete({
+    required String path,
+    Map<String, dynamic>? body,
+    Map<String, Object>? params,
+  }) async {
+    final uri = Uri.https(_host, "$_root/$path", params);
+    final headers = await _headers;
+    final result = await _httpClient
+        .delete(uri, headers: headers, body: jsonEncode(body))
+        .timeout(_timeout);
+    return propagateErrors(result);
+  }
 
   Future<Map<String, String>> get _headers async {
     final headers = <String, String>{
-      "Content-Type": "application/json",
+       "Content-Type": "application/json",
       "accept": "/"
     };
 

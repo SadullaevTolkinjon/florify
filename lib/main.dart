@@ -1,6 +1,7 @@
 import 'package:florify/constants/behaviour/app_behaviour.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/presentation/card/cubit/card_cubit.dart';
+import 'package:florify/presentation/favorite/cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
@@ -9,7 +10,7 @@ import 'package:florify/utils/router/router.dart';
 import 'package:florify/utils/theme/main_theme.dart';
 
 void main() async {
-  init();
+  await init();
   runApp(
     MultiBlocProvider(
       providers: [
@@ -18,6 +19,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => locator<CardCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => locator<FavoriteCubit>(),
         ),
       ],
       child: const MyApp(),

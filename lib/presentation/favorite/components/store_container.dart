@@ -48,6 +48,7 @@ class StoreContainer extends StatelessWidget {
               trailing: LikeBtn(
                 isBorder: true,
                 ontap: () {},
+                isLike: false,
               ),
             ),
             Row(

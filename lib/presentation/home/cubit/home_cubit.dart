@@ -35,5 +35,12 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
       );
     }
   }
+   selectCategory(int index) {
+    build(
+      (buildable) => buildable.copyWith(selectedCategory: index),
+    );
+  }
+
+ 
  
 }

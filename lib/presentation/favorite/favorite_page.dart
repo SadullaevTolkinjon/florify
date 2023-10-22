@@ -17,7 +17,13 @@ class FavoritePapge extends StatelessWidget {
         title: const Text("Tanlanganlar"),
       ),
       body: BlocProvider(
-        create: (context) => locator<FavoriteCubit>(),
+        create: (context) {
+          var cubit = locator<FavoriteCubit>();
+          if (cubit.getUser() != null) {
+            cubit.fetchLikes();
+          }
+          return cubit;
+        },
         child: BlocListener<FavoriteCubit, FavoriteState>(
           listener: (context, state) {},
           child: const FavoriteView(),

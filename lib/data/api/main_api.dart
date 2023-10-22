@@ -22,7 +22,9 @@ class MainApi {
   }
 
   Future<Response> verfyPhone(String phone) async {
-    final body = {"phone": phone};
+    final body = {
+      "phone": "+998901234567",
+    };
     var data = await _api.post(
       path: 'client/sendSMS',
       body: body,
@@ -36,11 +38,35 @@ class MainApi {
       "phone": phone,
       "code": sms,
     };
-    var data = await _api.post(
-      path: 'client/login',
-      body: body,
-    );
+    var data = await _api.post(path: 'client/signup', body: body);
 
+    return data;
+  }
+
+  Future<Response> dislike(int productId, String userId) async {
+    final body = {
+      "client_id": userId,
+      "product_id": productId,
+    };
+    var data = await _api.delete(path: 'like', body: body);
+
+    return data;
+  }
+   Future<Response> pressLike(int productId, String userId) async {
+    final body = {
+      "client_id": userId,
+      "product_id": productId,
+    };
+    var data = await _api.post(path: 'like', body: body);
+
+    return data;
+  }
+
+  Future<Response> fetchLikes(String userId) async {
+    final params = {"clientId": userId};
+    var data = await _api.get(
+      path: 'like/clientId/$userId',
+    );
     return data;
   }
 

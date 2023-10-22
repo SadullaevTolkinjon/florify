@@ -1,6 +1,7 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
+import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/presentation/search/components/search_textfield.dart';
 import 'package:florify/presentation/widgets/product_container.dart';
 import 'package:flutter/material.dart';
@@ -103,6 +104,7 @@ class _SearchViewState extends State<SearchView> {
       SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) => ProductContainer(
+            product: const Product(),
             ontap: () {
               Navigator.pushNamed(context, NavigatorConst.productDetails,
                   arguments: 2);

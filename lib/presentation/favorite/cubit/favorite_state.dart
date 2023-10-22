@@ -11,5 +11,7 @@ class FavoriteBuildable extends FavoriteState with _$FavoriteBuildable {
     @Default(false) bool failed,
     dynamic error,
     @Default(0) int selectedTab,
+    @Default([]) List<FavoriteModel> likes,
+     @Default([]) List<String>? likeIds,
   }) = _FavoriteBuildable;
 }

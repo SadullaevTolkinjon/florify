@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/domain/model/card_product_model/card_product_model.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/presentation/card/card_page.dart';
 import 'package:injectable/injectable.dart';
@@ -46,6 +47,13 @@ class MainService {
     List<String> data = await _preference.getCardProducts() ?? [];
 
     return data;
+  }
+
+  fetchLikes(String userId) async {
+    final response = await _mainApi.fetchLikes(userId);
+
+    Iterable list = jsonDecode(response.body);
+    return List<FavoriteModel>.from(list.map((e) => FavoriteModel.fromJson(e)));
   }
   // Future getCustomers(int page, int id) async {
   //   final response = await _mainApi.getBooks(page, id);

@@ -20,12 +20,12 @@ class SmsVerifyCubit
   SmsVerifyCubit(this._repository, this._preference)
       : super(const SmsVerifyBuildable());
   editingCompleted(String pin) {
-    build((buildable) => buildable.copyWith(isCompleted: true));
+    build((buildable) => buildable.copyWith(isCompleted: true,failed: false,success: false));
   }
 
   editingCompleted2(String pin) {
     if (pin.length <= 3) {
-      build((buildable) => buildable.copyWith(isCompleted: false));
+      build((buildable) => buildable.copyWith(isCompleted: false,failed: false,success: false));
     }
   }
 
