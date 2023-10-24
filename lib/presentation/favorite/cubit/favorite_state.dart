@@ -15,3 +15,4 @@ class FavoriteBuildable extends FavoriteState with _$FavoriteBuildable {
      @Default([]) List<String>? likeIds,
   }) = _FavoriteBuildable;
 }
+class UpdateValue extends FavoriteState{}

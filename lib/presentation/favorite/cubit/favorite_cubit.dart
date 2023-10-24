@@ -7,7 +7,9 @@ import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/domain/model/user/user_model.dart';
 import 'package:florify/domain/repository/main_repository.dart';
 import 'package:florify/domain/service/main_serivce.dart';
+import 'package:florify/presentation/favorite/cubit/favorite_notifier.dart';
 import 'package:florify/presentation/widgets/buildable_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -20,7 +22,13 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
   final TokenPreference _preference;
   final MainRepository _repository;
   FavoriteCubit(this._service, this._preference, this._repository)
-      : super(const FavoriteBuildable());
+      : super(const FavoriteBuildable()) {
+    if (getUser() != null) {
+      fetchLikes();
+    }
+  }
+  final favoriteNotifier = FavoriteModelNotifier('_favorite', []);
+
   changeTabs(int index) {
     build(
       (buildable) => buildable.copyWith(
@@ -40,10 +48,13 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
       ),
     );
     UserModel user = await getUser();
-
     try {
       List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
       await setLikeIds(likes);
+      // List<String> listJson =
+      //     likes.map((product) => jsonEncode(product.toJson())).toList();
+      // await _preference.setFavorites(listJson);
+      await favoriteNotifier.setValue(likes);
       build(
         (buildable) => buildable.copyWith(
           failed: false,
@@ -58,6 +69,35 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
           failed: true,
           success: false,
           loading: false,
+          error: e.toString(),
+        ),
+      );
+    }
+  }
+  fetchLikes2() async {
+    build(
+      (buildable) => buildable.copyWith(
+       
+      ),
+    );
+    UserModel user = await getUser();
+    try {
+      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+      await setLikeIds(likes);
+      // List<String> listJson =
+      //     likes.map((product) => jsonEncode(product.toJson())).toList();
+      // await _preference.setFavorites(listJson);
+      await favoriteNotifier.setValue(likes);
+      build(
+        (buildable) => buildable.copyWith(
+        
+          likes: likes,
+        ),
+      );
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+        
           error: e.toString(),
         ),
       );
@@ -83,14 +123,27 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
   }
 
   disLike(int productId) async {
-    build((buildable) => buildable);
+    build((buildable) => buildable.copyWith(
+        
+        ));
     try {
       UserModel user = await getUser();
       await _repository.dislike(productId, user.client!.id!);
       List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
       await setLikeIds(likes);
       List<String> likeIds = await _preference.getLikes() ?? [];
-      build((buildable) => buildable.copyWith(likes: likes, likeIds: likeIds));
+      // List<String> listJson =
+      //     likes.map((product) => jsonEncode(product.toJson())).toList();
+      // await _preference.setFavorites(listJson);
+      await favoriteNotifier.setValue(likes);
+
+      build(
+        (buildable) => buildable.copyWith(
+         
+          likes: likes,
+          likeIds: likeIds,
+        ),
+      );
     } catch (e) {
       build((buildable) => buildable.copyWith());
     }
@@ -103,7 +156,12 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
       await _repository.pressLike(productId, user.client!.id!);
       List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
       await setLikeIds(likes);
+
       List<String> likeIds = await _preference.getLikes() ?? [];
+      // List<String> listJson =
+      //     likes.map((product) => jsonEncode(product.toJson())).toList();
+      // await _preference.setFavorites(listJson);
+      await favoriteNotifier.setValue(likes);
       build(
         (buildable) => buildable.copyWith(
           likes: likes,
@@ -117,6 +175,20 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
 
   checkLikeIds() async {
     List<String> likeIds = await _preference.getLikes() ?? [];
-    build((buildable) => buildable.copyWith(likeIds: likeIds));
+    build((buildable) => buildable.copyWith(likeIds: likeIds,));
+  }
+
+  renderToProductJson(List<String> listJson) {
+    List<FavoriteModel> renderedList = listJson
+        .map(
+          (json) => FavoriteModel.fromJson(jsonDecode(json)),
+        )
+        .toList();
+    return renderedList;
+  }
+
+  Future<List<FavoriteModel>> getfavorites() async {
+    List<String> favorites = await _preference.getFavorites() ?? [];
+    return renderToProductJson(favorites);
   }
 }

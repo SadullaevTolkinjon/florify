@@ -4,6 +4,7 @@ import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/domain/model/card_product_model/card_product_model.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
+import 'package:florify/domain/model/recently/recently_product_model.dart';
 import 'package:florify/domain/service/main_serivce.dart';
 import 'package:florify/presentation/widgets/buildable_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -56,6 +57,8 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
         ),
       );
     } catch (e) {
+      print("----------------");
+      print(e);
       build(
         (buildable) => buildable.copyWith(
           loading: false,
@@ -74,21 +77,20 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
   }
   saveToCard(Product product) async {
     CardProduct cardProduct = CardProduct(
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      quantity: product.quantity,
-      color: product.color,
-      date: product.date,
-      salesman_id: product.salesman_id,
-      category_id: product.category_id,
-      created_at: product.created_at,
-      updated_at: product.updated_at,
-      image: product.image,
-      sum_quantity: 1,
-      sum_price: product.price
-    );
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        quantity: product.quantity,
+        color: product.color,
+        date: product.date,
+        salesman_id: product.salesman_id,
+        category_id: product.category_id,
+        created_at: product.created_at,
+        updated_at: product.updated_at,
+        image: product.image,
+        sum_quantity: 1,
+        sum_price: product.price);
     String productJson = jsonEncode(cardProduct.toJson());
     List ids = [];
     List<String> savedProducts = await _service.getLocalCardProducts() ?? [];
@@ -125,6 +127,18 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
           ),
         );
       }
+    }
+  }
+
+  fetchRecentlyProducts() async {
+    build((buildable) => buildable.copyWith(loading: true));
+    try {
+      final List<RecentlyProductModel> recentlyProducts =
+          await _service.fetchRecentlyProducts();
+      build((buildable) => buildable.copyWith(
+          loading: false, success: true, recentlyProducts: recentlyProducts));
+    } catch (e) {
+      build((buildable) => buildable.copyWith(loading: false, failed: true));
     }
   }
 }

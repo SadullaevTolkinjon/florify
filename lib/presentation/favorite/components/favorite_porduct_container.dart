@@ -78,16 +78,8 @@ class FavoriteProductContainer extends StatelessWidget {
                             top: 10,
                             child: LikeBtn(
                               ontap: () {
-                                if (context.read<FavoriteCubit>().getUser() !=
-                                    null) {
-                                  state.likeIds!.contains(product.id.toString())
-                                      ? context
-                                          .read<FavoriteCubit>()
-                                          .pressLike(product.product!.id!)
-                                      : context
-                                          .read<FavoriteCubit>()
-                                          .disLike(product.product!.id!);
-                                }
+                                
+                               likeBtn();
                               },
                               isLike: context.read<FavoriteCubit>().getUser() !=
                                       null

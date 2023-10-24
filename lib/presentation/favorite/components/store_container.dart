@@ -1,8 +1,7 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
+import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/presentation/widgets/like_btn.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
@@ -11,26 +10,20 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants/icons/icon_constants.dart';
 
 class StoreContainer extends StatelessWidget {
-  const StoreContainer({
-    super.key,
-  });
-
+  const StoreContainer({super.key, required this.store});
+  final Salesman store;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(
-              color: ColorConstants.black.withOpacity(0.2)),
+          border: Border.all(color: ColorConstants.black.withOpacity(0.2)),
           borderRadius: const BorderRadius.all(
             Radius.circular(8),
           ),
         ),
-        padding:
-            EdgeInsets.all(AppSizes.getH(context) * 0.01),
-        margin: EdgeInsets.symmetric(
-            horizontal: AppSizes.getH(context) * 0.016),
+        padding: EdgeInsets.all(AppSizes.getH(context) * 0.01),
         child: Column(
           children: [
             ListTile(
@@ -57,8 +50,7 @@ class StoreContainer extends StatelessWidget {
                   flex: 3,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                          IconConstants.empty_star),
+                      SvgPicture.asset(IconConstants.empty_star),
                       MyPadding(
                         width: AppSizes.getH(context) * 0.004,
                       ),
@@ -68,14 +60,12 @@ class StoreContainer extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           text: TextSpan(
                             text: "4.4",
-                            style: TextStyle(
-                                color: ColorConstants.black),
+                            style: TextStyle(color: ColorConstants.black),
                             children: [
                               TextSpan(
                                 text: "(166)",
                                 style: TextStyle(
-                                  color: ColorConstants.black
-                                      .withOpacity(0.3),
+                                  color: ColorConstants.black.withOpacity(0.3),
                                 ),
                               )
                             ],
@@ -103,15 +93,11 @@ class StoreContainer extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
-                  mainAxisExtent:
-                      AppSizes.getH(context) * 0.13,
-                  mainAxisSpacing:
-                      AppSizes.getH(context) * 0.010,
-                  crossAxisSpacing:
-                      AppSizes.getH(context) * 0.010,
+                  mainAxisExtent: AppSizes.getH(context) * 0.13,
+                  mainAxisSpacing: AppSizes.getH(context) * 0.010,
+                  crossAxisSpacing: AppSizes.getH(context) * 0.010,
                 ),
                 itemBuilder: (context, index) {
                   return Container(

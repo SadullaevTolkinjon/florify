@@ -1,11 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:florify/constants/api/api_constants.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
+import 'package:florify/domain/model/recently/recently_product_model.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 
 class SimilarProductsContainer extends StatelessWidget {
-  const SimilarProductsContainer({super.key, required this.ontap});
+  const SimilarProductsContainer(
+      {super.key, required this.ontap, required this.recentlyProduct});
   final Function ontap;
+  final RecentlyProductModel recentlyProduct;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,14 +26,18 @@ class SimilarProductsContainer extends StatelessWidget {
             Container(
               height: AppSizes.getH(context) * 0.14,
               width: double.infinity,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(8),
                 ),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: CachedNetworkImageProvider(
-                    "https://i.pinimg.com/originals/bb/de/8c/bbde8cc7e560642be73e5e7429797194.jpg",
+                    recentlyProduct.product!.image!.isNotEmpty
+                        ?
+                        //${ApiConstants.baseUrl}
+                        "${recentlyProduct.product!.image!.first.image}"
+                        : "", 
                   ),
                 ),
               ),
@@ -38,7 +46,7 @@ class SimilarProductsContainer extends StatelessWidget {
               height: AppSizes.getH(context) * 0.016,
             ),
             Text(
-              "Gullar va shokolad",
+              recentlyProduct.product!.name ?? "",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -58,7 +66,7 @@ class SimilarProductsContainer extends StatelessWidget {
                   horizontal: AppSizes.getW(context) * 0.02,
                   vertical: AppSizes.getH(context) * 0.004),
               child: Text(
-                "560 000 so‘m",
+                "${recentlyProduct.product!.price ?? 0} so‘m",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

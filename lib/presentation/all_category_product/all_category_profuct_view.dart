@@ -2,6 +2,7 @@ import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/presentation/all_category_product/cubit/all_category_product_cubit.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
+import 'package:florify/presentation/widgets/empty_widget.dart';
 import 'package:florify/presentation/widgets/error_widget.dart';
 import 'package:florify/presentation/widgets/loader_widget.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
@@ -57,26 +58,32 @@ class AllCategoryProductView extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: MyPadding(height: AppSizes.geth(context, 0.02)),
                   ),
-                  SliverGrid(
-                    delegate: SliverChildBuilderDelegate(
-                        (context, index) => ProductContainer(
-                              product: state.data!.product![index],
-                              ontap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  NavigatorConst.productDetails,
-                                  arguments: state.data!.product![index].id,
-                                );
-                              },
-                            ),
-                        childCount: state.data!.product!.length),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: AppSizes.getH(context) * 0.31,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                  )
+                  state.data!.product!.isNotEmpty
+                      ? SliverGrid(
+                          delegate: SliverChildBuilderDelegate(
+                              (context, index) => ProductContainer(
+                                    product: state.data!.product![index],
+                                    ontap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        NavigatorConst.productDetails,
+                                        arguments:
+                                            state.data!.product![index].id,
+                                      );
+                                    },
+                                  ),
+                              childCount: state.data!.product!.length),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisExtent: AppSizes.getH(context) * 0.31,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
+                        )
+                      : SliverToBoxAdapter(
+                          child: EmptyWidget2(ontap: () {}),
+                        )
                 ],
               ),
             );

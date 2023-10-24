@@ -9,5 +9,6 @@ class ImagesConst {
   static const String tabriknoma = "assets/images/tabriknoma.png";
    static const String empty = "assets/images/empty_image.svg";
    static const String emptyPng = "assets/images/empty_image.png";
+    static const String empty_favorite = "assets/images/empty_favorite.png";
 }
 

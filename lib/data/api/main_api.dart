@@ -52,7 +52,8 @@ class MainApi {
 
     return data;
   }
-   Future<Response> pressLike(int productId, String userId) async {
+
+  Future<Response> pressLike(int productId, String userId) async {
     final body = {
       "client_id": userId,
       "product_id": productId,
@@ -70,6 +71,14 @@ class MainApi {
     return data;
   }
 
+  Future<Response> fetchStores() async {
+    var data = await _api.get(path: 'salesman');
+    return data;
+  }
+ Future<Response> fetchRecentlyProducts() async {
+    var data = await _api.get(path: 'watched');
+    return data;
+  }
   // Future<Response> getProducts() async {
   //   print("------here is working broooooooo------");
   //   var data = await _api.getWithToken(path: 'book-group/public-list');

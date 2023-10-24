@@ -31,7 +31,7 @@ builtBottomBar() {
             BlocProvider.of<CardCubit>(context).getCardProducts();
           }
           if (value == 3) {
-            BlocProvider.of<FavoriteCubit>(context).checkLikeIds();
+            BlocProvider.of<FavoriteCubit>(context).fetchLikes2();
           }
         },
         items: [

@@ -3,6 +3,7 @@ import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/presentation/favorite/cubit/favorite_cubit.dart';
 import 'package:florify/presentation/widgets/add_to_card_btn.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
@@ -18,11 +19,10 @@ class ProductContainer extends StatelessWidget {
   const ProductContainer({
     super.key,
     required this.ontap,
-    required this.product,
+    required this.product
   });
   final Function ontap;
   final Product product;
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -42,135 +42,150 @@ class ProductContainer extends StatelessWidget {
                 onTap: () {
                   ontap();
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ColorConstants.grey100,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        AppSizes.getH(context) * 0.01,
-                      ),
-                    ),
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppSizes.getW(context) * 0.014,
-                    vertical: AppSizes.getW(context) * 0.016,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: AppSizes.getH(context) * 0.16,
-                        width: double.infinity,
+                child: ValueListenableBuilder<List<FavoriteModel>>(
+                    valueListenable:
+                        context.watch<FavoriteCubit>().favoriteNotifier,
+                    builder: (context, value, cild) {
+                      List<FavoriteModel> favProducts = value;
+                      bool isProductInFavorites =
+                          favProducts.any((e) => e.product_id == product.id);
+                      return Container(
                         decoration: BoxDecoration(
+                          color: ColorConstants.grey100,
                           borderRadius: BorderRadius.all(
                             Radius.circular(
-                              AppSizes.getH(context) * 0.008,
-                            ),
-                          ),
-                          image: const DecorationImage(
-                            fit: BoxFit.cover,
-                            image: CachedNetworkImageProvider(
-                              "https://dostavka-tsvety.ru/wp-content/uploads/2019/12/13b832a2f9fcffd057117c09dff04f8d.jpeg",
+                              AppSizes.getH(context) * 0.01,
                             ),
                           ),
                         ),
-                        child: Stack(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppSizes.getW(context) * 0.014,
+                          vertical: AppSizes.getW(context) * 0.016,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Positioned(
-                              right: 10,
-                              top: 10,
-                              child: LikeBtn(
-                                ontap: () {
-                                  if (context.read<FavoriteCubit>().getUser() !=
-                                      null) {
-                                    state.likeIds!
-                                            .contains(product.id.toString())
-                                        ? context
-                                            .read<FavoriteCubit>()
-                                            .disLike(product.id!)
-                                        : context
-                                            .read<FavoriteCubit>()
-                                            .pressLike(product.id!);
-                                  }
-                                },
-                                isLike:
-                                    context.read<FavoriteCubit>().getUser() !=
-                                            null
-                                        ? state.likeIds!
-                                                .contains(product.id.toString())
-                                            ? true
-                                            : false
-                                        : false,
+                            Container(
+                              height: AppSizes.getH(context) * 0.16,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(
+                                    AppSizes.getH(context) * 0.008,
+                                  ),
+                                ),
+                                image: const DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: CachedNetworkImageProvider(
+                                    "https://dostavka-tsvety.ru/wp-content/uploads/2019/12/13b832a2f9fcffd057117c09dff04f8d.jpeg",
+                                  ),
+                                ),
                               ),
-                            )
-                          ],
-                        ),
-                      ),
-                      MyPadding(
-                        height: AppSizes.getH(context) * 0.015,
-                      ),
-                      Text(
-                        product.name ?? "",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontSize: AppSizes.getH(context) * 0.016,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      _buildPadding(context, 0.01),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: ColorConstants.yellow,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(IconConstants.card),
-                            const MyPadding(
-                              width: 8.0,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    right: 10,
+                                    top: 10,
+                                    child: LikeBtn(
+                                      ontap: () {
+                                        if (context
+                                                .read<FavoriteCubit>()
+                                                .getUser() !=
+                                            null) {
+                                          state.likeIds!.contains(
+                                                  product.id.toString())
+                                              ? context
+                                                  .read<FavoriteCubit>()
+                                                  .disLike(product.id!)
+                                              : context
+                                                  .read<FavoriteCubit>()
+                                                  .pressLike(product.id!);
+                                        }
+                                      },
+                                      isLike: context
+                                                  .read<FavoriteCubit>()
+                                                  .getUser() !=
+                                              null
+                                          ? isProductInFavorites
+                                          // ? true
+                                          // : false
+
+                                          // state.likeIds!.contains(
+                                          //         product.id.toString())
+                                          // ? true
+                                          // : false
+                                          : false,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                            Expanded(
-                              child: Text(
-                                "${product.quantity ?? 0} ta buyurtma",
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      const Spacer(),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "${product.price ?? 0} so‘m",
-                              maxLines: 1,
+                            MyPadding(
+                              height: AppSizes.getH(context) * 0.015,
+                            ),
+                            Text(
+                              product.name ?? "",
                               overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
                               style: TextStyle(
-                                fontSize: AppSizes.getH(context) * 0.018,
-                                fontWeight: FontWeight.w500,
+                                fontSize: AppSizes.getH(context) * 0.016,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ),
-                          const MyPadding(
-                            width: 8.0,
-                          ),
-                          AddToCardBtn(
-                            ontap: () {},
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+                            _buildPadding(context, 0.01),
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: ColorConstants.yellow,
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(5),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(IconConstants.card),
+                                  const MyPadding(
+                                    width: 8.0,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "${product.quantity ?? 0} ta buyurtma",
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            const Spacer(),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "${product.price ?? 0} so‘m",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: AppSizes.getH(context) * 0.018,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                                const MyPadding(
+                                  width: 8.0,
+                                ),
+                                AddToCardBtn(
+                                  ontap: () {},
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    }),
               );
             }),
       ),

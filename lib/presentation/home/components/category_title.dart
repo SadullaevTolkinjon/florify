@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 class CategoryTitle extends StatelessWidget {
   const CategoryTitle({
-    super.key,
+    super.key,required this.title
   });
-
+final String title;
   @override
   Widget build(BuildContext context) {
-    return const SliverToBoxAdapter(
+    return  SliverToBoxAdapter(
       child: Text(
-        "Kategoriyalar",
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+        title,
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
     );
   }

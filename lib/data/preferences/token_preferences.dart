@@ -10,6 +10,7 @@ class TokenPreference {
   final String _cardProducts = "cardProducts";
   final String _likes = "like";
   final String _splash = "splash";
+  final String _favorite = "_favorite";
   setUser(String value) async {
     await _sharedPreferences.setString(_key, value);
   }
@@ -48,5 +49,13 @@ class TokenPreference {
 
   Future getSplash() async {
     return _sharedPreferences.getInt(_splash);
+  }
+
+  setFavorites(List<String> value) async {
+    await _sharedPreferences.setStringList(_favorite, value);
+  }
+
+  getFavorites() async {
+    return _sharedPreferences.getStringList(_favorite);
   }
 }

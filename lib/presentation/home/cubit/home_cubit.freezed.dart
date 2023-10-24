@@ -27,6 +27,7 @@ mixin _$HomeBuildableState {
   List<dynamic> get data => throw _privateConstructorUsedError;
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   int get selectedCategory => throw _privateConstructorUsedError;
+  List<Salesman> get stores => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeBuildableStateCopyWith<HomeBuildableState> get copyWith =>
@@ -50,7 +51,8 @@ abstract class $HomeBuildableStateCopyWith<$Res> {
       int currentIndex,
       List<dynamic> data,
       List<CategoryModel> categories,
-      int selectedCategory});
+      int selectedCategory,
+      List<Salesman> stores});
 }
 
 /// @nodoc
@@ -77,6 +79,7 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
     Object? data = null,
     Object? categories = null,
     Object? selectedCategory = null,
+    Object? stores = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -123,6 +126,10 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
               as int,
+      stores: null == stores
+          ? _value.stores
+          : stores // ignore: cast_nullable_to_non_nullable
+              as List<Salesman>,
     ) as $Val);
   }
 }
@@ -146,7 +153,8 @@ abstract class _$$_HomeBuildableStateCopyWith<$Res>
       int currentIndex,
       List<dynamic> data,
       List<CategoryModel> categories,
-      int selectedCategory});
+      int selectedCategory,
+      List<Salesman> stores});
 }
 
 /// @nodoc
@@ -171,6 +179,7 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
     Object? data = null,
     Object? categories = null,
     Object? selectedCategory = null,
+    Object? stores = null,
   }) {
     return _then(_$_HomeBuildableState(
       loading: null == loading
@@ -217,6 +226,10 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
               as int,
+      stores: null == stores
+          ? _value._stores
+          : stores // ignore: cast_nullable_to_non_nullable
+              as List<Salesman>,
     ));
   }
 }
@@ -235,9 +248,11 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       this.currentIndex = 0,
       final List<dynamic> data = const [],
       final List<CategoryModel> categories = const [],
-      this.selectedCategory = 0})
+      this.selectedCategory = 0,
+      final List<Salesman> stores = const []})
       : _data = data,
-        _categories = categories;
+        _categories = categories,
+        _stores = stores;
 
   @override
   @JsonKey()
@@ -283,10 +298,18 @@ class _$_HomeBuildableState implements _HomeBuildableState {
   @override
   @JsonKey()
   final int selectedCategory;
+  final List<Salesman> _stores;
+  @override
+  @JsonKey()
+  List<Salesman> get stores {
+    if (_stores is EqualUnmodifiableListView) return _stores;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_stores);
+  }
 
   @override
   String toString() {
-    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory)';
+    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory, stores: $stores)';
   }
 
   @override
@@ -309,7 +332,8 @@ class _$_HomeBuildableState implements _HomeBuildableState {
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
             (identical(other.selectedCategory, selectedCategory) ||
-                other.selectedCategory == selectedCategory));
+                other.selectedCategory == selectedCategory) &&
+            const DeepCollectionEquality().equals(other._stores, _stores));
   }
 
   @override
@@ -325,7 +349,8 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       currentIndex,
       const DeepCollectionEquality().hash(_data),
       const DeepCollectionEquality().hash(_categories),
-      selectedCategory);
+      selectedCategory,
+      const DeepCollectionEquality().hash(_stores));
 
   @JsonKey(ignore: true)
   @override
@@ -347,7 +372,8 @@ abstract class _HomeBuildableState implements HomeBuildableState {
       final int currentIndex,
       final List<dynamic> data,
       final List<CategoryModel> categories,
-      final int selectedCategory}) = _$_HomeBuildableState;
+      final int selectedCategory,
+      final List<Salesman> stores}) = _$_HomeBuildableState;
 
   @override
   bool get loading;
@@ -371,6 +397,8 @@ abstract class _HomeBuildableState implements HomeBuildableState {
   List<CategoryModel> get categories;
   @override
   int get selectedCategory;
+  @override
+  List<Salesman> get stores;
   @override
   @JsonKey(ignore: true)
   _$$_HomeBuildableStateCopyWith<_$_HomeBuildableState> get copyWith =>

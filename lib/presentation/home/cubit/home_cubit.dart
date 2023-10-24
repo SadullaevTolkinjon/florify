@@ -1,4 +1,5 @@
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/domain/service/main_serivce.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -35,12 +36,22 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
       );
     }
   }
-   selectCategory(int index) {
+
+  selectCategory(int index) {
     build(
       (buildable) => buildable.copyWith(selectedCategory: index),
     );
   }
 
- 
- 
+  fetchStores() async {
+    build((buildable) => buildable.copyWith(loading: true));
+    try {
+      List<Salesman> salesman = await _service.fetchStores();
+      build((buildable) => buildable.copyWith(
+          loading: false, success: true, failed: false, stores: salesman));
+    } catch (e) {
+      build((buildable) =>
+          buildable.copyWith(loading: false, success: false, failed: true));
+    }
+  }
 }

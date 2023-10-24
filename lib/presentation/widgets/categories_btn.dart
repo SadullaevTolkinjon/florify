@@ -25,7 +25,7 @@ class CategoriesBtn extends StatelessWidget {
           title,
           style: TextStyle(
             fontSize: AppSizes.getH(context)*0.018,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
             color: isSelected==true
                 ? ColorConstants.selectedNavBarColor
                 : ColorConstants.black,

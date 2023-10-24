@@ -6,6 +6,7 @@ import 'package:florify/presentation/home/components/category_title.dart';
 import 'package:florify/presentation/home/components/category_widget.dart';
 import 'package:florify/presentation/home/components/home_categories.dart';
 import 'package:florify/presentation/home/components/home_products.dart';
+import 'package:florify/presentation/home/components/stores_products.dart';
 import 'package:florify/presentation/home/cubit/home_cubit.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
 import 'package:florify/presentation/widgets/error_widget.dart';
@@ -54,7 +55,7 @@ class HomeView extends StatelessWidget {
                 slivers: [
                   _buildAppBar(),
                   _buildCategories(state.categories),
-                  _buildCategoryTitle(),
+                  _buildCategoryTitle("Kategoriyalar"),
                   _buildPadding(context, 0.016),
                   _buildHomeCategories(
                     state.categories,
@@ -65,6 +66,10 @@ class HomeView extends StatelessWidget {
                     state.categories,
                     state.selectedCategory,
                   ),
+                  _buildPadding(context, 0.02),
+                  _buildCategoryTitle("Magazinlar"),
+                  _buildPadding(context, 0.016),
+                  _buildStores()
                 ],
               ),
             );
@@ -84,8 +89,8 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryTitle() {
-    return const CategoryTitle();
+  Widget _buildCategoryTitle(String title) {
+    return  CategoryTitle(title: title,);
   }
 
   Widget _buildHomeProducts(List<CategoryModel> categories, int index) {
@@ -108,5 +113,9 @@ class HomeView extends StatelessWidget {
         height: AppSizes.getH(context) * height,
       ),
     );
+  }
+
+  Widget _buildStores() {
+    return const HomeStoresProduct();
   }
 }

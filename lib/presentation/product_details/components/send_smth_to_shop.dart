@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SendSmthToShop extends StatelessWidget {
-  const SendSmthToShop({super.key,required this.product});
-final ProductDetailModel product;
+  const SendSmthToShop({super.key, required this.product});
+  final ProductDetailModel product;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -30,18 +30,24 @@ final ProductDetailModel product;
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                dense:true,
-               
+                dense: true,
                 contentPadding: EdgeInsets.zero,
-                leading: SvgPicture.asset(IconConstants.shop_icon,),
+                leading: SvgPicture.asset(
+                  IconConstants.shop_icon,
+                ),
                 title: Text(
-                  "${product.salesman!.username??"No shop name"}",
+                  product.salesman != null
+                      ? "${product.salesman!.username ?? "No shop name"}"
+                      : "No shop name",
                   style: TextStyle(
                     fontSize: AppSizes.getH(context) * 0.018,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                trailing:  Icon(Icons.arrow_forward_ios,size:AppSizes.getH(context)*0.02,),
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: AppSizes.getH(context) * 0.02,
+                ),
               ),
               Row(
                 children: [
