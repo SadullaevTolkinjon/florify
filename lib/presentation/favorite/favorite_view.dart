@@ -20,7 +20,7 @@ class FavoriteView extends StatelessWidget {
   const FavoriteView({super.key});
   @override
   Widget build(BuildContext context) {
-    return  BlocListener<FavoriteCubit, FavoriteState>(
+    return BlocListener<FavoriteCubit, FavoriteState>(
       listener: (context, state) {},
       child: Buildable<FavoriteCubit, FavoriteState, FavoriteBuildable>(
         properties: (buildable) => [
@@ -44,117 +44,111 @@ class FavoriteView extends StatelessWidget {
             );
           }
           return context.read<FavoriteCubit>().getUser() != null
-              ? ValueListenableBuilder(
-                  valueListenable:
-                      BlocProvider.of<FavoriteCubit>(context).favoriteNotifier,
-                  builder: (context, value, child) {
-                    return CustomScrollView(
-                      slivers: [
-                        SliverPadding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppSizes.getH(context) * 0.024,
-                          ),
-                          sliver: SliverToBoxAdapter(
-                            child: Column(
+              ? CustomScrollView(
+                  slivers: [
+                    SliverPadding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppSizes.getH(context) * 0.024,
+                      ),
+                      sliver: SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            Row(
                               children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 6,
-                                      child: CommentsTitleBtn(
-                                        ontap: () {
-                                          BlocProvider.of<FavoriteCubit>(
-                                                  context)
-                                              .changeTabs(0);
-                                        },
-                                        title: "Mening yoqtirganlarim",
-                                        isSelected: state.selectedTab == 0
-                                            ? true
-                                            : false,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: CommentsTitleBtn(
-                                        ontap: () {
-                                          BlocProvider.of<FavoriteCubit>(
-                                                  context)
-                                              .changeTabs(1);
-                                        },
-                                        title: "Sevimli Do'konlar",
-                                        isSelected: state.selectedTab == 1
-                                            ? true
-                                            : false,
-                                      ),
-                                    ),
-                                  ],
+                                Expanded(
+                                  flex: 6,
+                                  child: CommentsTitleBtn(
+                                    ontap: () {
+                                      BlocProvider.of<FavoriteCubit>(context)
+                                          .changeTabs(0);
+                                    },
+                                    title: "Mening yoqtirganlarim",
+                                    isSelected:
+                                        state.selectedTab == 0 ? true : false,
+                                  ),
                                 ),
-                                MyPadding(
-                                  height: AppSizes.getH(context) * 0.016,
+                                Expanded(
+                                  flex: 5,
+                                  child: CommentsTitleBtn(
+                                    ontap: () {
+                                      BlocProvider.of<FavoriteCubit>(context)
+                                          .changeTabs(1);
+                                    },
+                                    title: "Sevimli Do'konlar",
+                                    isSelected:
+                                        state.selectedTab == 1 ? true : false,
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
+                            MyPadding(
+                              height: AppSizes.getH(context) * 0.016,
+                            ),
+                          ],
                         ),
-                        state.selectedTab == 0
-                            ? value.isNotEmpty
-                                ? SliverPadding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            AppSizes.geth(context, 0.016)),
-                                    sliver: SliverGrid(
-                                      delegate: SliverChildBuilderDelegate(
-                                        (context, index) =>
-                                            FavoriteProductContainer(
-                                          product: value[index],
-                                          likeBtn: () {
-                                             BlocProvider.of<FavoriteCubit>(
-                                                    context)
-                                                .disLike(
-                                                    value[index].product_id!);
-                                          },
-                                          ontap: () {
-                                           
-                                          },
-                                        ),
-                                        childCount: value.length,
-                                      ),
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        mainAxisExtent:
-                                            AppSizes.getH(context) * 0.285,
-                                      ),
-                                    ),
-                                  )
-                                : SliverToBoxAdapter(
-                                    child: EmptyFavoriteProduct(ontap: () {
-                                      BlocProvider.of<HomeCubit>(context)
-                                          .changeTabs(0);
-                                    }),
-                                  )
-                            : SliverPadding(
+                      ),
+                    ),
+                    state.selectedTab == 0
+                        ? state.likes.isNotEmpty
+                            ? SliverPadding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: AppSizes.geth(context, 0.016)),
                                 sliver: SliverGrid(
                                   delegate: SliverChildBuilderDelegate(
-                                    (context, index) => const StoreContainer(
-                                      store: Salesman(),
+                                    (context, index) =>
+                                        FavoriteProductContainer(
+                                      product: state.likes[index],
+                                      likeBtn: () {
+                                        BlocProvider.of<FavoriteCubit>(context)
+                                            .disLike(
+                                                state.likes[index].product_id!);
+                                      },
+                                      ontap: () async {
+                                        await Navigator.pushNamed(
+                                          context,
+                                          NavigatorConst.productDetails,
+                                          arguments: state.likes[index].product_id!,
+                                        ).then(
+                                          (value) =>
+                                                BlocProvider.of<FavoriteCubit>(context).fetchLikes2(),
+                                        );
+                                      },
                                     ),
+                                    childCount: state.likes.length,
                                   ),
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 1,
+                                    crossAxisCount: 2,
                                     mainAxisExtent:
                                         AppSizes.getH(context) * 0.285,
-                                    mainAxisSpacing: 8,
-                                    crossAxisSpacing: 8,
                                   ),
                                 ),
                               )
-                      ],
-                    );
-                  },
+                            : SliverToBoxAdapter(
+                                child: EmptyFavoriteProduct(ontap: () {
+                                  BlocProvider.of<HomeCubit>(context)
+                                      .changeTabs(0);
+                                }),
+                              )
+                        : SliverPadding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: AppSizes.geth(context, 0.016)),
+                            sliver: SliverGrid(
+                              delegate: SliverChildBuilderDelegate(
+                                (context, index) => const StoreContainer(
+                                  store: Salesman(),
+                                ),
+                              ),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisExtent: AppSizes.getH(context) * 0.285,
+                                mainAxisSpacing: 8,
+                                crossAxisSpacing: 8,
+                              ),
+                            ),
+                          )
+                  ],
                 )
               : LoginErrorWidgetCustom(
                   ontap: () {
@@ -167,118 +161,117 @@ class FavoriteView extends StatelessWidget {
         },
       ),
     );
-    
-    
-    ValueListenableBuilder<List<FavoriteModel>>(
-      valueListenable: BlocProvider.of<FavoriteCubit>(context).favoriteNotifier,
-      builder: (context, value, child) {
-      
-        return CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSizes.getH(context) * 0.024,
-              ),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 6,
-                          child: CommentsTitleBtn(
-                              ontap: () {
-                                BlocProvider.of<FavoriteCubit>(context)
-                                    .changeTabs(0);
-                              },
-                              title: "Mening yoqtirganlarim",
-                              isSelected:
 
-                                  // state.selectedTab == 0
-                                  //     ?
-                                  true
-                              //  : false,
-                              ),
-                        ),
-                        Expanded(
-                          flex: 5,
-                          child: CommentsTitleBtn(
-                            ontap: () {
-                              // BlocProvider.of<FavoriteCubit>(
-                              //         context)
-                              //     .changeTabs(1);
-                            },
-                            title: "Sevimli Do'konlar",
-                            isSelected:
-                                // state.selectedTab == 1
-                                //    ? true
-                                //   :
-                                false,
-                          ),
-                        ),
-                      ],
-                    ),
-                    MyPadding(
-                      height: AppSizes.getH(context) * 0.016,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // state.selectedTab == 0
-            //     ?
+    // ValueListenableBuilder<List<FavoriteModel>>(
+    //   valueListenable: BlocProvider.of<FavoriteCubit>(context).favoriteNotifier,
+    //   builder: (context, value, child) {
 
-            value.isNotEmpty
-                ? SliverPadding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSizes.geth(context, 0.016)),
-                    sliver: SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) => FavoriteProductContainer(
-                          product: value[index],
-                          likeBtn: () {},
-                          ontap: () {
-                            BlocProvider.of<FavoriteCubit>(context)
-                                .disLike(value[index].product_id!);
-                          },
-                        ),
-                        childCount: value.length,
-                      ),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisExtent: AppSizes.getH(context) * 0.285,
-                      ),
-                    ),
-                  )
-                : SliverToBoxAdapter(
-                    child: EmptyFavoriteProduct(ontap: () {
-                      BlocProvider.of<HomeCubit>(context).changeTabs(0);
-                    }),
-                  )
-            // : SliverPadding(
-            //     padding: EdgeInsets.symmetric(
-            //         horizontal: AppSizes.geth(context, 0.016)),
-            //     sliver: SliverGrid(
-            //       delegate: SliverChildBuilderDelegate(
-            //         (context, index) => const StoreContainer(
-            //           store: Salesman(),
-            //         ),
-            //       ),
-            //       gridDelegate:
-            //           SliverGridDelegateWithFixedCrossAxisCount(
-            //         crossAxisCount: 1,
-            //         mainAxisExtent:
-            //             AppSizes.getH(context) * 0.285,
-            //         mainAxisSpacing: 8,
-            //         crossAxisSpacing: 8,
-            //       ),
-            //     ),
-            //   )
-          ],
-        );
-      },
-    );
+    //     return CustomScrollView(
+    //       slivers: [
+    //         SliverPadding(
+    //           padding: EdgeInsets.symmetric(
+    //             horizontal: AppSizes.getH(context) * 0.024,
+    //           ),
+    //           sliver: SliverToBoxAdapter(
+    //             child: Column(
+    //               children: [
+    //                 Row(
+    //                   children: [
+    //                     Expanded(
+    //                       flex: 6,
+    //                       child: CommentsTitleBtn(
+    //                           ontap: () {
+    //                             BlocProvider.of<FavoriteCubit>(context)
+    //                                 .changeTabs(0);
+    //                           },
+    //                           title: "Mening yoqtirganlarim",
+    //                           isSelected:
 
-   ;
+    //                               // state.selectedTab == 0
+    //                               //     ?
+    //                               true
+    //                           //  : false,
+    //                           ),
+    //                     ),
+    //                     Expanded(
+    //                       flex: 5,
+    //                       child: CommentsTitleBtn(
+    //                         ontap: () {
+    //                           // BlocProvider.of<FavoriteCubit>(
+    //                           //         context)
+    //                           //     .changeTabs(1);
+    //                         },
+    //                         title: "Sevimli Do'konlar",
+    //                         isSelected:
+    //                             // state.selectedTab == 1
+    //                             //    ? true
+    //                             //   :
+    //                             false,
+    //                       ),
+    //                     ),
+    //                   ],
+    //                 ),
+    //                 MyPadding(
+    //                   height: AppSizes.getH(context) * 0.016,
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //         // state.selectedTab == 0
+    //         //     ?
+
+    //         value.isNotEmpty
+    //             ? SliverPadding(
+    //                 padding: EdgeInsets.symmetric(
+    //                     horizontal: AppSizes.geth(context, 0.016)),
+    //                 sliver: SliverGrid(
+    //                   delegate: SliverChildBuilderDelegate(
+    //                     (context, index) => FavoriteProductContainer(
+    //                       product: value[index],
+    //                       likeBtn: () {},
+    //                       ontap: () {
+    //                         BlocProvider.of<FavoriteCubit>(context)
+    //                             .disLike(value[index].product_id!);
+    //                       },
+    //                     ),
+    //                     childCount: value.length,
+    //                   ),
+    //                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //                     crossAxisCount: 2,
+    //                     mainAxisExtent: AppSizes.getH(context) * 0.285,
+    //                   ),
+    //                 ),
+    //               )
+    //             : SliverToBoxAdapter(
+    //                 child: EmptyFavoriteProduct(ontap: () {
+    //                   BlocProvider.of<HomeCubit>(context).changeTabs(0);
+    //                 }),
+    //               )
+    //         // : SliverPadding(
+    //         //     padding: EdgeInsets.symmetric(
+    //         //         horizontal: AppSizes.geth(context, 0.016)),
+    //         //     sliver: SliverGrid(
+    //         //       delegate: SliverChildBuilderDelegate(
+    //         //         (context, index) => const StoreContainer(
+    //         //           store: Salesman(),
+    //         //         ),
+    //         //       ),
+    //         //       gridDelegate:
+    //         //           SliverGridDelegateWithFixedCrossAxisCount(
+    //         //         crossAxisCount: 1,
+    //         //         mainAxisExtent:
+    //         //             AppSizes.getH(context) * 0.285,
+    //         //         mainAxisSpacing: 8,
+    //         //         crossAxisSpacing: 8,
+    //         //       ),
+    //         //     ),
+    //         //   )
+    //       ],
+    //     );
+    //   },
+    // );
+
+    ;
   }
 }

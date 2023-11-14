@@ -1,10 +1,14 @@
 import 'dart:convert';
 
 import 'package:florify/data/preferences/token_preferences.dart';
+import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/card_product_model/card_product_model.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/domain/model/recently/recently_product_model.dart';
+import 'package:florify/domain/model/user/user_model.dart';
+import 'package:florify/domain/repository/main_repository.dart';
 import 'package:florify/domain/service/main_serivce.dart';
 import 'package:florify/presentation/widgets/buildable_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,7 +20,8 @@ part 'details_cubit.freezed.dart';
 class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
   final MainService _service;
   final TokenPreference _preference;
-  DetailsCubit(this._service, this._preference)
+  final MainRepository _repository;
+  DetailsCubit(this._service, this._preference, this._repository)
       : super(const DetailsBuildable());
   changeImages(int index) {
     build(
@@ -40,12 +45,10 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
 
   Future fetchProduct(int productId) async {
     build((buildable) => buildable.copyWith(
-          loading: true,
-          savedToCard: false,
-          product_is_exist_in_card: false,
-        ));
+        loading: true, savedToCard: false, product_is_exist_in_card: false));
     try {
       var data = await _service.getProductDetails(productId);
+      List<String> likes = await _preference.getLikes();
       build(
         (buildable) => buildable.copyWith(
           loading: false,
@@ -54,6 +57,7 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
           product: data,
           savedToCard: false,
           product_is_exist_in_card: false,
+          likeIds: likes,
         ),
       );
     } catch (e) {
@@ -139,6 +143,69 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
           loading: false, success: true, recentlyProducts: recentlyProducts));
     } catch (e) {
       build((buildable) => buildable.copyWith(loading: false, failed: true));
+    }
+  }
+
+  checkLikes() async {
+    List<String> likes = await _preference.getLikes();
+
+    build((buildable) => buildable.copyWith(likeIds: likes));
+  }
+
+  disLike(int productId) async {
+    build((buildable) => buildable.copyWith());
+    try {
+      UserModel user = await getUser();
+      await _repository.dislike(productId, user.client!.id!);
+      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+      await locator<MainRepository>().setLikeIds(likes);
+      List<String> likeIds = await _preference.getLikes() ?? [];
+      List<String> listJson =
+          likes.map((product) => jsonEncode(product.toJson())).toList();
+      await _preference.setFavorites(listJson);
+
+      build(
+        (buildable) => buildable.copyWith(
+          likes: likes,
+          likeIds: likeIds,
+        ),
+      );
+    } catch (e) {
+      build((buildable) => buildable.copyWith());
+    }
+  }
+
+  pressLike(int productId) async {
+    build((buildable) => buildable);
+    try {
+      var user = await getUser();
+      await _repository.pressLike(productId, user.client!.id!);
+      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+      await locator<MainRepository>().setLikeIds(likes);
+
+      List<String> likeIds = await _preference.getLikes() ?? [];
+      List<String> listJson =
+          likes.map((product) => jsonEncode(product.toJson())).toList();
+      await _preference.setFavorites(listJson);
+
+      build(
+        (buildable) => buildable.copyWith(
+          likes: likes,
+          likeIds: likeIds,
+        ),
+      );
+    } catch (e) {
+      build((buildable) => buildable.copyWith());
+    }
+  }
+
+  getUser() async {
+    var data = await _repository.getUser();
+    if (data == null) {
+      return null;
+    } else {
+      UserModel user = UserModel.fromJson(jsonDecode(data));
+      return user;
     }
   }
 }

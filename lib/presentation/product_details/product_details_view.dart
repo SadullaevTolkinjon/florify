@@ -43,7 +43,9 @@ class ProductDetailsView extends StatelessWidget {
           buildable.failed,
           buildable.success,
           buildable.isModal_hud,
-          buildable.product
+          buildable.product,
+          buildable.likeIds,
+          buildable.likes
         ],
         builder: (context, state) {
           if (state.loading) {
@@ -71,6 +73,7 @@ class ProductDetailsView extends StatelessWidget {
                   slivers: [
                     ProductDetailsAppbar(
                       product: state.product!,
+                      likeIds: state.likeIds,
                     ),
                     ProductDetailsWidget(
                       product: state.product!,

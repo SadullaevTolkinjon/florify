@@ -52,86 +52,86 @@ class _SmsVerfyViewState extends State<SmsVerfyView> {
             buildable.isCompleted,
           ],
           builder: (context, state) => Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSizes.geth(context, 0.02),
-              ),
-              child: ModalProgressHUD(
-                inAsyncCall: state.loading,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MyPadding(
-                      height: AppSizes.geth(context, 0.1),
-                    ),
-                    Text(
-                      "Tasdiqlash kodi",
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSizes.geth(context, 0.02),
+            ),
+            child: ModalProgressHUD(
+              inAsyncCall: state.loading,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MyPadding(
+                    height: AppSizes.geth(context, 0.1),
+                  ),
+                  Text(
+                    "Tasdiqlash kodi",
+                    style: TextStyle(
+                        fontSize: AppSizes.geth(context, 0.022),
+                        fontWeight: FontWeight.w600),
+                  ),
+                  MyPadding(
+                    height: AppSizes.geth(context, 0.01),
+                  ),
+                  RichText(
+                    text: TextSpan(
                       style: TextStyle(
-                          fontSize: AppSizes.geth(context, 0.022),
-                          fontWeight: FontWeight.w600),
+                          fontSize: AppSizes.geth(context, 0.014),
+                          fontWeight: FontWeight.w400,
+                          color: ColorConstants.black),
+                      text: "Tasdiqlash kodini",
+                      children: [
+                        TextSpan(
+                          text: " ${widget.phoneNumber}",
+                          style: TextStyle(
+                              fontSize: AppSizes.geth(context, 0.016),
+                              fontWeight: FontWeight.w400,
+                              color: ColorConstants.selectedNavBarColor),
+                        ),
+                        TextSpan(
+                          text: " raqamiga yubordik. Tekshiring!",
+                          style: TextStyle(
+                              fontSize: AppSizes.geth(context, 0.014),
+                              fontWeight: FontWeight.w400,
+                              color: ColorConstants.black),
+                        )
+                      ],
                     ),
-                    MyPadding(
-                      height: AppSizes.geth(context, 0.01),
+                  ),
+                  MyPadding(
+                    height: AppSizes.geth(context, 0.05),
+                  ),
+                  PinputField(
+                    controller: controller,
+                  ),
+                  const Spacer(),
+                  const CountDownWidget(),
+                  MyPadding(
+                    height: AppSizes.geth(context, 0.02),
+                  ),
+                  SafeArea(
+                    child: ElevatedBtnWidget(
+                      ontap: () {
+                        if (state.isCompleted) {
+                          BlocProvider.of<SmsVerifyCubit>(context)
+                              .verfySms(widget.phoneNumber, controller.text);
+                        }
+                      },
+                      height: AppSizes.geth(context, 0.055),
+                      width: double.infinity,
+                      color: state.isCompleted
+                          ? ColorConstants.selectedNavBarColor
+                          : ColorConstants.selectedNavBarColor.withOpacity(0.3),
+                      title: "Kodni tasdiqlash",
                     ),
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                            fontSize: AppSizes.geth(context, 0.014),
-                            fontWeight: FontWeight.w400,
-                            color: ColorConstants.black),
-                        text: "Tasdiqlash kodini",
-                        children: [
-                          TextSpan(
-                            text: " ${widget.phoneNumber}",
-                            style: TextStyle(
-                                fontSize: AppSizes.geth(context, 0.016),
-                                fontWeight: FontWeight.w400,
-                                color: ColorConstants.selectedNavBarColor),
-                          ),
-                          TextSpan(
-                            text: " raqamiga yubordik. Tekshiring!",
-                            style: TextStyle(
-                                fontSize: AppSizes.geth(context, 0.014),
-                                fontWeight: FontWeight.w400,
-                                color: ColorConstants.black),
-                          )
-                        ],
-                      ),
-                    ),
-                    MyPadding(
-                      height: AppSizes.geth(context, 0.05),
-                    ),
-                    PinputField(
-                      controller: controller,
-                    ),
-                    const Spacer(),
-                    const CountDownWidget(),
-                    MyPadding(
-                      height: AppSizes.geth(context, 0.02),
-                    ),
-                    SafeArea(
-                      child: ElevatedBtnWidget(
-                        ontap: () {
-                          if (state.isCompleted) {
-                            BlocProvider.of<SmsVerifyCubit>(context)
-                                .verfySms(widget.phoneNumber, controller.text);
-                          }
-                        },
-                        height: AppSizes.geth(context, 0.055),
-                        width: double.infinity,
-                        color: state.isCompleted
-                            ? ColorConstants.selectedNavBarColor
-                            : ColorConstants.selectedNavBarColor
-                                .withOpacity(0.3),
-                        title: "Kodni tasdiqlash",
-                      ),
-                    ),
-                    MyPadding(
-                      height: AppSizes.geth(context, 0.01),
-                    )
-                  ],
-                ),
-              )),
+                  ),
+                  MyPadding(
+                    height: AppSizes.geth(context, 0.01),
+                  )
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

@@ -60,8 +60,9 @@ class EmptyWidget extends StatelessWidget {
 }
 
 class EmptyWidget2 extends StatelessWidget {
-  const EmptyWidget2({super.key, required this.ontap});
+  const EmptyWidget2({super.key, required this.ontap,this.title});
   final Function ontap;
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -77,7 +78,7 @@ class EmptyWidget2 extends StatelessWidget {
           height: AppSizes.geth(context, 0.04),
         ),
         Text(
-          "Kategoriya bo'sh",
+          "${title??"Kategoriya"} bo'sh",
           style: TextStyle(
               fontSize: AppSizes.geth(context, 0.022),
               fontWeight: FontWeight.w600),

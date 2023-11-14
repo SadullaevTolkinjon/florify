@@ -36,7 +36,9 @@ class AllCategoryProductView extends StatelessWidget {
             buildable.failed,
             buildable.error,
             buildable.success,
-            buildable.data
+            buildable.data,
+            buildable.likeIds,
+            buildable.likes
           ],
           builder: (context, state) {
             if (state.loading) {
@@ -63,14 +65,42 @@ class AllCategoryProductView extends StatelessWidget {
                           delegate: SliverChildBuilderDelegate(
                               (context, index) => ProductContainer(
                                     product: state.data!.product![index],
-                                    ontap: () {
-                                      Navigator.pushNamed(
+                                    ontap: () async {
+                                      await Navigator.pushNamed(
                                         context,
                                         NavigatorConst.productDetails,
                                         arguments:
                                             state.data!.product![index].id,
+                                      ).then(
+                                        (value) => BlocProvider.of<
+                                                    AllCategoryProductCubit>(
+                                                context)
+                                            .checkLikes(),
                                       );
                                     },
+                                    likeBtn: () {
+                                      if (context
+                                              .read<AllCategoryProductCubit>()
+                                              .getUser() !=
+                                          null) {
+                                        state.likeIds.contains(state
+                                                .data!.product![index].id
+                                                .toString())
+                                            ? context
+                                                .read<AllCategoryProductCubit>()
+                                                .disLike(state
+                                                    .data!.product![index].id!)
+                                            : context
+                                                .read<AllCategoryProductCubit>()
+                                                .pressLike(state
+                                                    .data!.product![index].id!);
+                                      }
+                                    },
+                                    isLike: state.likeIds.contains(
+                                      state.data!.product![index].id.toString(),
+                                    )
+                                        ? true
+                                        : false,
                                   ),
                               childCount: state.data!.product!.length),
                           gridDelegate:
@@ -82,7 +112,10 @@ class AllCategoryProductView extends StatelessWidget {
                           ),
                         )
                       : SliverToBoxAdapter(
-                          child: EmptyWidget2(ontap: () {}),
+                          child: EmptyWidget2(
+                            ontap: () {},
+                            title: state.data!.uz ?? "",
+                          ),
                         )
                 ],
               ),

@@ -28,6 +28,8 @@ mixin _$HomeBuildableState {
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   int get selectedCategory => throw _privateConstructorUsedError;
   List<Salesman> get stores => throw _privateConstructorUsedError;
+  List<String> get likeIds => throw _privateConstructorUsedError;
+  List<FavoriteModel> get likes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeBuildableStateCopyWith<HomeBuildableState> get copyWith =>
@@ -52,7 +54,9 @@ abstract class $HomeBuildableStateCopyWith<$Res> {
       List<dynamic> data,
       List<CategoryModel> categories,
       int selectedCategory,
-      List<Salesman> stores});
+      List<Salesman> stores,
+      List<String> likeIds,
+      List<FavoriteModel> likes});
 }
 
 /// @nodoc
@@ -80,6 +84,8 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
     Object? categories = null,
     Object? selectedCategory = null,
     Object? stores = null,
+    Object? likeIds = null,
+    Object? likes = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -130,6 +136,14 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
           ? _value.stores
           : stores // ignore: cast_nullable_to_non_nullable
               as List<Salesman>,
+      likeIds: null == likeIds
+          ? _value.likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
     ) as $Val);
   }
 }
@@ -154,7 +168,9 @@ abstract class _$$_HomeBuildableStateCopyWith<$Res>
       List<dynamic> data,
       List<CategoryModel> categories,
       int selectedCategory,
-      List<Salesman> stores});
+      List<Salesman> stores,
+      List<String> likeIds,
+      List<FavoriteModel> likes});
 }
 
 /// @nodoc
@@ -180,6 +196,8 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
     Object? categories = null,
     Object? selectedCategory = null,
     Object? stores = null,
+    Object? likeIds = null,
+    Object? likes = null,
   }) {
     return _then(_$_HomeBuildableState(
       loading: null == loading
@@ -230,6 +248,14 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
           ? _value._stores
           : stores // ignore: cast_nullable_to_non_nullable
               as List<Salesman>,
+      likeIds: null == likeIds
+          ? _value._likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      likes: null == likes
+          ? _value._likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
     ));
   }
 }
@@ -249,10 +275,14 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       final List<dynamic> data = const [],
       final List<CategoryModel> categories = const [],
       this.selectedCategory = 0,
-      final List<Salesman> stores = const []})
+      final List<Salesman> stores = const [],
+      final List<String> likeIds = const [],
+      final List<FavoriteModel> likes = const []})
       : _data = data,
         _categories = categories,
-        _stores = stores;
+        _stores = stores,
+        _likeIds = likeIds,
+        _likes = likes;
 
   @override
   @JsonKey()
@@ -307,9 +337,27 @@ class _$_HomeBuildableState implements _HomeBuildableState {
     return EqualUnmodifiableListView(_stores);
   }
 
+  final List<String> _likeIds;
+  @override
+  @JsonKey()
+  List<String> get likeIds {
+    if (_likeIds is EqualUnmodifiableListView) return _likeIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likeIds);
+  }
+
+  final List<FavoriteModel> _likes;
+  @override
+  @JsonKey()
+  List<FavoriteModel> get likes {
+    if (_likes is EqualUnmodifiableListView) return _likes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likes);
+  }
+
   @override
   String toString() {
-    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory, stores: $stores)';
+    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory, stores: $stores, likeIds: $likeIds, likes: $likes)';
   }
 
   @override
@@ -333,7 +381,9 @@ class _$_HomeBuildableState implements _HomeBuildableState {
                 .equals(other._categories, _categories) &&
             (identical(other.selectedCategory, selectedCategory) ||
                 other.selectedCategory == selectedCategory) &&
-            const DeepCollectionEquality().equals(other._stores, _stores));
+            const DeepCollectionEquality().equals(other._stores, _stores) &&
+            const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
+            const DeepCollectionEquality().equals(other._likes, _likes));
   }
 
   @override
@@ -350,7 +400,9 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       const DeepCollectionEquality().hash(_data),
       const DeepCollectionEquality().hash(_categories),
       selectedCategory,
-      const DeepCollectionEquality().hash(_stores));
+      const DeepCollectionEquality().hash(_stores),
+      const DeepCollectionEquality().hash(_likeIds),
+      const DeepCollectionEquality().hash(_likes));
 
   @JsonKey(ignore: true)
   @override
@@ -373,7 +425,9 @@ abstract class _HomeBuildableState implements HomeBuildableState {
       final List<dynamic> data,
       final List<CategoryModel> categories,
       final int selectedCategory,
-      final List<Salesman> stores}) = _$_HomeBuildableState;
+      final List<Salesman> stores,
+      final List<String> likeIds,
+      final List<FavoriteModel> likes}) = _$_HomeBuildableState;
 
   @override
   bool get loading;
@@ -399,6 +453,10 @@ abstract class _HomeBuildableState implements HomeBuildableState {
   int get selectedCategory;
   @override
   List<Salesman> get stores;
+  @override
+  List<String> get likeIds;
+  @override
+  List<FavoriteModel> get likes;
   @override
   @JsonKey(ignore: true)
   _$$_HomeBuildableStateCopyWith<_$_HomeBuildableState> get copyWith =>

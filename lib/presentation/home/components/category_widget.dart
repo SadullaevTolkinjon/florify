@@ -30,7 +30,9 @@ class CategoryWidget extends StatelessWidget {
                       categories[index].id,
                     ],
                   );
+                  
                 },
+                category: categories[index],
                 index: index,
               ),
             )

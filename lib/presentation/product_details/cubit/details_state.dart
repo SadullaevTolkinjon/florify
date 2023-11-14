@@ -17,5 +17,7 @@ class DetailsBuildable extends DetailsState with _$DetailsBuildable {
     @Default(false) bool savedToCard,
     @Default(false) bool product_is_exist_in_card,
     @Default([]) List<RecentlyProductModel> recentlyProducts,
+    @Default([]) List<String> likeIds,
+    @Default([]) List<FavoriteModel> likes,
   }) = _DetailsBuildable;
 }

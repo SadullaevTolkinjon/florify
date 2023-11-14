@@ -21,6 +21,8 @@ mixin _$AllCategoryProductBuildable {
   bool get failed => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
   CategoryModel? get data => throw _privateConstructorUsedError;
+  List<String> get likeIds => throw _privateConstructorUsedError;
+  List<FavoriteModel> get likes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AllCategoryProductBuildableCopyWith<AllCategoryProductBuildable>
@@ -40,7 +42,9 @@ abstract class $AllCategoryProductBuildableCopyWith<$Res> {
       bool success,
       bool failed,
       dynamic error,
-      CategoryModel? data});
+      CategoryModel? data,
+      List<String> likeIds,
+      List<FavoriteModel> likes});
 
   $CategoryModelCopyWith<$Res>? get data;
 }
@@ -64,6 +68,8 @@ class _$AllCategoryProductBuildableCopyWithImpl<$Res,
     Object? failed = null,
     Object? error = freezed,
     Object? data = freezed,
+    Object? likeIds = null,
+    Object? likes = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -86,6 +92,14 @@ class _$AllCategoryProductBuildableCopyWithImpl<$Res,
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
+      likeIds: null == likeIds
+          ? _value.likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
     ) as $Val);
   }
 
@@ -116,7 +130,9 @@ abstract class _$$_AllCategoryProductBuildableCopyWith<$Res>
       bool success,
       bool failed,
       dynamic error,
-      CategoryModel? data});
+      CategoryModel? data,
+      List<String> likeIds,
+      List<FavoriteModel> likes});
 
   @override
   $CategoryModelCopyWith<$Res>? get data;
@@ -140,6 +156,8 @@ class __$$_AllCategoryProductBuildableCopyWithImpl<$Res>
     Object? failed = null,
     Object? error = freezed,
     Object? data = freezed,
+    Object? likeIds = null,
+    Object? likes = null,
   }) {
     return _then(_$_AllCategoryProductBuildable(
       loading: null == loading
@@ -162,6 +180,14 @@ class __$$_AllCategoryProductBuildableCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
+      likeIds: null == likeIds
+          ? _value._likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      likes: null == likes
+          ? _value._likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
     ));
   }
 }
@@ -174,7 +200,11 @@ class _$_AllCategoryProductBuildable implements _AllCategoryProductBuildable {
       this.success = false,
       this.failed = false,
       this.error,
-      this.data});
+      this.data,
+      final List<String> likeIds = const [],
+      final List<FavoriteModel> likes = const []})
+      : _likeIds = likeIds,
+        _likes = likes;
 
   @override
   @JsonKey()
@@ -189,10 +219,27 @@ class _$_AllCategoryProductBuildable implements _AllCategoryProductBuildable {
   final dynamic error;
   @override
   final CategoryModel? data;
+  final List<String> _likeIds;
+  @override
+  @JsonKey()
+  List<String> get likeIds {
+    if (_likeIds is EqualUnmodifiableListView) return _likeIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likeIds);
+  }
+
+  final List<FavoriteModel> _likes;
+  @override
+  @JsonKey()
+  List<FavoriteModel> get likes {
+    if (_likes is EqualUnmodifiableListView) return _likes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likes);
+  }
 
   @override
   String toString() {
-    return 'AllCategoryProductBuildable(loading: $loading, success: $success, failed: $failed, error: $error, data: $data)';
+    return 'AllCategoryProductBuildable(loading: $loading, success: $success, failed: $failed, error: $error, data: $data, likeIds: $likeIds, likes: $likes)';
   }
 
   @override
@@ -204,12 +251,21 @@ class _$_AllCategoryProductBuildable implements _AllCategoryProductBuildable {
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
             const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.data, data) || other.data == data));
+            (identical(other.data, data) || other.data == data) &&
+            const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
+            const DeepCollectionEquality().equals(other._likes, _likes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, success, failed,
-      const DeepCollectionEquality().hash(error), data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      success,
+      failed,
+      const DeepCollectionEquality().hash(error),
+      data,
+      const DeepCollectionEquality().hash(_likeIds),
+      const DeepCollectionEquality().hash(_likes));
 
   @JsonKey(ignore: true)
   @override
@@ -226,7 +282,9 @@ abstract class _AllCategoryProductBuildable
       final bool success,
       final bool failed,
       final dynamic error,
-      final CategoryModel? data}) = _$_AllCategoryProductBuildable;
+      final CategoryModel? data,
+      final List<String> likeIds,
+      final List<FavoriteModel> likes}) = _$_AllCategoryProductBuildable;
 
   @override
   bool get loading;
@@ -238,6 +296,10 @@ abstract class _AllCategoryProductBuildable
   dynamic get error;
   @override
   CategoryModel? get data;
+  @override
+  List<String> get likeIds;
+  @override
+  List<FavoriteModel> get likes;
   @override
   @JsonKey(ignore: true)
   _$$_AllCategoryProductBuildableCopyWith<_$_AllCategoryProductBuildable>

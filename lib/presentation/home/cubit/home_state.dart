@@ -15,7 +15,9 @@ class HomeBuildableState extends HomeState with _$HomeBuildableState {
     @Default(0) int currentIndex,
     @Default([]) List data,
     @Default([]) List<CategoryModel> categories,
-     @Default(0) int selectedCategory,
-     @Default([]) List<Salesman> stores,
+    @Default(0) int selectedCategory,
+    @Default([]) List<Salesman> stores,
+    @Default([]) List<String> likeIds,
+     @Default([]) List<FavoriteModel> likes,
   }) = _HomeBuildableState;
 }

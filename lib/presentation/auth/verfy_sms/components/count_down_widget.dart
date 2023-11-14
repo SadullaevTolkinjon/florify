@@ -14,7 +14,7 @@ class CountDownWidget extends StatefulWidget {
 
 class _CountDownWidgetState extends State<CountDownWidget> {
   late Timer _timer;
-  Duration _remainingTime = const Duration(seconds: 2);
+  Duration _remainingTime = const Duration(minutes: 2);
   bool isResent = false;
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
 
   void _startTimer() {
     _timer = Timer.periodic(
-      const Duration(seconds: 1),
+      const Duration(minutes: 2),
       (timer) {
         setState(() {
           if (_remainingTime.inSeconds > 0) {

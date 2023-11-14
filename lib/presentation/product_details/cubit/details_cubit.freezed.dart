@@ -29,6 +29,8 @@ mixin _$DetailsBuildable {
   bool get product_is_exist_in_card => throw _privateConstructorUsedError;
   List<RecentlyProductModel> get recentlyProducts =>
       throw _privateConstructorUsedError;
+  List<String> get likeIds => throw _privateConstructorUsedError;
+  List<FavoriteModel> get likes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailsBuildableCopyWith<DetailsBuildable> get copyWith =>
@@ -53,7 +55,9 @@ abstract class $DetailsBuildableCopyWith<$Res> {
       ProductDetailModel? product,
       bool savedToCard,
       bool product_is_exist_in_card,
-      List<RecentlyProductModel> recentlyProducts});
+      List<RecentlyProductModel> recentlyProducts,
+      List<String> likeIds,
+      List<FavoriteModel> likes});
 
   $ProductDetailModelCopyWith<$Res>? get product;
 }
@@ -83,6 +87,8 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
     Object? savedToCard = null,
     Object? product_is_exist_in_card = null,
     Object? recentlyProducts = null,
+    Object? likeIds = null,
+    Object? likes = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -133,6 +139,14 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
           ? _value.recentlyProducts
           : recentlyProducts // ignore: cast_nullable_to_non_nullable
               as List<RecentlyProductModel>,
+      likeIds: null == likeIds
+          ? _value.likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
     ) as $Val);
   }
 
@@ -169,7 +183,9 @@ abstract class _$$_DetailsBuildableCopyWith<$Res>
       ProductDetailModel? product,
       bool savedToCard,
       bool product_is_exist_in_card,
-      List<RecentlyProductModel> recentlyProducts});
+      List<RecentlyProductModel> recentlyProducts,
+      List<String> likeIds,
+      List<FavoriteModel> likes});
 
   @override
   $ProductDetailModelCopyWith<$Res>? get product;
@@ -198,6 +214,8 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
     Object? savedToCard = null,
     Object? product_is_exist_in_card = null,
     Object? recentlyProducts = null,
+    Object? likeIds = null,
+    Object? likes = null,
   }) {
     return _then(_$_DetailsBuildable(
       loading: null == loading
@@ -248,6 +266,14 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
           ? _value._recentlyProducts
           : recentlyProducts // ignore: cast_nullable_to_non_nullable
               as List<RecentlyProductModel>,
+      likeIds: null == likeIds
+          ? _value._likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      likes: null == likes
+          ? _value._likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as List<FavoriteModel>,
     ));
   }
 }
@@ -267,8 +293,12 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       this.product,
       this.savedToCard = false,
       this.product_is_exist_in_card = false,
-      final List<RecentlyProductModel> recentlyProducts = const []})
-      : _recentlyProducts = recentlyProducts;
+      final List<RecentlyProductModel> recentlyProducts = const [],
+      final List<String> likeIds = const [],
+      final List<FavoriteModel> likes = const []})
+      : _recentlyProducts = recentlyProducts,
+        _likeIds = likeIds,
+        _likes = likes;
 
   @override
   @JsonKey()
@@ -311,9 +341,27 @@ class _$_DetailsBuildable implements _DetailsBuildable {
     return EqualUnmodifiableListView(_recentlyProducts);
   }
 
+  final List<String> _likeIds;
+  @override
+  @JsonKey()
+  List<String> get likeIds {
+    if (_likeIds is EqualUnmodifiableListView) return _likeIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likeIds);
+  }
+
+  final List<FavoriteModel> _likes;
+  @override
+  @JsonKey()
+  List<FavoriteModel> get likes {
+    if (_likes is EqualUnmodifiableListView) return _likes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likes);
+  }
+
   @override
   String toString() {
-    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab, product: $product, savedToCard: $savedToCard, product_is_exist_in_card: $product_is_exist_in_card, recentlyProducts: $recentlyProducts)';
+    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab, product: $product, savedToCard: $savedToCard, product_is_exist_in_card: $product_is_exist_in_card, recentlyProducts: $recentlyProducts, likeIds: $likeIds, likes: $likes)';
   }
 
   @override
@@ -339,7 +387,9 @@ class _$_DetailsBuildable implements _DetailsBuildable {
                     other.product_is_exist_in_card, product_is_exist_in_card) ||
                 other.product_is_exist_in_card == product_is_exist_in_card) &&
             const DeepCollectionEquality()
-                .equals(other._recentlyProducts, _recentlyProducts));
+                .equals(other._recentlyProducts, _recentlyProducts) &&
+            const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
+            const DeepCollectionEquality().equals(other._likes, _likes));
   }
 
   @override
@@ -356,7 +406,9 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       product,
       savedToCard,
       product_is_exist_in_card,
-      const DeepCollectionEquality().hash(_recentlyProducts));
+      const DeepCollectionEquality().hash(_recentlyProducts),
+      const DeepCollectionEquality().hash(_likeIds),
+      const DeepCollectionEquality().hash(_likes));
 
   @JsonKey(ignore: true)
   @override
@@ -378,7 +430,9 @@ abstract class _DetailsBuildable implements DetailsBuildable {
       final ProductDetailModel? product,
       final bool savedToCard,
       final bool product_is_exist_in_card,
-      final List<RecentlyProductModel> recentlyProducts}) = _$_DetailsBuildable;
+      final List<RecentlyProductModel> recentlyProducts,
+      final List<String> likeIds,
+      final List<FavoriteModel> likes}) = _$_DetailsBuildable;
 
   @override
   bool get loading;
@@ -404,6 +458,10 @@ abstract class _DetailsBuildable implements DetailsBuildable {
   bool get product_is_exist_in_card;
   @override
   List<RecentlyProductModel> get recentlyProducts;
+  @override
+  List<String> get likeIds;
+  @override
+  List<FavoriteModel> get likes;
   @override
   @JsonKey(ignore: true)
   _$$_DetailsBuildableCopyWith<_$_DetailsBuildable> get copyWith =>

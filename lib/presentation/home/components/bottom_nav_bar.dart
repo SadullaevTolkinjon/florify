@@ -27,6 +27,9 @@ builtBottomBar() {
         unselectedItemColor: ColorConstants.unSelectedNavBar,
         onTap: (value) {
           BlocProvider.of<HomeCubit>(context, listen: false).changeTabs(value);
+          if(value==0){
+            BlocProvider.of<HomeCubit>(context).checkLikes()
+;          }
           if (value == 2) {
             BlocProvider.of<CardCubit>(context).getCardProducts();
           }

@@ -23,7 +23,7 @@ class MainApi {
 
   Future<Response> verfyPhone(String phone) async {
     final body = {
-      "phone": "+998901234567",
+      "phone": phone,
     };
     var data = await _api.post(
       path: 'client/sendSMS',

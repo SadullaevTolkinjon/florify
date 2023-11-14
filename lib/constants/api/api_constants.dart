@@ -1,3 +1,3 @@
 class ApiConstants {
-  static const String baseUrl = "https://florify.onrender.com/";
+  static const String baseUrl = "https://api.florify.uz/";
 }

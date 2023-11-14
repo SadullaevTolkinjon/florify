@@ -1,6 +1,7 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/presentation/home/components/app_bar.dart';
 import 'package:florify/presentation/home/components/category_title.dart';
 import 'package:florify/presentation/home/components/category_widget.dart';
@@ -20,13 +21,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        var cubit = locator<HomeCubit>();
-        cubit.fetchCategories();
-        return cubit;
-      },
-      child: BlocListener<HomeCubit, HomeState>(
+    return BlocListener<HomeCubit, HomeState>(
         listener: (context, state) {},
         child: Buildable<HomeCubit, HomeState, HomeBuildableState>(
           properties: (buildable) => [
@@ -35,7 +30,8 @@ class HomeView extends StatelessWidget {
             buildable.success,
             buildable.failed,
             buildable.error,
-            buildable.selectedCategory
+            buildable.selectedCategory,
+            buildable.likeIds
           ],
           builder: (context, state) {
             if (state.loading) {
@@ -54,7 +50,9 @@ class HomeView extends StatelessWidget {
               child: CustomScrollView(
                 slivers: [
                   _buildAppBar(),
-                  _buildCategories(state.categories),
+                  _buildCategories(
+                    state.categories,
+                  ),
                   _buildCategoryTitle("Kategoriyalar"),
                   _buildPadding(context, 0.016),
                   _buildHomeCategories(
@@ -65,6 +63,7 @@ class HomeView extends StatelessWidget {
                   _buildHomeProducts(
                     state.categories,
                     state.selectedCategory,
+                    state.likeIds,
                   ),
                   _buildPadding(context, 0.02),
                   _buildCategoryTitle("Magazinlar"),
@@ -75,8 +74,7 @@ class HomeView extends StatelessWidget {
             );
           },
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildAppBar() {
@@ -90,13 +88,17 @@ class HomeView extends StatelessWidget {
   }
 
   Widget _buildCategoryTitle(String title) {
-    return  CategoryTitle(title: title,);
+    return CategoryTitle(
+      title: title,
+    );
   }
 
-  Widget _buildHomeProducts(List<CategoryModel> categories, int index) {
+  Widget _buildHomeProducts(
+      List<CategoryModel> categories, int index, List<String> likes) {
     return HomeProducts(
       categories: categories,
       selectedCategory: index,
+      likes: likes,
     );
   }
 

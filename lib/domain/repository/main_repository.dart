@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/domain/model/user/user_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/main_api.dart';
@@ -69,6 +70,23 @@ class MainRepository {
     final response = await _mainApi.pressLike(productId, clientId);
     var data = jsonDecode(response.body);
     return data;
+  }
+
+  setLikeIds(List<FavoriteModel> likes) async {
+    List<String> ids = [];
+    for (var element in likes) {
+      ids.add(element.product_id.toString());
+    }
+    await _preference.setLikes(ids);
+  }
+
+  renderToProductJson(List<String> listJson) {
+    List<FavoriteModel> renderedList = listJson
+        .map(
+          (json) => FavoriteModel.fromJson(jsonDecode(json)),
+        )
+        .toList();
+    return renderedList;
   }
 
   // Future<List<Stat>> getStats(int page, int size) async {

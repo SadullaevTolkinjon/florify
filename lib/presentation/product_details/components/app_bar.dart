@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:florify/constants/api/api_constants.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/data/local/permanent_db.dart';
@@ -12,22 +13,28 @@ import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../constants/color/color_const.dart';
 
 class ProductDetailsAppbar extends StatelessWidget {
-  const ProductDetailsAppbar({super.key, required this.product});
+  const ProductDetailsAppbar(
+      {super.key, required this.product, required this.likeIds});
   final ProductDetailModel product;
+  final List<String> likeIds;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator<DetailsCubit>(),
+      create: (context) {
+        var cubit =locator<DetailsCubit>();
+        cubit.checkLikes();
+        return cubit;
+      },
       child: BlocListener<DetailsCubit, DetailsState>(
         listener: (context, state) {},
         child: Buildable<DetailsCubit, DetailsState, DetailsBuildable>(
-          properties: (buildable) => [
-            buildable.currentIndex,
-          ],
+          properties: (buildable) =>
+              [buildable.currentIndex, buildable.likeIds],
           builder: (context, state) {
             return SliverToBoxAdapter(
               child: SizedBox(
@@ -41,7 +48,8 @@ class ProductDetailsAppbar extends StatelessWidget {
                         width: double.infinity,
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl: flowers[index],
+                          imageUrl:
+                              "${ApiConstants.baseUrl}${product.image![index].image}",
                         ),
                       ),
                       itemCount: product.image!.length,
@@ -71,11 +79,29 @@ class ProductDetailsAppbar extends StatelessWidget {
                               children: [
                                 CustomIconBtn(
                                   ontap: () {
-                                    Navigator.pop(context);
+                                    if (context
+                                            .read<DetailsCubit>()
+                                            .getUser() !=
+                                        null) {
+                                      state.likeIds
+                                              .contains(product.id.toString())
+                                          ? context
+                                              .read<DetailsCubit>()
+                                              .disLike(product.id!)
+                                          : context
+                                              .read<DetailsCubit>()
+                                              .pressLike(product.id!);
+                                    }
                                   },
-                                  icon: SvgPicture.asset(
-                                    IconConstants.heart,
-                                  ),
+                                  icon: state.likeIds
+                                          .contains(product.id.toString())
+                                      ? Icon(
+                                          Icons.favorite,
+                                          color: ColorConstants.kRed,
+                                        )
+                                      : SvgPicture.asset(
+                                          IconConstants.heart,
+                                        ),
                                 ),
                                 MyPadding(
                                   width: AppSizes.getW(context) * 0.04,

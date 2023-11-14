@@ -106,9 +106,14 @@ class _SearchViewState extends State<SearchView> {
           (context, index) => ProductContainer(
             product: const Product(),
             ontap: () {
-              Navigator.pushNamed(context, NavigatorConst.productDetails,
-                  arguments: 2);
+              Navigator.pushNamed(
+                context,
+                NavigatorConst.productDetails,
+                arguments: 2,
+              );
             },
+            likeBtn: () {},
+            isLike: false,
           ),
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

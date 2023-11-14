@@ -26,7 +26,7 @@ class MainService {
   getCategoryProducts(String id) async {
     final response = await _mainApi.getCategoryProducts(id);
     var data = jsonDecode(response.body);
-    return CategoryModel.fromJson(data);
+    return CategoryModel.fromJson(data["data"]["records"]);
   }
 
   getProductDetails(int id) async {

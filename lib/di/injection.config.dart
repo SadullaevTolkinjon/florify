@@ -75,8 +75,11 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i15.SplashScreenCubit>(
         () => _i15.SplashScreenCubit(gh<_i9.TokenPreference>()));
-    gh.factory<_i16.AllCategoryProductCubit>(
-        () => _i16.AllCategoryProductCubit(gh<_i11.MainService>()));
+    gh.factory<_i16.AllCategoryProductCubit>(() => _i16.AllCategoryProductCubit(
+          gh<_i11.MainService>(),
+          gh<_i9.TokenPreference>(),
+          gh<_i10.MainRepository>(),
+        ));
     gh.factory<_i17.CardCubit>(() => _i17.CardCubit(
           gh<_i11.MainService>(),
           gh<_i9.TokenPreference>(),
@@ -86,13 +89,18 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i19.DetailsCubit>(() => _i19.DetailsCubit(
           gh<_i11.MainService>(),
           gh<_i9.TokenPreference>(),
+          gh<_i10.MainRepository>(),
         ));
     gh.factory<_i20.FavoriteCubit>(() => _i20.FavoriteCubit(
           gh<_i11.MainService>(),
           gh<_i9.TokenPreference>(),
           gh<_i10.MainRepository>(),
         ));
-    gh.factory<_i21.HomeCubit>(() => _i21.HomeCubit(gh<_i11.MainService>()));
+    gh.factory<_i21.HomeCubit>(() => _i21.HomeCubit(
+          gh<_i11.MainService>(),
+          gh<_i9.TokenPreference>(),
+          gh<_i10.MainRepository>(),
+        ));
     return this;
   }
 }

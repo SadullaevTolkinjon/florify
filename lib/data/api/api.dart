@@ -11,7 +11,7 @@ class Api {
 
   // Api(this._token);
 
-  final _host = "florify.onrender.com";
+  final _host = "api.florify.uz";
   final _root = "/api";
 
   final _timeout = const Duration(seconds: 15);
