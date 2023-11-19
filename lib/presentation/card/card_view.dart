@@ -131,7 +131,7 @@ class CardView extends StatelessWidget {
       sliver: SliverToBoxAdapter(
         child: PriceRowTitle(
           leftTitle: "Jami",
-          rightTitle: "$price so'm",
+          rightTitle: "${price+20000} so'm",
         ),
       ),
     );

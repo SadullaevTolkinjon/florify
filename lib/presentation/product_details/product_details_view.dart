@@ -84,10 +84,9 @@ class ProductDetailsView extends StatelessWidget {
                     const ShopNameTitle(),
                     SendSmthToShop(
                       product: state.product!,
-                    ), const RelatedProducts2(title: "O'xshash mahsulotlar"),
-                         const RelatedProducts(title: "Yaqinda ko'rilganlar"),
-                  
-               
+                    ),
+                    const RelatedProducts2(title: "O'xshash mahsulotlar"),
+                    const RelatedProducts(title: "Yaqinda ko'rilganlar"),
                   ],
                 ),
               ),

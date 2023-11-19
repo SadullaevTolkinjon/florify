@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:florify/constants/api/api_constants.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/domain/model/card_product_model/card_product_model.dart';
@@ -39,10 +40,10 @@ class KorzinaProducts extends StatelessWidget {
                         AppSizes.getH(context) * 0.012,
                       ),
                     ),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                       fit: BoxFit.cover,
                       image: CachedNetworkImageProvider(
-                        "https://www.susansflowershop.com/upload/mt/susan799/products/Interflora/20223084-hand-tied-bouquet-made-with-the-finest-flowers-2.jpg",
+                        "${ApiConstants.baseUrl}${product.image!.first.image}",
                       ),
                     ),
                   ),

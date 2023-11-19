@@ -49,7 +49,7 @@ class HomeFloatingBtn extends StatelessWidget {
                       height: AppSizes.getH(context) * 0.004,
                     ),
                     Text(
-                      "999999 so'm",
+                      "${product.price??0} so'm",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(

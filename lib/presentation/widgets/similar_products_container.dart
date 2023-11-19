@@ -26,20 +26,18 @@ class SimilarProductsContainer extends StatelessWidget {
             Container(
               height: AppSizes.getH(context) * 0.14,
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
                   Radius.circular(8),
                 ),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: CachedNetworkImageProvider(
-                    recentlyProduct.product!.image!.isNotEmpty
-                        ?
-                        //${ApiConstants.baseUrl}
-                        "${recentlyProduct.product!.image!.first.image}"
-                        : "", 
-                  ),
-                ),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: recentlyProduct.product!.image!.isNotEmpty
+                    ?
+                    //${ApiConstants.baseUrl}
+                    "${ApiConstants.baseUrl}${recentlyProduct.product!.image!.first.image}"
+                    : "",
+                fit: BoxFit.cover,
               ),
             ),
             MyPadding(

@@ -63,46 +63,46 @@ class AllCategoryProductView extends StatelessWidget {
                   state.data!.product!.isNotEmpty
                       ? SliverGrid(
                           delegate: SliverChildBuilderDelegate(
-                              (context, index) => ProductContainer(
-                                    product: state.data!.product![index],
-                                    ontap: () async {
-                                      await Navigator.pushNamed(
-                                        context,
-                                        NavigatorConst.productDetails,
-                                        arguments:
-                                            state.data!.product![index].id,
-                                      ).then(
-                                        (value) => BlocProvider.of<
-                                                    AllCategoryProductCubit>(
-                                                context)
-                                            .checkLikes(),
-                                      );
-                                    },
-                                    likeBtn: () {
-                                      if (context
-                                              .read<AllCategoryProductCubit>()
-                                              .getUser() !=
-                                          null) {
-                                        state.likeIds.contains(state
-                                                .data!.product![index].id
-                                                .toString())
-                                            ? context
-                                                .read<AllCategoryProductCubit>()
-                                                .disLike(state
-                                                    .data!.product![index].id!)
-                                            : context
-                                                .read<AllCategoryProductCubit>()
-                                                .pressLike(state
-                                                    .data!.product![index].id!);
-                                      }
-                                    },
-                                    isLike: state.likeIds.contains(
-                                      state.data!.product![index].id.toString(),
-                                    )
-                                        ? true
-                                        : false,
-                                  ),
-                              childCount: state.data!.product!.length),
+                            (context, index) => ProductContainer(
+                              product: state.data!.product![index],
+                              ontap: () async {
+                                await Navigator.pushNamed(
+                                  context,
+                                  NavigatorConst.productDetails,
+                                  arguments: state.data!.product![index].id,
+                                ).then(
+                                  (value) =>
+                                      BlocProvider.of<AllCategoryProductCubit>(
+                                              context)
+                                          .checkLikes(),
+                                );
+                              },
+                              likeBtn: () {
+                                if (context
+                                        .read<AllCategoryProductCubit>()
+                                        .getUser() !=
+                                    null) {
+                                  state.likeIds.contains(state
+                                          .data!.product![index].id
+                                          .toString())
+                                      ? context
+                                          .read<AllCategoryProductCubit>()
+                                          .disLike(
+                                              state.data!.product![index].id!)
+                                      : context
+                                          .read<AllCategoryProductCubit>()
+                                          .pressLike(
+                                              state.data!.product![index].id!);
+                                }
+                              },
+                              isLike: state.likeIds.contains(
+                                state.data!.product![index].id.toString(),
+                              )
+                                  ? true
+                                  : false,
+                            ),
+                            childCount: state.data!.product!.length,
+                          ),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
