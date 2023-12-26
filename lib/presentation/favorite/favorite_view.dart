@@ -16,8 +16,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constants/app_sizes/app_sizes_const.dart';
 
-class FavoriteView extends StatelessWidget {
+class FavoriteView extends StatefulWidget {
   const FavoriteView({super.key});
+
+  @override
+  State<FavoriteView> createState() => _FavoriteViewState();
+}
+
+class _FavoriteViewState extends State<FavoriteView> {
+  @override
+  void initState() {
+  if(context.read<FavoriteCubit>().getUser()!=null){
+     context.read<FavoriteCubit>().fetchLikes();
+  }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocListener<FavoriteCubit, FavoriteState>(
@@ -135,8 +148,9 @@ class FavoriteView extends StatelessWidget {
                                 horizontal: AppSizes.geth(context, 0.016)),
                             sliver: SliverGrid(
                               delegate: SliverChildBuilderDelegate(
-                                (context, index) => const StoreContainer(
-                                  store: Salesman(),
+                                (context, index) =>  StoreContainer(
+                                  store: const Salesman(),
+                                  ontap: (){},
                                 ),
                               ),
                               gridDelegate:
@@ -272,6 +286,5 @@ class FavoriteView extends StatelessWidget {
     //   },
     // );
 
-    ;
   }
 }

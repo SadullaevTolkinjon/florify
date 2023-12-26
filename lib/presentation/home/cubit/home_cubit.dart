@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/category_pagination_model/category_pagination_model.dart';
 import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/domain/model/user/user_model.dart';
@@ -21,9 +22,9 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
   final TokenPreference _preference;
   final MainRepository _repository;
   HomeCubit(this._service, this._preference, this._repository)
-      : super(const HomeBuildableState()){
-        fetchCategories();
-      }
+      : super(const HomeBuildableState()) {
+    fetchCategories();
+  }
 
   changeTabs(int index) {
     build(
@@ -32,12 +33,10 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
   }
 
   Future fetchCategories() async {
-    build(
-      (buildable) => buildable.copyWith(loading: true),
-    );
+    build((buildable) => buildable.copyWith(loading: true));
     try {
-      List<CategoryModel> data = await _service.getCategories();
-      List<String> likes = await _preference.getLikes();
+      final data = await _service.getCategories();
+      List<String> likes = await _preference.getLikes() ?? [];
 
       build(
         (buildable) => buildable.copyWith(
@@ -65,7 +64,9 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
   fetchStores() async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
-      List<Salesman> salesman = await _service.fetchStores();
+      final List<Salesman> salesman = await _service.fetchStores();
+      print("-----------------------");
+      print(salesman);
       build((buildable) => buildable.copyWith(
           loading: false, success: true, failed: false, stores: salesman));
     } catch (e) {
@@ -75,9 +76,8 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
   }
 
   checkLikes() async {
-    List<String> likes = await _preference.getLikes();
-    print("---------------");
-    print(likes);
+    List<String> likes = await _preference.getLikes() ?? [];
+
     build((buildable) => buildable.copyWith(likeIds: likes));
   }
 
@@ -85,8 +85,9 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
     build((buildable) => buildable.copyWith());
     try {
       UserModel user = await getUser();
-      await _repository.dislike(productId, user.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+      await _repository.dislike(productId, user.data!.client!.id!);
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
       List<String> likeIds = await _preference.getLikes() ?? [];
       List<String> listJson =
@@ -108,8 +109,9 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
     build((buildable) => buildable);
     try {
       UserModel user = await getUser();
-      await _repository.pressLike(productId, user.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+      await _repository.pressLike(productId, user.data!.client!.id!);
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
 
       List<String> likeIds = await _preference.getLikes() ?? [];
@@ -135,6 +137,24 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
     } else {
       UserModel user = UserModel.fromJson(jsonDecode(data));
       return user;
+    }
+  }
+
+  Future fetch(int pageKey, String category_id) async {
+    try {
+      final CategoryPaginationModel data =
+          await _repository.fetchCategoryProducts(category_id, pageKey);
+      List<Product?>? products = data.data!.records!;
+      final nextPageKey =
+          data.data!.records!.isNotEmpty ? pageKey + 1 : null;
+      build(
+        (buildable) => buildable.copyWith(
+            products: [...buildable.products ?? [], ...products],
+            pagingError: null,
+            nextPageKey: nextPageKey!),
+      );
+    } catch (e) {
+      build((buildable) => buildable.copyWith(pagingError: e));
     }
   }
 }

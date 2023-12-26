@@ -50,7 +50,9 @@ class CatalogView extends StatelessWidget {
                           title: "Mahsulot va kataloglarni qidirish",
                           ontap: () {
                             Navigator.pushNamed(
-                                context, NavigatorConst.searchPage);
+                              context,
+                              NavigatorConst.searchPage,
+                            );
                           },
                         ),
                       ),
@@ -58,7 +60,7 @@ class CatalogView extends StatelessWidget {
                         height: AppSizes.getH(context) * 0.020,
                       ),
                       Wrap(
-                        runSpacing: 4,
+                        runSpacing: AppSizes.geth(context,0.024),
                         spacing: 4,
                         children: [
                           ...List.generate(

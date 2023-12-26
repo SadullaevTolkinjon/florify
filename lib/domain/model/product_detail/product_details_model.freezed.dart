@@ -554,6 +554,7 @@ mixin _$Salesman {
   String? get hashed_refresh_token => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  List<Product>? get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -575,7 +576,8 @@ abstract class $SalesmanCopyWith<$Res> {
       dynamic image,
       String? hashed_refresh_token,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      List<Product>? products});
 }
 
 /// @nodoc
@@ -600,6 +602,7 @@ class _$SalesmanCopyWithImpl<$Res, $Val extends Salesman>
     Object? hashed_refresh_token = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? products = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -638,6 +641,10 @@ class _$SalesmanCopyWithImpl<$Res, $Val extends Salesman>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
     ) as $Val);
   }
 }
@@ -658,7 +665,8 @@ abstract class _$$_SalesmanCopyWith<$Res> implements $SalesmanCopyWith<$Res> {
       dynamic image,
       String? hashed_refresh_token,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      List<Product>? products});
 }
 
 /// @nodoc
@@ -681,6 +689,7 @@ class __$$_SalesmanCopyWithImpl<$Res>
     Object? hashed_refresh_token = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? products = freezed,
   }) {
     return _then(_$_Salesman(
       id: freezed == id
@@ -719,6 +728,10 @@ class __$$_SalesmanCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
     ));
   }
 }
@@ -735,7 +748,9 @@ class _$_Salesman implements _Salesman {
       this.image,
       this.hashed_refresh_token,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      final List<Product>? products})
+      : _products = products;
 
   factory _$_Salesman.fromJson(Map<String, dynamic> json) =>
       _$$_SalesmanFromJson(json);
@@ -758,10 +773,19 @@ class _$_Salesman implements _Salesman {
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
+  final List<Product>? _products;
+  @override
+  List<Product>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Salesman(id: $id, username: $username, phone: $phone, telegram: $telegram, hashed_password: $hashed_password, image: $image, hashed_refresh_token: $hashed_refresh_token, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Salesman(id: $id, username: $username, phone: $phone, telegram: $telegram, hashed_password: $hashed_password, image: $image, hashed_refresh_token: $hashed_refresh_token, createdAt: $createdAt, updatedAt: $updatedAt, products: $products)';
   }
 
   @override
@@ -781,7 +805,8 @@ class _$_Salesman implements _Salesman {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
@@ -796,7 +821,8 @@ class _$_Salesman implements _Salesman {
       const DeepCollectionEquality().hash(image),
       hashed_refresh_token,
       createdAt,
-      updatedAt);
+      updatedAt,
+      const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -822,7 +848,8 @@ abstract class _Salesman implements Salesman {
       final dynamic image,
       final String? hashed_refresh_token,
       final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$_Salesman;
+      final DateTime? updatedAt,
+      final List<Product>? products}) = _$_Salesman;
 
   factory _Salesman.fromJson(Map<String, dynamic> json) = _$_Salesman.fromJson;
 
@@ -844,6 +871,8 @@ abstract class _Salesman implements Salesman {
   DateTime? get createdAt;
   @override
   DateTime? get updatedAt;
+  @override
+  List<Product>? get products;
   @override
   @JsonKey(ignore: true)
   _$$_SalesmanCopyWith<_$_Salesman> get copyWith =>

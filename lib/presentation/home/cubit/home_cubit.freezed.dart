@@ -30,6 +30,10 @@ mixin _$HomeBuildableState {
   List<Salesman> get stores => throw _privateConstructorUsedError;
   List<String> get likeIds => throw _privateConstructorUsedError;
   List<FavoriteModel> get likes => throw _privateConstructorUsedError;
+  List<Product?>? get products => throw _privateConstructorUsedError;
+  String? get categoryId => throw _privateConstructorUsedError;
+  int get nextPageKey => throw _privateConstructorUsedError;
+  dynamic get pagingError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeBuildableStateCopyWith<HomeBuildableState> get copyWith =>
@@ -56,7 +60,11 @@ abstract class $HomeBuildableStateCopyWith<$Res> {
       int selectedCategory,
       List<Salesman> stores,
       List<String> likeIds,
-      List<FavoriteModel> likes});
+      List<FavoriteModel> likes,
+      List<Product?>? products,
+      String? categoryId,
+      int nextPageKey,
+      dynamic pagingError});
 }
 
 /// @nodoc
@@ -86,6 +94,10 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
     Object? stores = null,
     Object? likeIds = null,
     Object? likes = null,
+    Object? products = freezed,
+    Object? categoryId = freezed,
+    Object? nextPageKey = null,
+    Object? pagingError = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -144,6 +156,22 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
               as List<FavoriteModel>,
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product?>?,
+      categoryId: freezed == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextPageKey: null == nextPageKey
+          ? _value.nextPageKey
+          : nextPageKey // ignore: cast_nullable_to_non_nullable
+              as int,
+      pagingError: freezed == pagingError
+          ? _value.pagingError
+          : pagingError // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -170,7 +198,11 @@ abstract class _$$_HomeBuildableStateCopyWith<$Res>
       int selectedCategory,
       List<Salesman> stores,
       List<String> likeIds,
-      List<FavoriteModel> likes});
+      List<FavoriteModel> likes,
+      List<Product?>? products,
+      String? categoryId,
+      int nextPageKey,
+      dynamic pagingError});
 }
 
 /// @nodoc
@@ -198,6 +230,10 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
     Object? stores = null,
     Object? likeIds = null,
     Object? likes = null,
+    Object? products = freezed,
+    Object? categoryId = freezed,
+    Object? nextPageKey = null,
+    Object? pagingError = freezed,
   }) {
     return _then(_$_HomeBuildableState(
       loading: null == loading
@@ -256,6 +292,22 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
           ? _value._likes
           : likes // ignore: cast_nullable_to_non_nullable
               as List<FavoriteModel>,
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product?>?,
+      categoryId: freezed == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextPageKey: null == nextPageKey
+          ? _value.nextPageKey
+          : nextPageKey // ignore: cast_nullable_to_non_nullable
+              as int,
+      pagingError: freezed == pagingError
+          ? _value.pagingError
+          : pagingError // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -277,12 +329,17 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       this.selectedCategory = 0,
       final List<Salesman> stores = const [],
       final List<String> likeIds = const [],
-      final List<FavoriteModel> likes = const []})
+      final List<FavoriteModel> likes = const [],
+      final List<Product?>? products = const [],
+      this.categoryId = "",
+      this.nextPageKey = 0,
+      this.pagingError})
       : _data = data,
         _categories = categories,
         _stores = stores,
         _likeIds = likeIds,
-        _likes = likes;
+        _likes = likes,
+        _products = products;
 
   @override
   @JsonKey()
@@ -355,9 +412,29 @@ class _$_HomeBuildableState implements _HomeBuildableState {
     return EqualUnmodifiableListView(_likes);
   }
 
+  final List<Product?>? _products;
+  @override
+  @JsonKey()
+  List<Product?>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey()
+  final String? categoryId;
+  @override
+  @JsonKey()
+  final int nextPageKey;
+  @override
+  final dynamic pagingError;
+
   @override
   String toString() {
-    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory, stores: $stores, likeIds: $likeIds, likes: $likes)';
+    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory, stores: $stores, likeIds: $likeIds, likes: $likes, products: $products, categoryId: $categoryId, nextPageKey: $nextPageKey, pagingError: $pagingError)';
   }
 
   @override
@@ -383,7 +460,14 @@ class _$_HomeBuildableState implements _HomeBuildableState {
                 other.selectedCategory == selectedCategory) &&
             const DeepCollectionEquality().equals(other._stores, _stores) &&
             const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
-            const DeepCollectionEquality().equals(other._likes, _likes));
+            const DeepCollectionEquality().equals(other._likes, _likes) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
+            (identical(other.nextPageKey, nextPageKey) ||
+                other.nextPageKey == nextPageKey) &&
+            const DeepCollectionEquality()
+                .equals(other.pagingError, pagingError));
   }
 
   @override
@@ -402,7 +486,11 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       selectedCategory,
       const DeepCollectionEquality().hash(_stores),
       const DeepCollectionEquality().hash(_likeIds),
-      const DeepCollectionEquality().hash(_likes));
+      const DeepCollectionEquality().hash(_likes),
+      const DeepCollectionEquality().hash(_products),
+      categoryId,
+      nextPageKey,
+      const DeepCollectionEquality().hash(pagingError));
 
   @JsonKey(ignore: true)
   @override
@@ -427,7 +515,11 @@ abstract class _HomeBuildableState implements HomeBuildableState {
       final int selectedCategory,
       final List<Salesman> stores,
       final List<String> likeIds,
-      final List<FavoriteModel> likes}) = _$_HomeBuildableState;
+      final List<FavoriteModel> likes,
+      final List<Product?>? products,
+      final String? categoryId,
+      final int nextPageKey,
+      final dynamic pagingError}) = _$_HomeBuildableState;
 
   @override
   bool get loading;
@@ -457,6 +549,14 @@ abstract class _HomeBuildableState implements HomeBuildableState {
   List<String> get likeIds;
   @override
   List<FavoriteModel> get likes;
+  @override
+  List<Product?>? get products;
+  @override
+  String? get categoryId;
+  @override
+  int get nextPageKey;
+  @override
+  dynamic get pagingError;
   @override
   @JsonKey(ignore: true)
   _$$_HomeBuildableStateCopyWith<_$_HomeBuildableState> get copyWith =>

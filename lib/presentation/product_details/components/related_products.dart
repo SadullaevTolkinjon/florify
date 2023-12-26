@@ -130,7 +130,7 @@ class RelatedProducts2 extends StatelessWidget {
                           product: Product(
                             price: 100,
                             name: "Gullar va yana gullar",
-                            image: [
+                            images: [
                               ProductImage(
                                   image:
                                       "https://content2.flowwow-images.com/data/flowers/524x524/43/1663859071_23692043.jpg")

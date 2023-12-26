@@ -11,6 +11,16 @@ class MainApi {
     return data;
   }
 
+  Future<Response> fetchProductComments(int productId) async {
+    var data = await _api.get(path: 'comment/productId/$productId');
+    return data;
+  }
+
+  Future<Response> fetchCategoryProducts(String categoryId, int page) async {
+    var data = await _api.get(path: 'product/categoryId/$categoryId/$page/10');
+    return data;
+  }
+
   Future<Response> getCategoryProducts(String id) async {
     var data = await _api.get(path: 'category/$id');
     return data;
@@ -26,7 +36,7 @@ class MainApi {
       "phone": phone,
     };
     var data = await _api.post(
-      path: 'client/sendSMS',
+      path: 'otp/sendOtp',
       body: body,
     );
 
@@ -38,7 +48,7 @@ class MainApi {
       "phone": phone,
       "code": sms,
     };
-    var data = await _api.post(path: 'client/signup', body: body);
+    var data = await _api.post(path: 'client/register', body: body);
 
     return data;
   }
@@ -54,10 +64,12 @@ class MainApi {
   }
 
   Future<Response> pressLike(int productId, String userId) async {
+    print("here-----------");
     final body = {
       "client_id": userId,
       "product_id": productId,
     };
+    print(userId);
     var data = await _api.post(path: 'like', body: body);
 
     return data;
@@ -75,7 +87,8 @@ class MainApi {
     var data = await _api.get(path: 'salesman');
     return data;
   }
- Future<Response> fetchRecentlyProducts() async {
+
+  Future<Response> fetchRecentlyProducts() async {
     var data = await _api.get(path: 'watched');
     return data;
   }

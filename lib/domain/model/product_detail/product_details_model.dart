@@ -42,6 +42,7 @@ class Salesman with _$Salesman {
     String? hashed_refresh_token,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<Product>? products,
   }) = _Salesman;
 
   factory Salesman.fromJson(Map<String, Object?> json) =>

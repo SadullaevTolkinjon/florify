@@ -52,7 +52,7 @@ _$_FavoriteProduct _$$_FavoriteProductFromJson(Map<String, dynamic> json) =>
       updated_at: json['updated_at'] == null
           ? null
           : DateTime.parse(json['updated_at'] as String),
-      image: (json['image'] as List<dynamic>?)
+      images: (json['images'] as List<dynamic>?)
           ?.map((e) => ProductImage.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -70,5 +70,5 @@ Map<String, dynamic> _$$_FavoriteProductToJson(_$_FavoriteProduct instance) =>
       'category_id': instance.category_id,
       'created_at': instance.created_at?.toIso8601String(),
       'updated_at': instance.updated_at?.toIso8601String(),
-      'image': instance.image,
+      'images': instance.images,
     };

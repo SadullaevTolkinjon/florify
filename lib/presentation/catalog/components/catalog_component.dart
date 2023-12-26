@@ -91,7 +91,7 @@ class CatalogProductWidget extends StatelessWidget {
                           height: AppSizes.getH(context) * 0.004,
                         ),
                         Text(
-                          "${category.product!.length} ta mahsulot",
+                          "${category.products!=null? category.products!.length:0} ta mahsulot",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(

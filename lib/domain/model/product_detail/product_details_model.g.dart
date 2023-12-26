@@ -73,6 +73,9 @@ _$_Salesman _$$_SalesmanFromJson(Map<String, dynamic> json) => _$_Salesman(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
+      products: (json['products'] as List<dynamic>?)
+          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_SalesmanToJson(_$_Salesman instance) =>
@@ -86,4 +89,5 @@ Map<String, dynamic> _$$_SalesmanToJson(_$_Salesman instance) =>
       'hashed_refresh_token': instance.hashed_refresh_token,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'products': instance.products,
     };

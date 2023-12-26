@@ -3,6 +3,7 @@ import 'package:florify/di/injection.dart';
 import 'package:florify/presentation/card/cubit/card_cubit.dart';
 import 'package:florify/presentation/favorite/cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/presentation/home/cubit/home_cubit.dart';
@@ -32,6 +33,9 @@ void main() async {
 init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 }
 
 class MyApp extends StatelessWidget {

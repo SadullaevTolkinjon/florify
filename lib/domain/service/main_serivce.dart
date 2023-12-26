@@ -6,7 +6,6 @@ import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/domain/model/recently/recently_product_model.dart';
-import 'package:florify/presentation/card/card_page.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/api/main_api.dart';
@@ -19,14 +18,16 @@ class MainService {
 
   getCategories() async {
     final response = await _mainApi.getCategories();
-    Iterable list = jsonDecode(response.body);
-    return List<CategoryModel>.from(list.map((e) => CategoryModel.fromJson(e)));
+    var list = jsonDecode(response.body);
+    var data = list["data"]["categories"];
+
+    return List<CategoryModel>.from(data.map((e) => CategoryModel.fromJson(e)));
   }
 
   getCategoryProducts(String id) async {
     final response = await _mainApi.getCategoryProducts(id);
     var data = jsonDecode(response.body);
-    return CategoryModel.fromJson(data["data"]["records"]);
+    return CategoryModel.fromJson(data["data"]["category"]);
   }
 
   getProductDetails(int id) async {
@@ -53,20 +54,25 @@ class MainService {
   fetchLikes(String userId) async {
     final response = await _mainApi.fetchLikes(userId);
 
-    Iterable list = jsonDecode(response.body);
-    return List<FavoriteModel>.from(list.map((e) => FavoriteModel.fromJson(e)));
+    var list = jsonDecode(response.body);
+    return List<FavoriteModel>.from(
+        list["data"]["likes"].map((e) => FavoriteModel.fromJson(e)));
   }
+
   fetchStores() async {
     final response = await _mainApi.fetchStores();
 
-   Iterable list = jsonDecode(response.body);
-    return  List<Salesman>.from(list.map((e) => Salesman.fromJson(e)));
+    var data = jsonDecode(response.body);
+    return List<Salesman>.from(
+        data["data"]["salesmans"].map((e) => Salesman.fromJson(e)));
   }
-   fetchRecentlyProducts() async {
+
+  fetchRecentlyProducts() async {
     final response = await _mainApi.fetchRecentlyProducts();
 
     Iterable list = jsonDecode(response.body);
-    return List<RecentlyProductModel>.from(list.map((e) => RecentlyProductModel.fromJson(e)));
+    return List<RecentlyProductModel>.from(
+        list.map((e) => RecentlyProductModel.fromJson(e)));
   }
   // Future getCustomers(int page, int id) async {
   //   final response = await _mainApi.getBooks(page, id);

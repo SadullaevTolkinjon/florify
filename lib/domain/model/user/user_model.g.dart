@@ -7,16 +7,20 @@ part of 'user_model.dart';
 // **************************************************************************
 
 _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
+      statusCode: json['statusCode'] as int?,
       message: json['message'] as String?,
-      client: json['client'] == null
+      data: json['data'] == null
           ? null
-          : Client.fromJson(json['client'] as Map<String, dynamic>),
+          : Data.fromJson(json['data'] as Map<String, dynamic>),
+      token: json['token'] as String?,
     );
 
 Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
     <String, dynamic>{
+      'statusCode': instance.statusCode,
       'message': instance.message,
-      'client': instance.client,
+      'data': instance.data,
+      'token': instance.token,
     };
 
 _$_Client _$$_ClientFromJson(Map<String, dynamic> json) => _$_Client(
@@ -39,4 +43,14 @@ Map<String, dynamic> _$$_ClientToJson(_$_Client instance) => <String, dynamic>{
       'createdAt': instance.createdAt?.toIso8601String(),
       'name': instance.name,
       'address': instance.address,
+    };
+
+_$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
+      client: json['client'] == null
+          ? null
+          : Client.fromJson(json['client'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
+      'client': instance.client,
     };

@@ -20,19 +20,20 @@ import '../data/preferences/token_preferences.dart' as _i9;
 import '../domain/repository/main_repository.dart' as _i10;
 import '../domain/service/main_serivce.dart' as _i11;
 import '../presentation/all_category_product/cubit/all_category_product_cubit.dart'
-    as _i16;
-import '../presentation/auth/sign_up/cubit/sign_up_cubit.dart' as _i13;
-import '../presentation/auth/verfy_sms/cubit/sms_verify_cubit.dart' as _i14;
-import '../presentation/card/cubit/card_cubit.dart' as _i17;
-import '../presentation/catalog/cubit/catalog_cubit.dart' as _i18;
-import '../presentation/favorite/cubit/favorite_cubit.dart' as _i20;
-import '../presentation/home/cubit/home_cubit.dart' as _i21;
+    as _i17;
+import '../presentation/auth/sign_up/cubit/sign_up_cubit.dart' as _i14;
+import '../presentation/auth/verfy_sms/cubit/sms_verify_cubit.dart' as _i15;
+import '../presentation/card/cubit/card_cubit.dart' as _i18;
+import '../presentation/catalog/cubit/catalog_cubit.dart' as _i19;
+import '../presentation/favorite/cubit/favorite_cubit.dart' as _i21;
+import '../presentation/home/cubit/home_cubit.dart' as _i22;
 import '../presentation/language/cubit/language_cubit.dart' as _i5;
 import '../presentation/onboarding/cubit/onboarding_cubit.dart' as _i12;
 import '../presentation/order_history/cubit/order_history_cubit.dart' as _i7;
-import '../presentation/product_details/cubit/details_cubit.dart' as _i19;
-import '../presentation/splash/cubit/splash_screen_cubit.dart' as _i15;
-import 'data_module.dart' as _i22;
+import '../presentation/product_details/cubit/details_cubit.dart' as _i20;
+import '../presentation/search/cubit/search_cubit.dart' as _i13;
+import '../presentation/splash/cubit/splash_screen_cubit.dart' as _i16;
+import 'data_module.dart' as _i23;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -67,36 +68,38 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i12.OnboardingCubit>(
         () => _i12.OnboardingCubit(gh<_i9.TokenPreference>()));
-    gh.factory<_i13.SignUpCubit>(
-        () => _i13.SignUpCubit(gh<_i10.MainRepository>()));
-    gh.factory<_i14.SmsVerifyCubit>(() => _i14.SmsVerifyCubit(
+    gh.factory<_i13.SearchCubit>(
+        () => _i13.SearchCubit(gh<_i10.MainRepository>()));
+    gh.factory<_i14.SignUpCubit>(
+        () => _i14.SignUpCubit(gh<_i10.MainRepository>()));
+    gh.factory<_i15.SmsVerifyCubit>(() => _i15.SmsVerifyCubit(
           gh<_i10.MainRepository>(),
           gh<_i9.TokenPreference>(),
         ));
-    gh.factory<_i15.SplashScreenCubit>(
-        () => _i15.SplashScreenCubit(gh<_i9.TokenPreference>()));
-    gh.factory<_i16.AllCategoryProductCubit>(() => _i16.AllCategoryProductCubit(
+    gh.factory<_i16.SplashScreenCubit>(
+        () => _i16.SplashScreenCubit(gh<_i9.TokenPreference>()));
+    gh.factory<_i17.AllCategoryProductCubit>(() => _i17.AllCategoryProductCubit(
           gh<_i11.MainService>(),
           gh<_i9.TokenPreference>(),
           gh<_i10.MainRepository>(),
         ));
-    gh.factory<_i17.CardCubit>(() => _i17.CardCubit(
+    gh.factory<_i18.CardCubit>(() => _i18.CardCubit(
           gh<_i11.MainService>(),
           gh<_i9.TokenPreference>(),
         ));
-    gh.factory<_i18.CatalogCubit>(
-        () => _i18.CatalogCubit(gh<_i11.MainService>()));
-    gh.factory<_i19.DetailsCubit>(() => _i19.DetailsCubit(
-          gh<_i11.MainService>(),
-          gh<_i9.TokenPreference>(),
-          gh<_i10.MainRepository>(),
-        ));
-    gh.factory<_i20.FavoriteCubit>(() => _i20.FavoriteCubit(
+    gh.factory<_i19.CatalogCubit>(
+        () => _i19.CatalogCubit(gh<_i11.MainService>()));
+    gh.factory<_i20.DetailsCubit>(() => _i20.DetailsCubit(
           gh<_i11.MainService>(),
           gh<_i9.TokenPreference>(),
           gh<_i10.MainRepository>(),
         ));
-    gh.factory<_i21.HomeCubit>(() => _i21.HomeCubit(
+    gh.factory<_i21.FavoriteCubit>(() => _i21.FavoriteCubit(
+          gh<_i11.MainService>(),
+          gh<_i9.TokenPreference>(),
+          gh<_i10.MainRepository>(),
+        ));
+    gh.factory<_i22.HomeCubit>(() => _i22.HomeCubit(
           gh<_i11.MainService>(),
           gh<_i9.TokenPreference>(),
           gh<_i10.MainRepository>(),
@@ -105,4 +108,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$DataModule extends _i22.DataModule {}
+class _$DataModule extends _i23.DataModule {}

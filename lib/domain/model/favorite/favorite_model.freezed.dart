@@ -313,7 +313,7 @@ mixin _$FavoriteProduct {
   String? get category_id => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
   DateTime? get updated_at => throw _privateConstructorUsedError;
-  List<ProductImage>? get image => throw _privateConstructorUsedError;
+  List<ProductImage>? get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -339,7 +339,7 @@ abstract class $FavoriteProductCopyWith<$Res> {
       String? category_id,
       DateTime? created_at,
       DateTime? updated_at,
-      List<ProductImage>? image});
+      List<ProductImage>? images});
 }
 
 /// @nodoc
@@ -366,7 +366,7 @@ class _$FavoriteProductCopyWithImpl<$Res, $Val extends FavoriteProduct>
     Object? category_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? image = freezed,
+    Object? images = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -413,9 +413,9 @@ class _$FavoriteProductCopyWithImpl<$Res, $Val extends FavoriteProduct>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ProductImage>?,
     ) as $Val);
   }
@@ -441,7 +441,7 @@ abstract class _$$_FavoriteProductCopyWith<$Res>
       String? category_id,
       DateTime? created_at,
       DateTime? updated_at,
-      List<ProductImage>? image});
+      List<ProductImage>? images});
 }
 
 /// @nodoc
@@ -466,7 +466,7 @@ class __$$_FavoriteProductCopyWithImpl<$Res>
     Object? category_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? image = freezed,
+    Object? images = freezed,
   }) {
     return _then(_$_FavoriteProduct(
       id: freezed == id
@@ -513,9 +513,9 @@ class __$$_FavoriteProductCopyWithImpl<$Res>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      image: freezed == image
-          ? _value._image
-          : image // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ProductImage>?,
     ));
   }
@@ -536,8 +536,8 @@ class _$_FavoriteProduct implements _FavoriteProduct {
       this.category_id,
       this.created_at,
       this.updated_at,
-      final List<ProductImage>? image})
-      : _image = image;
+      final List<ProductImage>? images})
+      : _images = images;
 
   factory _$_FavoriteProduct.fromJson(Map<String, dynamic> json) =>
       _$$_FavoriteProductFromJson(json);
@@ -564,19 +564,19 @@ class _$_FavoriteProduct implements _FavoriteProduct {
   final DateTime? created_at;
   @override
   final DateTime? updated_at;
-  final List<ProductImage>? _image;
+  final List<ProductImage>? _images;
   @override
-  List<ProductImage>? get image {
-    final value = _image;
+  List<ProductImage>? get images {
+    final value = _images;
     if (value == null) return null;
-    if (_image is EqualUnmodifiableListView) return _image;
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'FavoriteProduct(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, image: $image)';
+    return 'FavoriteProduct(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, images: $images)';
   }
 
   @override
@@ -601,7 +601,7 @@ class _$_FavoriteProduct implements _FavoriteProduct {
                 other.created_at == created_at) &&
             (identical(other.updated_at, updated_at) ||
                 other.updated_at == updated_at) &&
-            const DeepCollectionEquality().equals(other._image, _image));
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
@@ -619,7 +619,7 @@ class _$_FavoriteProduct implements _FavoriteProduct {
       category_id,
       created_at,
       updated_at,
-      const DeepCollectionEquality().hash(_image));
+      const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -648,7 +648,7 @@ abstract class _FavoriteProduct implements FavoriteProduct {
       final String? category_id,
       final DateTime? created_at,
       final DateTime? updated_at,
-      final List<ProductImage>? image}) = _$_FavoriteProduct;
+      final List<ProductImage>? images}) = _$_FavoriteProduct;
 
   factory _FavoriteProduct.fromJson(Map<String, dynamic> json) =
       _$_FavoriteProduct.fromJson;
@@ -676,7 +676,7 @@ abstract class _FavoriteProduct implements FavoriteProduct {
   @override
   DateTime? get updated_at;
   @override
-  List<ProductImage>? get image;
+  List<ProductImage>? get images;
   @override
   @JsonKey(ignore: true)
   _$$_FavoriteProductCopyWith<_$_FavoriteProduct> get copyWith =>

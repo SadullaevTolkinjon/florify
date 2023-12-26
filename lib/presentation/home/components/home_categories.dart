@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCategories extends StatelessWidget {
-  const HomeCategories({super.key, required this.categories,required this.selectedCategory});
+  const HomeCategories(
+      {super.key, required this.categories, required this.selectedCategory});
   final List<CategoryModel> categories;
   final int selectedCategory;
   @override
@@ -21,7 +22,8 @@ class HomeCategories extends StatelessWidget {
                 title: categories[index].uz ?? "",
                 isSelected: selectedCategory == index ? true : false,
                 ontap: () {
-                  context.read<HomeCubit>().selectCategory(index);
+                  //  context.read<HomeCubit>().selectCategory(index);
+                  BlocProvider.of<HomeCubit>(context).selectCategory(index);
                 },
               ),
             )

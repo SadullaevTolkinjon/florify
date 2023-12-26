@@ -20,8 +20,10 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
+  int? get statusCode => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  Client? get client => throw _privateConstructorUsedError;
+  Data? get data => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +36,9 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({String? message, Client? client});
+  $Res call({int? statusCode, String? message, Data? data, String? token});
 
-  $ClientCopyWith<$Res>? get client;
+  $DataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -52,30 +54,40 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? statusCode = freezed,
     Object? message = freezed,
-    Object? client = freezed,
+    Object? data = freezed,
+    Object? token = freezed,
   }) {
     return _then(_value.copyWith(
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      client: freezed == client
-          ? _value.client
-          : client // ignore: cast_nullable_to_non_nullable
-              as Client?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Data?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ClientCopyWith<$Res>? get client {
-    if (_value.client == null) {
+  $DataCopyWith<$Res>? get data {
+    if (_value.data == null) {
       return null;
     }
 
-    return $ClientCopyWith<$Res>(_value.client!, (value) {
-      return _then(_value.copyWith(client: value) as $Val);
+    return $DataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
@@ -87,10 +99,10 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       __$$_UserModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? message, Client? client});
+  $Res call({int? statusCode, String? message, Data? data, String? token});
 
   @override
-  $ClientCopyWith<$Res>? get client;
+  $DataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -104,18 +116,28 @@ class __$$_UserModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? statusCode = freezed,
     Object? message = freezed,
-    Object? client = freezed,
+    Object? data = freezed,
+    Object? token = freezed,
   }) {
     return _then(_$_UserModel(
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      client: freezed == client
-          ? _value.client
-          : client // ignore: cast_nullable_to_non_nullable
-              as Client?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Data?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -123,19 +145,23 @@ class __$$_UserModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserModel implements _UserModel {
-  const _$_UserModel({this.message, this.client});
+  const _$_UserModel({this.statusCode, this.message, this.data, this.token});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
 
   @override
+  final int? statusCode;
+  @override
   final String? message;
   @override
-  final Client? client;
+  final Data? data;
+  @override
+  final String? token;
 
   @override
   String toString() {
-    return 'UserModel(message: $message, client: $client)';
+    return 'UserModel(statusCode: $statusCode, message: $message, data: $data, token: $token)';
   }
 
   @override
@@ -143,13 +169,17 @@ class _$_UserModel implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserModel &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.client, client) || other.client == client));
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, message, client);
+  int get hashCode =>
+      Object.hash(runtimeType, statusCode, message, data, token);
 
   @JsonKey(ignore: true)
   @override
@@ -166,16 +196,23 @@ class _$_UserModel implements _UserModel {
 }
 
 abstract class _UserModel implements UserModel {
-  const factory _UserModel({final String? message, final Client? client}) =
-      _$_UserModel;
+  const factory _UserModel(
+      {final int? statusCode,
+      final String? message,
+      final Data? data,
+      final String? token}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
 
   @override
+  int? get statusCode;
+  @override
   String? get message;
   @override
-  Client? get client;
+  Data? get data;
+  @override
+  String? get token;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>
@@ -423,4 +460,148 @@ abstract class _Client implements Client {
   @JsonKey(ignore: true)
   _$$_ClientCopyWith<_$_Client> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+Data _$DataFromJson(Map<String, dynamic> json) {
+  return _Data.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Data {
+  Client? get client => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DataCopyWith<$Res> {
+  factory $DataCopyWith(Data value, $Res Function(Data) then) =
+      _$DataCopyWithImpl<$Res, Data>;
+  @useResult
+  $Res call({Client? client});
+
+  $ClientCopyWith<$Res>? get client;
+}
+
+/// @nodoc
+class _$DataCopyWithImpl<$Res, $Val extends Data>
+    implements $DataCopyWith<$Res> {
+  _$DataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? client = freezed,
+  }) {
+    return _then(_value.copyWith(
+      client: freezed == client
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
+              as Client?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientCopyWith<$Res>? get client {
+    if (_value.client == null) {
+      return null;
+    }
+
+    return $ClientCopyWith<$Res>(_value.client!, (value) {
+      return _then(_value.copyWith(client: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
+  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
+      __$$_DataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Client? client});
+
+  @override
+  $ClientCopyWith<$Res>? get client;
+}
+
+/// @nodoc
+class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
+    implements _$$_DataCopyWith<$Res> {
+  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? client = freezed,
+  }) {
+    return _then(_$_Data(
+      client: freezed == client
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
+              as Client?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Data implements _Data {
+  const _$_Data({this.client});
+
+  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
+
+  @override
+  final Client? client;
+
+  @override
+  String toString() {
+    return 'Data(client: $client)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Data &&
+            (identical(other.client, client) || other.client == client));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, client);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DataCopyWith<_$_Data> get copyWith =>
+      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DataToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Data implements Data {
+  const factory _Data({final Client? client}) = _$_Data;
+
+  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+
+  @override
+  Client? get client;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
 }

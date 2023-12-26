@@ -40,7 +40,7 @@ class TokenPreference {
   }
 
   Future getLikes() async {
-    return _sharedPreferences.getStringList(_likes);
+    return  _sharedPreferences.getStringList(_likes);
   }
 
   setSplash(int value) async {

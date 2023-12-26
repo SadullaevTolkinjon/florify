@@ -17,64 +17,72 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
-
+  HomeView({super.key});
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return BlocListener<HomeCubit, HomeState>(
-        listener: (context, state) {},
-        child: Buildable<HomeCubit, HomeState, HomeBuildableState>(
-          properties: (buildable) => [
-            buildable.categories,
-            buildable.loading,
-            buildable.success,
-            buildable.failed,
-            buildable.error,
-            buildable.selectedCategory,
-            buildable.likeIds
-          ],
-          builder: (context, state) {
-            if (state.loading) {
-              return const LoaderWidget();
-            }
-            if (state.failed) {
-              return ErrorWidgetCustom(
-                ontap: () {
-                  BlocProvider.of<HomeCubit>(context).fetchCategories();
-                },
-              );
-            }
-            return Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.getW(context) * 0.019),
-              child: CustomScrollView(
-                slivers: [
-                  _buildAppBar(),
-                  _buildCategories(
-                    state.categories,
-                  ),
-                  _buildCategoryTitle("Kategoriyalar"),
-                  _buildPadding(context, 0.016),
-                  _buildHomeCategories(
-                    state.categories,
-                    state.selectedCategory,
-                  ),
-                  _buildPadding(context, 0.012),
-                  _buildHomeProducts(
-                    state.categories,
-                    state.selectedCategory,
-                    state.likeIds,
-                  ),
-                  _buildPadding(context, 0.02),
-                  _buildCategoryTitle("Magazinlar"),
-                  _buildPadding(context, 0.016),
-                  _buildStores()
-                ],
-              ),
+      listener: (context, state) {
+        if (state is HomeBuildableState) {
+          currentIndex = state.selectedCategory;
+        }
+      },
+      child: Buildable<HomeCubit, HomeState, HomeBuildableState>(
+        properties: (buildable) => [
+          buildable.categories,
+          buildable.loading,
+          buildable.success,
+          buildable.failed,
+          buildable.error,
+          buildable.selectedCategory,
+          buildable.likeIds
+        ],
+        builder: (context, state) {
+          if (state.loading) {
+            return const LoaderWidget();
+          }
+          if (state.failed) {
+            return ErrorWidgetCustom(
+              ontap: () {
+                BlocProvider.of<HomeCubit>(context).fetchCategories();
+              },
             );
-          },
-        ),
-      );
+          }
+          return Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: AppSizes.getW(context) * 0.019),
+            child: CustomScrollView(
+              slivers: [
+                _buildAppBar(),
+                _buildCategories(state.categories),
+                _buildCategoryTitle("Kategoriyalar"),
+                _buildPadding(context, 0.016),
+                _buildHomeCategories(
+                  state.categories,
+                  state.selectedCategory,
+                ),
+                _buildPadding(context, 0.012),
+                HomeProducts(
+                  categories: state.categories,
+                  selectedCategory: currentIndex,
+                  likes: state.likeIds,
+                  categoryId: state.categories[currentIndex].id!,
+                ),
+                // _buildHomeProducts(
+                //   state.categories,
+                //   currentIndex,
+                //   state.likeIds,
+                // ),
+                _buildPadding(context, 0.02),
+                _buildCategoryTitle("Magazinlar"),
+                _buildPadding(context, 0.016),
+                _buildStores()
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 
   Widget _buildAppBar() {
@@ -99,6 +107,7 @@ class HomeView extends StatelessWidget {
       categories: categories,
       selectedCategory: index,
       likes: likes,
+      categoryId: categories[index].id!,
     );
   }
 

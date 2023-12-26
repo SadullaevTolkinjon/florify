@@ -32,10 +32,10 @@ class SimilarProductsContainer extends StatelessWidget {
                 ),
               ),
               child: CachedNetworkImage(
-                imageUrl: recentlyProduct.product!.image!.isNotEmpty
+                imageUrl: recentlyProduct.product!.images!.isNotEmpty
                     ?
                     //${ApiConstants.baseUrl}
-                    "${ApiConstants.baseUrl}${recentlyProduct.product!.image!.first.image}"
+                    "${ApiConstants.baseUrl}${recentlyProduct.product!.images!.first.image}"
                     : "",
                 fit: BoxFit.cover,
               ),

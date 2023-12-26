@@ -41,7 +41,6 @@ class _SearchViewState extends State<SearchView> {
         ),
         child: CustomScrollView(
             slivers:
-
                 // _buildFirstLook(),
                 _buildProducts()),
       ),
@@ -51,7 +50,9 @@ class _SearchViewState extends State<SearchView> {
   List<Widget> _buildFirstLook() {
     return [
       SliverPadding(
-        padding: EdgeInsets.symmetric(vertical: AppSizes.geth(context, 0.02)),
+        padding: EdgeInsets.symmetric(
+          vertical: AppSizes.geth(context, 0.02),
+        ),
         sliver: SliverToBoxAdapter(
           child: Text(
             "Ommabop",
@@ -63,21 +64,22 @@ class _SearchViewState extends State<SearchView> {
       ),
       SliverGrid(
         delegate: SliverChildBuilderDelegate(
-            (context, index) => ListTile(
-                  dense: true,
-                  leading: SvgPicture.asset(IconConstants.search_icon),
-                  title: Text(
-                    "Yumshoq o‘yinchoqlar",
-                    style: TextStyle(
-                        fontSize: AppSizes.geth(context, 0.018),
-                        fontWeight: FontWeight.w400),
-                  ),
-                  subtitle: const Divider(
-                    height: 0,
-                    thickness: 1.5,
-                  ),
-                ),
-            childCount: 4),
+          (context, index) => ListTile(
+            dense: true,
+            leading: SvgPicture.asset(IconConstants.search_icon),
+            title: Text(
+              "Yumshoq o‘yinchoqlar",
+              style: TextStyle(
+                  fontSize: AppSizes.geth(context, 0.018),
+                  fontWeight: FontWeight.w400),
+            ),
+            subtitle: const Divider(
+              height: 0,
+              thickness: 1.5,
+            ),
+          ),
+          childCount: 4,
+        ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
           mainAxisSpacing: AppSizes.geth(context, 0.01),

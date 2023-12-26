@@ -30,7 +30,7 @@ class ProductDetailsWidget extends StatelessWidget {
             MyPadding(
               height: AppSizes.getH(context) * 0.016,
             ),
-            Wrap(
+            Wrap( 
               runSpacing: AppSizes.getW(context) * 0.008,
               spacing: AppSizes.getW(context) * 0.008,
               children: [

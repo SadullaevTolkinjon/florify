@@ -89,7 +89,7 @@ class HomeFloatingBtn extends StatelessWidget {
                           category_id: product.category_id,
                           created_at: product.createdAt,
                           updated_at: product.updatedAt,
-                          image: product.image),
+                          images: product.image),
                     );
                   },
                   height: double.infinity,

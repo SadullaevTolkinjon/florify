@@ -33,7 +33,7 @@ class FavoriteProduct with _$FavoriteProduct {
     String? category_id,
     DateTime? created_at,
     DateTime? updated_at,
-    List<ProductImage>? image,
+    List<ProductImage>? images,
   }) = _FavoriteProduct;
 
   factory FavoriteProduct.fromJson(Map<String, Object?> json) =>

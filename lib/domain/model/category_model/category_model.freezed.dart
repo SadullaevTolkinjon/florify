@@ -23,14 +23,12 @@ mixin _$CategoryModel {
   String? get id => throw _privateConstructorUsedError;
   String? get uz => throw _privateConstructorUsedError;
   String? get ru => throw _privateConstructorUsedError;
-  String? get en => throw _privateConstructorUsedError;
   String? get uz_description => throw _privateConstructorUsedError;
   String? get ru_description => throw _privateConstructorUsedError;
-  String? get en_description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
   DateTime? get updated_at => throw _privateConstructorUsedError;
-  List<Product>? get product => throw _privateConstructorUsedError;
+  List<Product>? get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,14 +46,12 @@ abstract class $CategoryModelCopyWith<$Res> {
       {String? id,
       String? uz,
       String? ru,
-      String? en,
       String? uz_description,
       String? ru_description,
-      String? en_description,
       String? image,
       DateTime? created_at,
       DateTime? updated_at,
-      List<Product>? product});
+      List<Product>? products});
 }
 
 /// @nodoc
@@ -74,14 +70,12 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? id = freezed,
     Object? uz = freezed,
     Object? ru = freezed,
-    Object? en = freezed,
     Object? uz_description = freezed,
     Object? ru_description = freezed,
-    Object? en_description = freezed,
     Object? image = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? product = freezed,
+    Object? products = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -96,10 +90,6 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.ru
           : ru // ignore: cast_nullable_to_non_nullable
               as String?,
-      en: freezed == en
-          ? _value.en
-          : en // ignore: cast_nullable_to_non_nullable
-              as String?,
       uz_description: freezed == uz_description
           ? _value.uz_description
           : uz_description // ignore: cast_nullable_to_non_nullable
@@ -107,10 +97,6 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
       ru_description: freezed == ru_description
           ? _value.ru_description
           : ru_description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      en_description: freezed == en_description
-          ? _value.en_description
-          : en_description // ignore: cast_nullable_to_non_nullable
               as String?,
       image: freezed == image
           ? _value.image
@@ -124,9 +110,9 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
               as List<Product>?,
     ) as $Val);
   }
@@ -144,14 +130,12 @@ abstract class _$$_CategoryModelCopyWith<$Res>
       {String? id,
       String? uz,
       String? ru,
-      String? en,
       String? uz_description,
       String? ru_description,
-      String? en_description,
       String? image,
       DateTime? created_at,
       DateTime? updated_at,
-      List<Product>? product});
+      List<Product>? products});
 }
 
 /// @nodoc
@@ -168,14 +152,12 @@ class __$$_CategoryModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? uz = freezed,
     Object? ru = freezed,
-    Object? en = freezed,
     Object? uz_description = freezed,
     Object? ru_description = freezed,
-    Object? en_description = freezed,
     Object? image = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? product = freezed,
+    Object? products = freezed,
   }) {
     return _then(_$_CategoryModel(
       id: freezed == id
@@ -190,10 +172,6 @@ class __$$_CategoryModelCopyWithImpl<$Res>
           ? _value.ru
           : ru // ignore: cast_nullable_to_non_nullable
               as String?,
-      en: freezed == en
-          ? _value.en
-          : en // ignore: cast_nullable_to_non_nullable
-              as String?,
       uz_description: freezed == uz_description
           ? _value.uz_description
           : uz_description // ignore: cast_nullable_to_non_nullable
@@ -201,10 +179,6 @@ class __$$_CategoryModelCopyWithImpl<$Res>
       ru_description: freezed == ru_description
           ? _value.ru_description
           : ru_description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      en_description: freezed == en_description
-          ? _value.en_description
-          : en_description // ignore: cast_nullable_to_non_nullable
               as String?,
       image: freezed == image
           ? _value.image
@@ -218,9 +192,9 @@ class __$$_CategoryModelCopyWithImpl<$Res>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      product: freezed == product
-          ? _value._product
-          : product // ignore: cast_nullable_to_non_nullable
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
               as List<Product>?,
     ));
   }
@@ -233,15 +207,13 @@ class _$_CategoryModel implements _CategoryModel {
       {this.id,
       this.uz,
       this.ru,
-      this.en,
       this.uz_description,
       this.ru_description,
-      this.en_description,
       this.image,
       this.created_at,
       this.updated_at,
-      final List<Product>? product})
-      : _product = product;
+      final List<Product>? products})
+      : _products = products;
 
   factory _$_CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryModelFromJson(json);
@@ -253,32 +225,28 @@ class _$_CategoryModel implements _CategoryModel {
   @override
   final String? ru;
   @override
-  final String? en;
-  @override
   final String? uz_description;
   @override
   final String? ru_description;
-  @override
-  final String? en_description;
   @override
   final String? image;
   @override
   final DateTime? created_at;
   @override
   final DateTime? updated_at;
-  final List<Product>? _product;
+  final List<Product>? _products;
   @override
-  List<Product>? get product {
-    final value = _product;
+  List<Product>? get products {
+    final value = _products;
     if (value == null) return null;
-    if (_product is EqualUnmodifiableListView) return _product;
+    if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'CategoryModel(id: $id, uz: $uz, ru: $ru, en: $en, uz_description: $uz_description, ru_description: $ru_description, en_description: $en_description, image: $image, created_at: $created_at, updated_at: $updated_at, product: $product)';
+    return 'CategoryModel(id: $id, uz: $uz, ru: $ru, uz_description: $uz_description, ru_description: $ru_description, image: $image, created_at: $created_at, updated_at: $updated_at, products: $products)';
   }
 
   @override
@@ -289,19 +257,16 @@ class _$_CategoryModel implements _CategoryModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.uz, uz) || other.uz == uz) &&
             (identical(other.ru, ru) || other.ru == ru) &&
-            (identical(other.en, en) || other.en == en) &&
             (identical(other.uz_description, uz_description) ||
                 other.uz_description == uz_description) &&
             (identical(other.ru_description, ru_description) ||
                 other.ru_description == ru_description) &&
-            (identical(other.en_description, en_description) ||
-                other.en_description == en_description) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.created_at, created_at) ||
                 other.created_at == created_at) &&
             (identical(other.updated_at, updated_at) ||
                 other.updated_at == updated_at) &&
-            const DeepCollectionEquality().equals(other._product, _product));
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
@@ -311,14 +276,12 @@ class _$_CategoryModel implements _CategoryModel {
       id,
       uz,
       ru,
-      en,
       uz_description,
       ru_description,
-      en_description,
       image,
       created_at,
       updated_at,
-      const DeepCollectionEquality().hash(_product));
+      const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -339,14 +302,12 @@ abstract class _CategoryModel implements CategoryModel {
       {final String? id,
       final String? uz,
       final String? ru,
-      final String? en,
       final String? uz_description,
       final String? ru_description,
-      final String? en_description,
       final String? image,
       final DateTime? created_at,
       final DateTime? updated_at,
-      final List<Product>? product}) = _$_CategoryModel;
+      final List<Product>? products}) = _$_CategoryModel;
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$_CategoryModel.fromJson;
@@ -358,13 +319,9 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   String? get ru;
   @override
-  String? get en;
-  @override
   String? get uz_description;
   @override
   String? get ru_description;
-  @override
-  String? get en_description;
   @override
   String? get image;
   @override
@@ -372,7 +329,7 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   DateTime? get updated_at;
   @override
-  List<Product>? get product;
+  List<Product>? get products;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryModelCopyWith<_$_CategoryModel> get copyWith =>
@@ -396,7 +353,7 @@ mixin _$Product {
   String? get category_id => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
   DateTime? get updated_at => throw _privateConstructorUsedError;
-  List<ProductImage>? get image => throw _privateConstructorUsedError;
+  List<ProductImage>? get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -420,7 +377,7 @@ abstract class $ProductCopyWith<$Res> {
       String? category_id,
       DateTime? created_at,
       DateTime? updated_at,
-      List<ProductImage>? image});
+      List<ProductImage>? images});
 }
 
 /// @nodoc
@@ -447,7 +404,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? category_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? image = freezed,
+    Object? images = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -494,9 +451,9 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ProductImage>?,
     ) as $Val);
   }
@@ -521,7 +478,7 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? category_id,
       DateTime? created_at,
       DateTime? updated_at,
-      List<ProductImage>? image});
+      List<ProductImage>? images});
 }
 
 /// @nodoc
@@ -545,7 +502,7 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? category_id = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
-    Object? image = freezed,
+    Object? images = freezed,
   }) {
     return _then(_$_Product(
       id: freezed == id
@@ -592,9 +549,9 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      image: freezed == image
-          ? _value._image
-          : image // ignore: cast_nullable_to_non_nullable
+      images: freezed == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
               as List<ProductImage>?,
     ));
   }
@@ -615,8 +572,8 @@ class _$_Product implements _Product {
       this.category_id,
       this.created_at,
       this.updated_at,
-      final List<ProductImage>? image})
-      : _image = image;
+      final List<ProductImage>? images})
+      : _images = images;
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
       _$$_ProductFromJson(json);
@@ -643,19 +600,19 @@ class _$_Product implements _Product {
   final DateTime? created_at;
   @override
   final DateTime? updated_at;
-  final List<ProductImage>? _image;
+  final List<ProductImage>? _images;
   @override
-  List<ProductImage>? get image {
-    final value = _image;
+  List<ProductImage>? get images {
+    final value = _images;
     if (value == null) return null;
-    if (_image is EqualUnmodifiableListView) return _image;
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, image: $image)';
+    return 'Product(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, images: $images)';
   }
 
   @override
@@ -680,7 +637,7 @@ class _$_Product implements _Product {
                 other.created_at == created_at) &&
             (identical(other.updated_at, updated_at) ||
                 other.updated_at == updated_at) &&
-            const DeepCollectionEquality().equals(other._image, _image));
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
@@ -698,7 +655,7 @@ class _$_Product implements _Product {
       category_id,
       created_at,
       updated_at,
-      const DeepCollectionEquality().hash(_image));
+      const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -727,7 +684,7 @@ abstract class _Product implements Product {
       final String? category_id,
       final DateTime? created_at,
       final DateTime? updated_at,
-      final List<ProductImage>? image}) = _$_Product;
+      final List<ProductImage>? images}) = _$_Product;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
@@ -754,7 +711,7 @@ abstract class _Product implements Product {
   @override
   DateTime? get updated_at;
   @override
-  List<ProductImage>? get image;
+  List<ProductImage>? get images;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>
@@ -767,11 +724,7 @@ ProductImage _$ProductImageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductImage {
-  String? get id => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  int? get product_id => throw _privateConstructorUsedError;
-  DateTime? get created_at => throw _privateConstructorUsedError;
-  DateTime? get updated_at => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -785,12 +738,7 @@ abstract class $ProductImageCopyWith<$Res> {
           ProductImage value, $Res Function(ProductImage) then) =
       _$ProductImageCopyWithImpl<$Res, ProductImage>;
   @useResult
-  $Res call(
-      {String? id,
-      String? image,
-      int? product_id,
-      DateTime? created_at,
-      DateTime? updated_at});
+  $Res call({String? image});
 }
 
 /// @nodoc
@@ -806,33 +754,13 @@ class _$ProductImageCopyWithImpl<$Res, $Val extends ProductImage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? image = freezed,
-    Object? product_id = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      product_id: freezed == product_id
-          ? _value.product_id
-          : product_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      created_at: freezed == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ) as $Val);
   }
 }
@@ -845,12 +773,7 @@ abstract class _$$_ProductImageCopyWith<$Res>
       __$$_ProductImageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
-      String? image,
-      int? product_id,
-      DateTime? created_at,
-      DateTime? updated_at});
+  $Res call({String? image});
 }
 
 /// @nodoc
@@ -864,33 +787,13 @@ class __$$_ProductImageCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? image = freezed,
-    Object? product_id = freezed,
-    Object? created_at = freezed,
-    Object? updated_at = freezed,
   }) {
     return _then(_$_ProductImage(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      product_id: freezed == product_id
-          ? _value.product_id
-          : product_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      created_at: freezed == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updated_at: freezed == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -898,26 +801,17 @@ class __$$_ProductImageCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProductImage implements _ProductImage {
-  const _$_ProductImage(
-      {this.id, this.image, this.product_id, this.created_at, this.updated_at});
+  const _$_ProductImage({this.image});
 
   factory _$_ProductImage.fromJson(Map<String, dynamic> json) =>
       _$$_ProductImageFromJson(json);
 
   @override
-  final String? id;
-  @override
   final String? image;
-  @override
-  final int? product_id;
-  @override
-  final DateTime? created_at;
-  @override
-  final DateTime? updated_at;
 
   @override
   String toString() {
-    return 'ProductImage(id: $id, image: $image, product_id: $product_id, created_at: $created_at, updated_at: $updated_at)';
+    return 'ProductImage(image: $image)';
   }
 
   @override
@@ -925,20 +819,12 @@ class _$_ProductImage implements _ProductImage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductImage &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.product_id, product_id) ||
-                other.product_id == product_id) &&
-            (identical(other.created_at, created_at) ||
-                other.created_at == created_at) &&
-            (identical(other.updated_at, updated_at) ||
-                other.updated_at == updated_at));
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, image, product_id, created_at, updated_at);
+  int get hashCode => Object.hash(runtimeType, image);
 
   @JsonKey(ignore: true)
   @override
@@ -955,26 +841,13 @@ class _$_ProductImage implements _ProductImage {
 }
 
 abstract class _ProductImage implements ProductImage {
-  const factory _ProductImage(
-      {final String? id,
-      final String? image,
-      final int? product_id,
-      final DateTime? created_at,
-      final DateTime? updated_at}) = _$_ProductImage;
+  const factory _ProductImage({final String? image}) = _$_ProductImage;
 
   factory _ProductImage.fromJson(Map<String, dynamic> json) =
       _$_ProductImage.fromJson;
 
   @override
-  String? get id;
-  @override
   String? get image;
-  @override
-  int? get product_id;
-  @override
-  DateTime? get created_at;
-  @override
-  DateTime? get updated_at;
   @override
   @JsonKey(ignore: true)
   _$$_ProductImageCopyWith<_$_ProductImage> get copyWith =>

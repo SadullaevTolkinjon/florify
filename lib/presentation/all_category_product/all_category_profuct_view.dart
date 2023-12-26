@@ -52,6 +52,7 @@ class AllCategoryProductView extends StatelessWidget {
                 },
               );
             }
+            print( state.data!.products!);
             return Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: AppSizes.geth(context, 0.02)),
@@ -60,16 +61,16 @@ class AllCategoryProductView extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: MyPadding(height: AppSizes.geth(context, 0.02)),
                   ),
-                  state.data!.product!.isNotEmpty
+                  state.data!.products!.isNotEmpty
                       ? SliverGrid(
                           delegate: SliverChildBuilderDelegate(
                             (context, index) => ProductContainer(
-                              product: state.data!.product![index],
+                              product: state.data!.products![index],
                               ontap: () async {
                                 await Navigator.pushNamed(
                                   context,
                                   NavigatorConst.productDetails,
-                                  arguments: state.data!.product![index].id,
+                                  arguments: state.data!.products![index].id,
                                 ).then(
                                   (value) =>
                                       BlocProvider.of<AllCategoryProductCubit>(
@@ -83,25 +84,25 @@ class AllCategoryProductView extends StatelessWidget {
                                         .getUser() !=
                                     null) {
                                   state.likeIds.contains(state
-                                          .data!.product![index].id
+                                          .data!.products![index].id
                                           .toString())
                                       ? context
                                           .read<AllCategoryProductCubit>()
                                           .disLike(
-                                              state.data!.product![index].id!)
+                                              state.data!.products![index].id!)
                                       : context
                                           .read<AllCategoryProductCubit>()
                                           .pressLike(
-                                              state.data!.product![index].id!);
+                                              state.data!.products![index].id!);
                                 }
                               },
                               isLike: state.likeIds.contains(
-                                state.data!.product![index].id.toString(),
+                                state.data!.products![index].id.toString(),
                               )
                                   ? true
                                   : false,
                             ),
-                            childCount: state.data!.product!.length,
+                            childCount: state.data!.products!.length,
                           ),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(

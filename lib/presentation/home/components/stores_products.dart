@@ -21,8 +21,11 @@ class HomeStoresProduct extends StatelessWidget {
       child: BlocListener<HomeCubit, HomeState>(
         listener: (context, state) {},
         child: Buildable<HomeCubit, HomeState, HomeBuildableState>(
-          properties: (buildable) =>
-              [buildable.loading, buildable.failed, buildable.stores],
+          properties: (buildable) => [
+            buildable.loading,
+            buildable.failed,
+            buildable.stores,
+          ],
           builder: (context, state) {
             if (state.loading) {
               return const SliverToBoxAdapter(
@@ -37,6 +40,9 @@ class HomeStoresProduct extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) => StoreContainer(
                   store: state.stores[index],
+                  ontap: () {
+                    
+                  },
                 ),
                 childCount: state.stores.length,
               ),

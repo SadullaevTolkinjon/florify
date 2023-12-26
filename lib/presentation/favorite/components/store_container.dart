@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:florify/constants/api/api_constants.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
+import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
 import 'package:florify/presentation/widgets/like_btn.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
@@ -10,12 +12,15 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants/icons/icon_constants.dart';
 
 class StoreContainer extends StatelessWidget {
-  const StoreContainer({super.key, required this.store});
+  const StoreContainer({super.key, required this.store, required this.ontap});
   final Salesman store;
+  final Function ontap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        ontap();
+      },
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: ColorConstants.black.withOpacity(0.2)),
@@ -30,7 +35,9 @@ class StoreContainer extends StatelessWidget {
               dense: true,
               contentPadding: EdgeInsets.zero,
               title: Text(
-                "The Flower factory",
+                store.username ?? "Unknown Store",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     fontSize: AppSizes.getH(context) * 0.020,
                     fontWeight: FontWeight.w700),
@@ -38,11 +45,11 @@ class StoreContainer extends StatelessWidget {
               subtitle: const Text(
                 "Gullar & Sovg‘alar Suvenerlar",
               ),
-              trailing: LikeBtn(
-                isBorder: true,
-                ontap: () {},
-                isLike: false,
-              ),
+              // trailing: LikeBtn(
+              //   isBorder: true,
+              //   ontap: () {},
+              //   isLike: false,
+              // ),
             ),
             Row(
               children: [
@@ -78,7 +85,7 @@ class StoreContainer extends StatelessWidget {
                 const Expanded(
                   flex: 7,
                   child: Text(
-                    "15 % Chegirmalar",
+                    "",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
@@ -100,20 +107,33 @@ class StoreContainer extends StatelessWidget {
                   crossAxisSpacing: AppSizes.getH(context) * 0.010,
                 ),
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                      color: ColorConstants.blue100,
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: CachedNetworkImageProvider(
-                            "https://helloblooms.com.au/cdn/shop/products/double-bunch-HB-5_800x.jpg?v=1647993407"),
+                  return GestureDetector(
+                    onTap: () async {
+                      //  await Navigator.pushNamed(
+                      // context,
+                      // NavigatorConst.productDetails,
+                      // arguments:
+                      //     store.products![index].id);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                        //  color: ColorConstants.blue100,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: CachedNetworkImageProvider(
+                            store.products![index].images!.isNotEmpty
+                                ? "${ApiConstants.baseUrl}${store.products![index].images!.first.image!}"
+                                : "",
+                          ),
+                        ),
                       ),
                     ),
                   );
                 },
+                itemCount: store.products!.length,
                 scrollDirection: Axis.horizontal,
               ),
             )

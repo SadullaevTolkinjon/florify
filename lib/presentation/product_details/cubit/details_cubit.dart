@@ -92,7 +92,7 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
         category_id: product.category_id,
         created_at: product.created_at,
         updated_at: product.updated_at,
-        image: product.image,
+        image: product.images,
         sum_quantity: 1,
         sum_price: product.price);
     String productJson = jsonEncode(cardProduct.toJson());
@@ -156,8 +156,8 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
     build((buildable) => buildable.copyWith());
     try {
       UserModel user = await getUser();
-      await _repository.dislike(productId, user.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+      await _repository.dislike(productId, user.data!.client!.id!);
+      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
       List<String> likeIds = await _preference.getLikes() ?? [];
       List<String> listJson =
@@ -206,6 +206,21 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
     } else {
       UserModel user = UserModel.fromJson(jsonDecode(data));
       return user;
+    }
+  }
+
+  fetchComments(int productId) async {
+    build(
+      (buildable) =>
+          buildable.copyWith(loading: true, failed: false, success: true),
+    );
+    try {
+      await _repository.fetchProductComments(productId);
+      build((buildable) =>
+          buildable.copyWith(loading: false, success: true, failed: false));
+    } catch (e) {
+      build((buildable) =>
+          buildable.copyWith(loading: false, success: false, failed: true));
     }
   }
 }

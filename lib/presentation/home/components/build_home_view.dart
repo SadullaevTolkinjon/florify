@@ -8,7 +8,7 @@ import 'package:florify/presentation/profile/profile_page.dart';
 buildHomeUi(int index) {
   switch (index) {
     case 0:
-      return const HomeView();
+      return  HomeView();
     case 1:
       return const CatalogPage();
     case 2:

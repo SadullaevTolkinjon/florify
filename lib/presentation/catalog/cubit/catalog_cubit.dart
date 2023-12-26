@@ -17,7 +17,7 @@ class CatalogCubit extends BuildableCubit<CatalogState, CatalogBuildable> {
       (buildable) => buildable.copyWith(loading: true),
     );
     try {
-      List<CategoryModel> data = await _service.getCategories();
+   final   List<CategoryModel> data = await _service.getCategories();
       build(
         (buildable) => buildable.copyWith(
             loading: false, success: true, failed: false, data: data),

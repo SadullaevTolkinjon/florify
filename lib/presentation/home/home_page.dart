@@ -28,12 +28,12 @@ class HomePage extends StatelessWidget {
           builder: (context, state) {
             return IndexedStack(
               index: state.currentIndex,
-              children: const [
+              children:  [
                 HomeView(),
-                CatalogPage(),
-                CardPage(),
-                FavoritePapge(),
-                ProfilePage()
+                const CatalogPage(),
+                const CardPage(),
+                const FavoritePapge(),
+                const ProfilePage()
               ],
             );
           },

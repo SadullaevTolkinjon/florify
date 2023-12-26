@@ -65,8 +65,8 @@ class FavoriteProductContainer extends StatelessWidget {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: CachedNetworkImageProvider(
-                            product.product!.image!.isNotEmpty
-                                ? "${ApiConstants.baseUrl}${product.product!.image!.first.image}"
+                            product.product!.images!.isNotEmpty
+                                ? "${ApiConstants.baseUrl}${product.product!.images!.first.image}"
                                 : "https://w7.pngwing.com/pngs/499/140/png-transparent-red-error-red-cha-cha-red-fork-thumbnail.png",
                           ),
                         ),
@@ -78,8 +78,7 @@ class FavoriteProductContainer extends StatelessWidget {
                             top: 10,
                             child: LikeBtn(
                               ontap: () {
-                                
-                               likeBtn();
+                                likeBtn();
                               },
                               isLike: context.read<FavoriteCubit>().getUser() !=
                                       null

@@ -28,9 +28,7 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
     try {
       CategoryModel data = await _service.getCategoryProducts(id);
       final List<String> likes = await _preference.getLikes() ?? [];
-      print("---------likes----------");
-      print(likes);
-      print(data);
+    
       build(
         (buildable) => buildable.copyWith(
           loading: false,
@@ -63,8 +61,8 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
     build((buildable) => buildable.copyWith());
     try {
       UserModel user = await getUser();
-      await _repository.dislike(productId, user.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+      await _repository.dislike(productId, user.data!.client!.id!);
+      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
       List<String> likeIds = await _preference.getLikes() ?? [];
       List<String> listJson =
@@ -84,10 +82,13 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
 
   pressLike(int productId) async {
     build((buildable) => buildable);
+    print('workingggggg');
     try {
-      UserModel user = await getUser();
-      await _repository.pressLike(productId, user.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.client!.id!);
+     final UserModel user = await getUser();
+     print(user);
+      await _repository.pressLike(productId, user.data!.client!.id!);
+   
+      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
 
       List<String> likeIds = await _preference.getLikes() ?? [];
@@ -102,6 +103,7 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
         ),
       );
     } catch (e) {
+      print(e);
       build((buildable) => buildable.copyWith());
     }
   }

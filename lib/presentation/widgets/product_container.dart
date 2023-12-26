@@ -49,7 +49,7 @@ class ProductContainer extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: ColorConstants.grey100,
+                    color: Color(0XFFD9D9D9).withOpacity(0.2),
                     borderRadius: BorderRadius.all(
                       Radius.circular(
                         AppSizes.getH(context) * 0.01,
@@ -76,7 +76,7 @@ class ProductContainer extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: CachedNetworkImageProvider(
-                              "${ApiConstants.baseUrl}${product.image!.first.image}",
+                              "${ApiConstants.baseUrl}${product.images!.first.image}",
                             ),
                           ),
                         ),
