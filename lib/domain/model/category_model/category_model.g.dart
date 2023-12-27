@@ -78,10 +78,26 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
 
 _$_ProductImage _$$_ProductImageFromJson(Map<String, dynamic> json) =>
     _$_ProductImage(
+      id: json['id'] as String?,
       image: json['image'] as String?,
+      name: json['name'],
+      size: json['size'],
+      product_id: json['product_id'] as int?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$$_ProductImageToJson(_$_ProductImage instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'image': instance.image,
+      'name': instance.name,
+      'size': instance.size,
+      'product_id': instance.product_id,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };

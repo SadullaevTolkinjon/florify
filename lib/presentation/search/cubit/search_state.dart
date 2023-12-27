@@ -9,6 +9,8 @@ class SearchBuildableState extends SearchState with _$SearchBuildableState {
     @Default(false) bool isModal_hud,
     @Default(false) bool success,
     @Default(false) bool failed,
+    @Default([]) List<Product>? products,
+    int? nextPageKey,
     dynamic error,
   }) = _SearchBuildableState;
 }

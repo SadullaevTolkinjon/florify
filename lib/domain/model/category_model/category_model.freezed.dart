@@ -724,7 +724,13 @@ ProductImage _$ProductImageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductImage {
+  String? get id => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  dynamic get name => throw _privateConstructorUsedError;
+  dynamic get size => throw _privateConstructorUsedError;
+  int? get product_id => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -738,7 +744,14 @@ abstract class $ProductImageCopyWith<$Res> {
           ProductImage value, $Res Function(ProductImage) then) =
       _$ProductImageCopyWithImpl<$Res, ProductImage>;
   @useResult
-  $Res call({String? image});
+  $Res call(
+      {String? id,
+      String? image,
+      dynamic name,
+      dynamic size,
+      int? product_id,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -754,13 +767,43 @@ class _$ProductImageCopyWithImpl<$Res, $Val extends ProductImage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? image = freezed,
+    Object? name = freezed,
+    Object? size = freezed,
+    Object? product_id = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -773,7 +816,14 @@ abstract class _$$_ProductImageCopyWith<$Res>
       __$$_ProductImageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? image});
+  $Res call(
+      {String? id,
+      String? image,
+      dynamic name,
+      dynamic size,
+      int? product_id,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -787,13 +837,43 @@ class __$$_ProductImageCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? image = freezed,
+    Object? name = freezed,
+    Object? size = freezed,
+    Object? product_id = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$_ProductImage(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -801,17 +881,36 @@ class __$$_ProductImageCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProductImage implements _ProductImage {
-  const _$_ProductImage({this.image});
+  const _$_ProductImage(
+      {this.id,
+      this.image,
+      this.name,
+      this.size,
+      this.product_id,
+      this.createdAt,
+      this.updatedAt});
 
   factory _$_ProductImage.fromJson(Map<String, dynamic> json) =>
       _$$_ProductImageFromJson(json);
 
   @override
+  final String? id;
+  @override
   final String? image;
+  @override
+  final dynamic name;
+  @override
+  final dynamic size;
+  @override
+  final int? product_id;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'ProductImage(image: $image)';
+    return 'ProductImage(id: $id, image: $image, name: $name, size: $size, product_id: $product_id, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -819,12 +918,29 @@ class _$_ProductImage implements _ProductImage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductImage &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.image, image) || other.image == image) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.size, size) &&
+            (identical(other.product_id, product_id) ||
+                other.product_id == product_id) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, image);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      image,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(size),
+      product_id,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -841,13 +957,32 @@ class _$_ProductImage implements _ProductImage {
 }
 
 abstract class _ProductImage implements ProductImage {
-  const factory _ProductImage({final String? image}) = _$_ProductImage;
+  const factory _ProductImage(
+      {final String? id,
+      final String? image,
+      final dynamic name,
+      final dynamic size,
+      final int? product_id,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$_ProductImage;
 
   factory _ProductImage.fromJson(Map<String, dynamic> json) =
       _$_ProductImage.fromJson;
 
   @override
+  String? get id;
+  @override
   String? get image;
+  @override
+  dynamic get name;
+  @override
+  dynamic get size;
+  @override
+  int? get product_id;
+  @override
+  DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ProductImageCopyWith<_$_ProductImage> get copyWith =>

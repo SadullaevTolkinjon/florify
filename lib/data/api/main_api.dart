@@ -1,11 +1,14 @@
+import 'package:florify/data/api/dio_api.dart';
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/api.dart';
+import 'package:dio/dio.dart' as dio;
 
 @Injectable()
 class MainApi {
   final Api _api;
-  MainApi(this._api);
+  final ServiceApiExample _api2;
+  MainApi(this._api, this._api2);
   Future<Response> getCategories() async {
     var data = await _api.get(path: 'category');
     return data;
@@ -18,6 +21,21 @@ class MainApi {
 
   Future<Response> fetchCategoryProducts(String categoryId, int page) async {
     var data = await _api.get(path: 'product/categoryId/$categoryId/$page/10');
+    return data;
+  }
+
+  Future<dio.Response> fetchOrderHistory() async {
+   
+    var data = await _api2.get(path: 'orders');
+  print(data);
+    return data;
+  }
+
+  Future<dio.Response> fetchSearchProducts(String query, int page) async {
+    final params = {"search/": page, "query": query};
+    var data = await _api2.fetch(
+      path: 'product/search/$page?query=$query',
+    );
     return data;
   }
 
@@ -64,12 +82,11 @@ class MainApi {
   }
 
   Future<Response> pressLike(int productId, String userId) async {
-    print("here-----------");
     final body = {
       "client_id": userId,
       "product_id": productId,
     };
-    print(userId);
+
     var data = await _api.post(path: 'like', body: body);
 
     return data;

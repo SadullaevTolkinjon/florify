@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:florify/data/preferences/token_preferences.dart';
+import 'package:florify/domain/model/user/user_model.dart';
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/domain/model/expections/invalid_credentials_exceptions.dart';
@@ -7,9 +9,9 @@ import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 @Injectable()
 class Api {
-  // final TokenPreference _token;
+  final TokenPreference _token;
 
-  // Api(this._token);
+  Api(this._token);
 
   final _host = "api.florify.uz";
   final _root = "/api";
@@ -27,6 +29,18 @@ class Api {
     final uri = Uri.https(_host, "$_root/$path",
         params?.map((key, value) => MapEntry(key, value.toString())));
     final headers = await _headers;
+    final result =
+        await _httpClient.get(uri, headers: headers).timeout(_timeout);
+    return propagateErrors(result);
+  }
+
+  Future<Response> getWithToken({
+    required String path,
+    Map<String, Object>? params,
+  }) async {
+    final uri = Uri.https(_host, "$_root/$path",
+        params?.map((key, value) => MapEntry(key, value.toString())));
+    final headers = await _headersWithToken;
     final result =
         await _httpClient.get(uri, headers: headers).timeout(_timeout);
     return propagateErrors(result);
@@ -58,6 +72,7 @@ class Api {
         .timeout(_timeout);
     return propagateErrors(result);
   }
+
   Future<Response> delete({
     required String path,
     Map<String, dynamic>? body,
@@ -73,7 +88,7 @@ class Api {
 
   Future<Map<String, String>> get _headers async {
     final headers = <String, String>{
-       "Content-Type": "application/json",
+      "Content-Type": "application/json",
       "accept": "/"
     };
 
@@ -83,6 +98,30 @@ class Api {
     // }
 
     return headers;
+  }
+
+  Future<Map<String, String>> get _headersWithToken async {
+    final headers = <String, String>{
+      "Content-Type": "application/json",
+      "accept": "/"
+    };
+
+    final token = await clientId();
+    headers["Authorization"] = "Bearer $token";
+    print(headers);
+    return headers;
+  }
+
+  Future<String> clientId() async {
+    String? data;
+    var user = await _token.getUser();
+    if (user != null) {
+      final usermodel = UserModel.fromJson(jsonDecode(user));
+      data = usermodel.data!.client!.id!.toString();
+    } else {
+      data = null;
+    }
+    return data!;
   }
 
   Future<Response> propagateErrors(Response response) async {

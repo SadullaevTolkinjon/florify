@@ -20,6 +20,8 @@ mixin _$SearchBuildableState {
   bool get isModal_hud => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   bool get failed => throw _privateConstructorUsedError;
+  List<Product>? get products => throw _privateConstructorUsedError;
+  int? get nextPageKey => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,6 +40,8 @@ abstract class $SearchBuildableStateCopyWith<$Res> {
       bool isModal_hud,
       bool success,
       bool failed,
+      List<Product>? products,
+      int? nextPageKey,
       dynamic error});
 }
 
@@ -59,6 +63,8 @@ class _$SearchBuildableStateCopyWithImpl<$Res,
     Object? isModal_hud = null,
     Object? success = null,
     Object? failed = null,
+    Object? products = freezed,
+    Object? nextPageKey = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -78,6 +84,14 @@ class _$SearchBuildableStateCopyWithImpl<$Res,
           ? _value.failed
           : failed // ignore: cast_nullable_to_non_nullable
               as bool,
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
+      nextPageKey: freezed == nextPageKey
+          ? _value.nextPageKey
+          : nextPageKey // ignore: cast_nullable_to_non_nullable
+              as int?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -99,6 +113,8 @@ abstract class _$$_SearchBuildableStateCopyWith<$Res>
       bool isModal_hud,
       bool success,
       bool failed,
+      List<Product>? products,
+      int? nextPageKey,
       dynamic error});
 }
 
@@ -117,6 +133,8 @@ class __$$_SearchBuildableStateCopyWithImpl<$Res>
     Object? isModal_hud = null,
     Object? success = null,
     Object? failed = null,
+    Object? products = freezed,
+    Object? nextPageKey = freezed,
     Object? error = freezed,
   }) {
     return _then(_$_SearchBuildableState(
@@ -136,6 +154,14 @@ class __$$_SearchBuildableStateCopyWithImpl<$Res>
           ? _value.failed
           : failed // ignore: cast_nullable_to_non_nullable
               as bool,
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
+      nextPageKey: freezed == nextPageKey
+          ? _value.nextPageKey
+          : nextPageKey // ignore: cast_nullable_to_non_nullable
+              as int?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -152,7 +178,10 @@ class _$_SearchBuildableState implements _SearchBuildableState {
       this.isModal_hud = false,
       this.success = false,
       this.failed = false,
-      this.error});
+      final List<Product>? products = const [],
+      this.nextPageKey,
+      this.error})
+      : _products = products;
 
   @override
   @JsonKey()
@@ -166,12 +195,25 @@ class _$_SearchBuildableState implements _SearchBuildableState {
   @override
   @JsonKey()
   final bool failed;
+  final List<Product>? _products;
+  @override
+  @JsonKey()
+  List<Product>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final int? nextPageKey;
   @override
   final dynamic error;
 
   @override
   String toString() {
-    return 'SearchBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error)';
+    return 'SearchBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, products: $products, nextPageKey: $nextPageKey, error: $error)';
   }
 
   @override
@@ -184,12 +226,22 @@ class _$_SearchBuildableState implements _SearchBuildableState {
                 other.isModal_hud == isModal_hud) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.nextPageKey, nextPageKey) ||
+                other.nextPageKey == nextPageKey) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, isModal_hud, success,
-      failed, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      isModal_hud,
+      success,
+      failed,
+      const DeepCollectionEquality().hash(_products),
+      nextPageKey,
+      const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -205,6 +257,8 @@ abstract class _SearchBuildableState implements SearchBuildableState {
       final bool isModal_hud,
       final bool success,
       final bool failed,
+      final List<Product>? products,
+      final int? nextPageKey,
       final dynamic error}) = _$_SearchBuildableState;
 
   @override
@@ -215,6 +269,10 @@ abstract class _SearchBuildableState implements SearchBuildableState {
   bool get success;
   @override
   bool get failed;
+  @override
+  List<Product>? get products;
+  @override
+  int? get nextPageKey;
   @override
   dynamic get error;
   @override

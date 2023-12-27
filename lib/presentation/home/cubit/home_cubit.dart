@@ -145,13 +145,15 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
       final CategoryPaginationModel data =
           await _repository.fetchCategoryProducts(category_id, pageKey);
       List<Product?>? products = data.data!.records!;
-      final nextPageKey =
-          data.data!.records!.isNotEmpty ? pageKey + 1 : null;
+      int? nextPageKey =
+          data.data!.pagination!.total_count!>pageKey ? pageKey + 1 : null;
+          print("nexpage--------------${nextPageKey}");
       build(
         (buildable) => buildable.copyWith(
+           nextPageKey: nextPageKey!,
             products: [...buildable.products ?? [], ...products],
             pagingError: null,
-            nextPageKey: nextPageKey!),
+           ),
       );
     } catch (e) {
       build((buildable) => buildable.copyWith(pagingError: e));

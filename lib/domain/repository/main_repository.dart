@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:florify/data/api/dio_api.dart';
 import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/domain/model/category_pagination_model/category_pagination_model.dart';
 import 'package:florify/domain/model/favorite/favorite_model.dart';
+import 'package:florify/domain/model/order_history/order_history_model.dart';
+import 'package:florify/domain/model/search_pagination/search_pagination_model.dart';
 import 'package:florify/domain/model/user/user_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/main_api.dart';
@@ -12,7 +15,8 @@ import 'package:florify/data/api/main_api.dart';
 class MainRepository {
   final MainApi _mainApi;
   final TokenPreference _preference;
-  MainRepository(this._mainApi, this._preference);
+  final ServiceApiExample _service;
+  MainRepository(this._mainApi, this._preference, this._service);
   getCategories() async {
     final response = await _mainApi.getCategories();
     Iterable list = jsonDecode(response.body);
@@ -100,5 +104,20 @@ class MainRepository {
     final response = await _mainApi.fetchCategoryProducts(categoryId, page);
     var data = jsonDecode(response.body);
     return CategoryPaginationModel.fromJson(data);
+  }
+
+  fetchOrderHistory() async {
+   
+    final response = await _mainApi.fetchOrderHistory();
+  
+     Map<String, dynamic> result = Map<String, dynamic>.from(response.data);
+    return OrderHistoryModel.fromJson(result);
+  }
+
+  fetchSearchProduct(String query, int page) async {
+    final response = await _mainApi.fetchSearchProducts(query, page);
+    Map<String, dynamic> result = Map<String, dynamic>.from(response.data);
+
+    return SearchPaginationModel.fromJson(result);
   }
 }

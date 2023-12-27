@@ -1,4 +1,5 @@
 
+import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTitle extends StatelessWidget {
@@ -11,7 +12,7 @@ final String title;
     return  SliverToBoxAdapter(
       child: Text(
         title,
-        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+        style:  TextStyle(fontSize: AppSizes.geth(context, 0.021), fontWeight: FontWeight.w600),
       ),
     );
   }

@@ -23,6 +23,7 @@ mixin _$OrderHistoryBuildable {
   dynamic get error => throw _privateConstructorUsedError;
   int get selectedTab => throw _privateConstructorUsedError;
   bool get isExpanded => throw _privateConstructorUsedError;
+  OrderHistoryModel? get orders => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderHistoryBuildableCopyWith<OrderHistoryBuildable> get copyWith =>
@@ -42,7 +43,10 @@ abstract class $OrderHistoryBuildableCopyWith<$Res> {
       bool failed,
       dynamic error,
       int selectedTab,
-      bool isExpanded});
+      bool isExpanded,
+      OrderHistoryModel? orders});
+
+  $OrderHistoryModelCopyWith<$Res>? get orders;
 }
 
 /// @nodoc
@@ -66,6 +70,7 @@ class _$OrderHistoryBuildableCopyWithImpl<$Res,
     Object? error = freezed,
     Object? selectedTab = null,
     Object? isExpanded = null,
+    Object? orders = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -96,7 +101,23 @@ class _$OrderHistoryBuildableCopyWithImpl<$Res,
           ? _value.isExpanded
           : isExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      orders: freezed == orders
+          ? _value.orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as OrderHistoryModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderHistoryModelCopyWith<$Res>? get orders {
+    if (_value.orders == null) {
+      return null;
+    }
+
+    return $OrderHistoryModelCopyWith<$Res>(_value.orders!, (value) {
+      return _then(_value.copyWith(orders: value) as $Val);
+    });
   }
 }
 
@@ -115,7 +136,11 @@ abstract class _$$_OrderHistoryBuildableCopyWith<$Res>
       bool failed,
       dynamic error,
       int selectedTab,
-      bool isExpanded});
+      bool isExpanded,
+      OrderHistoryModel? orders});
+
+  @override
+  $OrderHistoryModelCopyWith<$Res>? get orders;
 }
 
 /// @nodoc
@@ -136,6 +161,7 @@ class __$$_OrderHistoryBuildableCopyWithImpl<$Res>
     Object? error = freezed,
     Object? selectedTab = null,
     Object? isExpanded = null,
+    Object? orders = freezed,
   }) {
     return _then(_$_OrderHistoryBuildable(
       loading: null == loading
@@ -166,6 +192,10 @@ class __$$_OrderHistoryBuildableCopyWithImpl<$Res>
           ? _value.isExpanded
           : isExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      orders: freezed == orders
+          ? _value.orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as OrderHistoryModel?,
     ));
   }
 }
@@ -180,7 +210,8 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
       this.failed = false,
       this.error,
       this.selectedTab = 0,
-      this.isExpanded = false});
+      this.isExpanded = false,
+      this.orders});
 
   @override
   @JsonKey()
@@ -202,10 +233,12 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
   @override
   @JsonKey()
   final bool isExpanded;
+  @override
+  final OrderHistoryModel? orders;
 
   @override
   String toString() {
-    return 'OrderHistoryBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, selectedTab: $selectedTab, isExpanded: $isExpanded)';
+    return 'OrderHistoryBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, selectedTab: $selectedTab, isExpanded: $isExpanded, orders: $orders)';
   }
 
   @override
@@ -222,7 +255,8 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
             (identical(other.selectedTab, selectedTab) ||
                 other.selectedTab == selectedTab) &&
             (identical(other.isExpanded, isExpanded) ||
-                other.isExpanded == isExpanded));
+                other.isExpanded == isExpanded) &&
+            (identical(other.orders, orders) || other.orders == orders));
   }
 
   @override
@@ -234,7 +268,8 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
       failed,
       const DeepCollectionEquality().hash(error),
       selectedTab,
-      isExpanded);
+      isExpanded,
+      orders);
 
   @JsonKey(ignore: true)
   @override
@@ -252,7 +287,8 @@ abstract class _OrderHistoryBuildable implements OrderHistoryBuildable {
       final bool failed,
       final dynamic error,
       final int selectedTab,
-      final bool isExpanded}) = _$_OrderHistoryBuildable;
+      final bool isExpanded,
+      final OrderHistoryModel? orders}) = _$_OrderHistoryBuildable;
 
   @override
   bool get loading;
@@ -268,6 +304,8 @@ abstract class _OrderHistoryBuildable implements OrderHistoryBuildable {
   int get selectedTab;
   @override
   bool get isExpanded;
+  @override
+  OrderHistoryModel? get orders;
   @override
   @JsonKey(ignore: true)
   _$$_OrderHistoryBuildableCopyWith<_$_OrderHistoryBuildable> get copyWith =>

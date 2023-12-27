@@ -48,7 +48,13 @@ class Product with _$Product {
 @freezed
 class ProductImage with _$ProductImage {
   const factory ProductImage({
+    String? id,
     String? image,
+    dynamic name,
+    dynamic size,
+    int? product_id,
+    DateTime? createdAt,
+    DateTime? updatedAt
   }) = _ProductImage;
 
   factory ProductImage.fromJson(Map<String, Object?> json) =>

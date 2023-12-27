@@ -32,7 +32,7 @@ mixin _$HomeBuildableState {
   List<FavoriteModel> get likes => throw _privateConstructorUsedError;
   List<Product?>? get products => throw _privateConstructorUsedError;
   String? get categoryId => throw _privateConstructorUsedError;
-  int get nextPageKey => throw _privateConstructorUsedError;
+  int? get nextPageKey => throw _privateConstructorUsedError;
   dynamic get pagingError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -63,7 +63,7 @@ abstract class $HomeBuildableStateCopyWith<$Res> {
       List<FavoriteModel> likes,
       List<Product?>? products,
       String? categoryId,
-      int nextPageKey,
+      int? nextPageKey,
       dynamic pagingError});
 }
 
@@ -96,7 +96,7 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
     Object? likes = null,
     Object? products = freezed,
     Object? categoryId = freezed,
-    Object? nextPageKey = null,
+    Object? nextPageKey = freezed,
     Object? pagingError = freezed,
   }) {
     return _then(_value.copyWith(
@@ -164,10 +164,10 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
-      nextPageKey: null == nextPageKey
+      nextPageKey: freezed == nextPageKey
           ? _value.nextPageKey
           : nextPageKey // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       pagingError: freezed == pagingError
           ? _value.pagingError
           : pagingError // ignore: cast_nullable_to_non_nullable
@@ -201,7 +201,7 @@ abstract class _$$_HomeBuildableStateCopyWith<$Res>
       List<FavoriteModel> likes,
       List<Product?>? products,
       String? categoryId,
-      int nextPageKey,
+      int? nextPageKey,
       dynamic pagingError});
 }
 
@@ -232,7 +232,7 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
     Object? likes = null,
     Object? products = freezed,
     Object? categoryId = freezed,
-    Object? nextPageKey = null,
+    Object? nextPageKey = freezed,
     Object? pagingError = freezed,
   }) {
     return _then(_$_HomeBuildableState(
@@ -300,10 +300,10 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as String?,
-      nextPageKey: null == nextPageKey
+      nextPageKey: freezed == nextPageKey
           ? _value.nextPageKey
           : nextPageKey // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       pagingError: freezed == pagingError
           ? _value.pagingError
           : pagingError // ignore: cast_nullable_to_non_nullable
@@ -332,7 +332,7 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       final List<FavoriteModel> likes = const [],
       final List<Product?>? products = const [],
       this.categoryId = "",
-      this.nextPageKey = 0,
+      this.nextPageKey,
       this.pagingError})
       : _data = data,
         _categories = categories,
@@ -427,8 +427,7 @@ class _$_HomeBuildableState implements _HomeBuildableState {
   @JsonKey()
   final String? categoryId;
   @override
-  @JsonKey()
-  final int nextPageKey;
+  final int? nextPageKey;
   @override
   final dynamic pagingError;
 
@@ -518,7 +517,7 @@ abstract class _HomeBuildableState implements HomeBuildableState {
       final List<FavoriteModel> likes,
       final List<Product?>? products,
       final String? categoryId,
-      final int nextPageKey,
+      final int? nextPageKey,
       final dynamic pagingError}) = _$_HomeBuildableState;
 
   @override
@@ -554,7 +553,7 @@ abstract class _HomeBuildableState implements HomeBuildableState {
   @override
   String? get categoryId;
   @override
-  int get nextPageKey;
+  int? get nextPageKey;
   @override
   dynamic get pagingError;
   @override

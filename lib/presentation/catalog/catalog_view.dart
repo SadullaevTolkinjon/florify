@@ -4,6 +4,7 @@ import 'package:florify/presentation/catalog/components/catalog_component.dart';
 import 'package:florify/presentation/catalog/cubit/catalog_cubit.dart';
 import 'package:florify/presentation/home/components/search_bar.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
+import 'package:florify/presentation/widgets/empty_widget.dart';
 import 'package:florify/presentation/widgets/error_widget.dart';
 import 'package:florify/presentation/widgets/loader_widget.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
@@ -59,31 +60,36 @@ class CatalogView extends StatelessWidget {
                       MyPadding(
                         height: AppSizes.getH(context) * 0.020,
                       ),
-                      Wrap(
-                        runSpacing: AppSizes.geth(context,0.024),
-                        spacing: 4,
-                        children: [
-                          ...List.generate(
-                            state.data.length,
-                            (index) {
-                              return CatalogProductWidget(
-                                index: index,
-                                category: state.data[index],
-                                ontap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    NavigatorConst.allCategoryProductsView,
-                                    arguments: [
-                                      state.data[index].uz,
-                                      state.data[index].id
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                          )
-                        ],
-                      )
+                      state.data.isNotEmpty
+                          ? Wrap(
+                              runSpacing: AppSizes.geth(context, 0.024),
+                              spacing: 4,
+                              children: [
+                                ...List.generate(
+                                  state.data.length,
+                                  (index) {
+                                    return CatalogProductWidget(
+                                      index: index,
+                                      category: state.data[index],
+                                      ontap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          NavigatorConst
+                                              .allCategoryProductsView,
+                                          arguments: [
+                                            state.data[index].uz,
+                                            state.data[index].id
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                )
+                              ],
+                            )
+                          : EmptyWidget2(
+                              ontap: () {},
+                            ),
                     ],
                   ),
                 ),

@@ -4,11 +4,24 @@ import 'package:florify/presentation/order_history/components/order_history_prod
 import 'package:florify/presentation/order_history/cubit/order_history_cubit.dart';
 import 'package:florify/presentation/product_details/components/desc_title_btn.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
+import 'package:florify/presentation/widgets/error_widget.dart';
+import 'package:florify/presentation/widgets/loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OrderHistoryView extends StatelessWidget {
+class OrderHistoryView extends StatefulWidget {
   const OrderHistoryView({super.key});
+
+  @override
+  State<OrderHistoryView> createState() => _OrderHistoryViewState();
+}
+
+class _OrderHistoryViewState extends State<OrderHistoryView> {
+  @override
+  void initState() {
+    context.read<OrderHistoryCubit>().fetchOrderHistory();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +36,25 @@ class OrderHistoryView extends StatelessWidget {
         listener: (context, state) {},
         child: Buildable<OrderHistoryCubit, OrderHistoryState,
             OrderHistoryBuildable>(
-          properties: (buildable) => [buildable.selectedTab],
+          properties: (buildable) => [
+            buildable.selectedTab,
+            buildable.loading,
+            buildable.failed,
+            buildable.error,
+            buildable.orders,
+          ],
           builder: (context, state) {
+            if (state.loading) {
+              return const LoaderWidget();
+            }
+            if (state.failed) {
+              return ErrorWidgetCustom(
+                ontap: () {
+                  BlocProvider.of<OrderHistoryCubit>(context)
+                      .fetchOrderHistory();
+                },
+              );
+            }
             return Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: AppSizes.geth(context, 0.02),
@@ -70,9 +100,10 @@ class OrderHistoryView extends StatelessWidget {
                               spacing: AppSizes.geth(context, 0.01),
                               children: [
                                 ...List.generate(
-                                  4,
-                                  (index) => const OrderHistoryProduct(
+                                 state.orders!.data!.orders!.length,
+                                  (index) => OrderHistoryProduct(
                                     isActive: false,
+                                    order: state.orders!.data!.orders![index],
                                   ),
                                 )
                               ],
@@ -82,9 +113,10 @@ class OrderHistoryView extends StatelessWidget {
                               spacing: AppSizes.geth(context, 0.01),
                               children: [
                                 ...List.generate(
-                                  4,
-                                  (index) => const OrderHistoryProduct(
+                                  state.orders!.data!.orders!.length,
+                                  (index) => OrderHistoryProduct(
                                     isActive: true,
+                                    order: state.orders!.data!.orders![index],
                                   ),
                                 )
                               ],

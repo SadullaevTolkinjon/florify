@@ -49,7 +49,7 @@ class ProductContainer extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0XFFD9D9D9).withOpacity(0.2),
+                    color: const Color(0XFFD9D9D9).withOpacity(0.2),
                     borderRadius: BorderRadius.all(
                       Radius.circular(
                         AppSizes.getH(context) * 0.01,
@@ -133,7 +133,11 @@ class ProductContainer extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            SvgPicture.asset(IconConstants.card),
+                            SvgPicture.asset(
+                              IconConstants.card,
+                              height: AppSizes.geth(context, 0.020),
+                              width: AppSizes.geth(context, 0.030),
+                            ),
                             const MyPadding(
                               width: 8.0,
                             ),
@@ -142,6 +146,8 @@ class ProductContainer extends StatelessWidget {
                                 "${product.quantity ?? 0} ta buyurtma",
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
+                                style: TextStyle(
+                                    fontSize: AppSizes.geth(context, 0.018),fontWeight: FontWeight.w500),
                               ),
                             )
                           ],

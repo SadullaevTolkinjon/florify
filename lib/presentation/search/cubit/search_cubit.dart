@@ -1,9 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/search_pagination/search_pagination_model.dart';
 import 'package:florify/domain/repository/main_repository.dart';
 import 'package:florify/presentation/widgets/buildable_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:injectable/injectable.dart';
 
 part 'search_state.dart';
@@ -18,24 +22,28 @@ class SearchCubit extends BuildableCubit<SearchState, SearchBuildableState> {
   Timer? _debounce;
   fetch(int page) async {
     try {
-      // final customers = await _repository.getCustomers(_search, page, _size);
-      // final nextPageKey = customers.length < _size ? null : page + 1;
-      // build(
-      //   (buildable) => buildable.copyWith(
-      //     customers: [...buildable.customers ?? [], ...customers],
-      //     nextPageKey: nextPageKey,
-      //     error: null,
-      //   ),
-      // );
+      final SearchPaginationModel products =
+          await _mainRepository.fetchSearchProduct(_search, page);
+     
+      final nextPageKey = products.data!.pagination!.total_pages!<products.data!.pagination!.currentPage!?page+1:null;
+      build(
+        (buildable) => buildable.copyWith(
+          products: [...buildable.products ?? [], ...products.data!.records!],
+          nextPageKey: nextPageKey,
+          error: null,
+        ),
+      );
     } catch (error) {
-      // build((buildable) => buildable.copyWith(error: error));
+      print(error);
+      build((buildable) => buildable.copyWith(error: error));
     }
   }
 
-  onSearchChanged(String query) {
+  onSearchChanged(String query, PagingController controller) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
       _search = query;
+
       build((buildable) => const SearchBuildableState());
     });
   }

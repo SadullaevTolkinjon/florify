@@ -3,6 +3,7 @@ import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/di/injection.dart';
+import 'package:florify/domain/model/order_history/order_history_model.dart';
 import 'package:florify/presentation/card/components/korzina_product_container.dart';
 import 'package:florify/presentation/order_history/components/order_status.dart';
 import 'package:florify/presentation/order_history/components/show_product_btn.dart';
@@ -17,9 +18,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class OrderHistoryProduct extends StatelessWidget {
   const OrderHistoryProduct({
     super.key,
-    required this.isActive,
+    required this.isActive,required this.order
   });
   final bool isActive;
+  final OrderProduct order;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -49,7 +51,7 @@ class OrderHistoryProduct extends StatelessWidget {
                       Expanded(
                         flex: 4,
                         child: Text(
-                          "#11736446",
+                          "#${order.id}",
                           style: TextStyle(
                             fontSize: AppSizes.geth(context, 0.016),
                             fontWeight: FontWeight.w600,
@@ -67,17 +69,17 @@ class OrderHistoryProduct extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const TitleRowOrderHistory(
+                   TitleRowOrderHistory(
                     title: "Yetkazish sanasi",
-                    subtitle: "Bugun",
+                    subtitle: order.delivery_time??"",
                   ),
-                  const TitleRowOrderHistory(
+                   TitleRowOrderHistory(
                     title: "Topshirilgan joy",
-                    subtitle: "Toshkent sh, Mirzo Tursunzoda 42 A",
+                    subtitle: order.full_address??"",
                   ),
-                  const TitleRowOrderHistory(
+                   TitleRowOrderHistory(
                     title: "Umumiy summa",
-                    subtitle: "2 330 000 so‘m",
+                    subtitle: "${order.totalAmount??0} so‘m",
                   ),
                   MyPadding(
                     height: AppSizes.geth(context, 0.02),
@@ -107,7 +109,7 @@ class OrderHistoryProduct extends StatelessWidget {
                               height: AppSizes.geth(context, 0.01),
                             ),
                             ...List.generate(
-                              2,
+                              order.items!.length,
                               (index) => Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,6 +136,8 @@ class OrderHistoryProduct extends StatelessWidget {
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: CachedNetworkImageProvider(
+                                             
+                                           //  "${ApiConstants.baseUrl}${order.items![index].product!.images!.first}"
                                               "https://avatars.mds.yandex.net/i?id=dfde1a6f9d6de55af6cc7e56c0ded5203950bfd9-8179580-images-thumbs&n=13",
                                             ),
                                           ),
@@ -150,7 +154,7 @@ class OrderHistoryProduct extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Gullar va shokolad",
+                                            order.items![index].product!.name??"",
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
@@ -175,7 +179,7 @@ class OrderHistoryProduct extends StatelessWidget {
                                                   AppSizes.geth(context, 0.016),
                                             ),
                                             Text(
-                                              "1 x 800 000 so‘m",
+                                              "${order.items![index].quantity} x ${order.items![index].product!.price??"0"} so‘m",
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(

@@ -16,19 +16,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      
-      
-       BlocListener<HomeCubit, HomeState>(
+      body: BlocListener<HomeCubit, HomeState>(
         listener: (context, state) {},
         child: Buildable<HomeCubit, HomeState, HomeBuildableState>(
-          properties: (buildable) => [
-            buildable.currentIndex,
-          ],
+          properties: (buildable) => [buildable.currentIndex],
           builder: (context, state) {
             return IndexedStack(
               index: state.currentIndex,
-              children:  [
+              children: [
                 HomeView(),
                 const CatalogPage(),
                 const CardPage(),

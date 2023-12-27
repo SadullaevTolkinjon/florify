@@ -10,6 +10,7 @@ import 'package:florify/presentation/home/components/home_products.dart';
 import 'package:florify/presentation/home/components/stores_products.dart';
 import 'package:florify/presentation/home/cubit/home_cubit.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
+import 'package:florify/presentation/widgets/empty_widget.dart';
 import 'package:florify/presentation/widgets/error_widget.dart';
 import 'package:florify/presentation/widgets/loader_widget.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
@@ -62,12 +63,16 @@ class HomeView extends StatelessWidget {
                   state.selectedCategory,
                 ),
                 _buildPadding(context, 0.012),
-                HomeProducts(
-                  categories: state.categories,
-                  selectedCategory: currentIndex,
-                  likes: state.likeIds,
-                  categoryId: state.categories[currentIndex].id!,
-                ),
+                state.categories.isNotEmpty
+                    ? _buildProducts(
+                        state.categories[state.selectedCategory].id!,
+                        state.likeIds,
+                      )
+                    : SliverToBoxAdapter(
+                        child: EmptyWidget2(
+                          ontap: () {},
+                        ),
+                      ),
                 // _buildHomeProducts(
                 //   state.categories,
                 //   currentIndex,
@@ -83,6 +88,17 @@ class HomeView extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Widget _buildProducts(String categoryId, List<String> likeIds) {
+    print("buildddd--------------->>>>>>>");
+    return BlocBuilder<HomeCubit, HomeState>(builder: (context, __) {
+      print("her");
+      return HomeProducts(
+        likes: likeIds,
+        categoryId: categoryId,
+      );
+    });
   }
 
   Widget _buildAppBar() {
@@ -104,8 +120,6 @@ class HomeView extends StatelessWidget {
   Widget _buildHomeProducts(
       List<CategoryModel> categories, int index, List<String> likes) {
     return HomeProducts(
-      categories: categories,
-      selectedCategory: index,
       likes: likes,
       categoryId: categories[index].id!,
     );
