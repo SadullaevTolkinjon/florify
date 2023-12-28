@@ -13,20 +13,22 @@ class MyCommentsCubit
     extends BuildableCubit<MyCommentsState, MyCommentsBuildable> {
   final MainRepository _repository;
   final TokenPreference _preference;
-  MyCommentsCubit(this._repository,this._preference) : super(const MyCommentsBuildable());
+  MyCommentsCubit(this._repository, this._preference)
+      : super(const MyCommentsBuildable());
   fetchMyComments() async {
     build((buildable) =>
         buildable.copyWith(loading: true, success: false, failed: false));
     try {
-      await _repository.fetchUserComments("" );
-build((buildable) => buildable.copyWith(loading: false,success: true,failed: false));
+      await _repository.fetchUserComments("");
+      build((buildable) =>
+          buildable.copyWith(loading: false, success: true, failed: false));
     } catch (e) {
-build((buildable) => buildable.copyWith(loading: false,success: false,failed: true,error: e.toString()));
+      build((buildable) => buildable.copyWith(
+          loading: false, success: false, failed: true, error: e.toString()));
     }
   }
 
-  Future userId()async{
+  Future userId() async {
     final user = await _preference.getUser();
-    
   }
 }
