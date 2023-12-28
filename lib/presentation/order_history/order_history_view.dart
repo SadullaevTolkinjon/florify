@@ -16,11 +16,21 @@ class OrderHistoryView extends StatefulWidget {
   State<OrderHistoryView> createState() => _OrderHistoryViewState();
 }
 
-class _OrderHistoryViewState extends State<OrderHistoryView> {
+class _OrderHistoryViewState extends State<OrderHistoryView>
+    with TickerProviderStateMixin {
+  late final TabController _tabController;
+
   @override
   void initState() {
-    context.read<OrderHistoryCubit>().fetchOrderHistory();
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    context.read<OrderHistoryCubit>().fetchOrderHistory();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,67 +72,110 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 6,
-                          child: CommentsTitleBtn(
-                            ontap: () {
-                              BlocProvider.of<OrderHistoryCubit>(context)
-                                  .selectTab(0);
-                            },
-                            title: "Faol buyurtmalar",
-                            isSelected: state.selectedTab == 0 ? true : false,
-                          ),
+
+                    child: TabBar(
+
+                      controller: _tabController,
+
+
+                      indicatorColor: const Color(0xFF2473F2),
+                      labelStyle: TextStyle(
+
+
+                        fontSize: AppSizes.getH(context) * 0.020,
+                        color: ColorConstants.blue100,
+                      ),
+                      indicatorSize: TabBarIndicatorSize.tab,
+
+                      unselectedLabelStyle: TextStyle(
+                        fontSize: AppSizes.getH(context) * 0.020,
+                        color: ColorConstants.black1,
+                      ),
+
+
+
+
+
+                      labelPadding: const EdgeInsets.symmetric(horizontal: 12),
+                      tabs: const <Widget>[
+                        Tab(
+
+                          text: 'Faol buyurtmalar',
                         ),
-                        Expanded(
-                          flex: 5,
-                          child: CommentsTitleBtn(
-                            ontap: () {
-                              BlocProvider.of<OrderHistoryCubit>(context)
-                                  .selectTab(1);
-                            },
-                            title: "Hammasi",
-                            isSelected: state.selectedTab == 1 ? true : false,
-                          ),
-                        ),
+                        Tab(text: 'Hammasi'),
                       ],
                     ),
                   ),
-                  SliverPadding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppSizes.geth(context, 0.02),
-                    ),
-                    sliver: SliverToBoxAdapter(
-                      child: state.selectedTab == 0
-                          ? Wrap(
-                              runSpacing: AppSizes.geth(context, 0.01),
-                              spacing: AppSizes.geth(context, 0.01),
-                              children: [
-                                ...List.generate(
-                                 state.orders!.data!.orders!.length,
-                                  (index) => OrderHistoryProduct(
-                                    isActive: false,
-                                    order: state.orders!.data!.orders![index],
-                                  ),
-                                )
-                              ],
+
+                  SliverFillRemaining(
+                    child: TabBarView(
+
+                      controller: _tabController,
+                      children: [
+                        Wrap(
+                          runSpacing: AppSizes.geth(context, 0.01),
+                          spacing: AppSizes.geth(context, 0.01),
+                          children: [
+                            ...List.generate(
+                              state.orders!.data!.orders!.length,
+                              (index) => OrderHistoryProduct(
+                                isActive: false,
+                                order: state.orders!.data!.orders![index],
+                              ),
                             )
-                          : Wrap(
-                              runSpacing: AppSizes.geth(context, 0.01),
-                              spacing: AppSizes.geth(context, 0.01),
-                              children: [
-                                ...List.generate(
-                                  state.orders!.data!.orders!.length,
-                                  (index) => OrderHistoryProduct(
-                                    isActive: true,
-                                    order: state.orders!.data!.orders![index],
-                                  ),
-                                )
-                              ],
-                            ),
+                          ],
+                        ),
+                        Wrap(
+                          runSpacing: AppSizes.geth(context, 0.01),
+                          spacing: AppSizes.geth(context, 0.01),
+                          children: [
+                            ...List.generate(
+                              state.orders!.data!.orders!.length,
+                              (index) => OrderHistoryProduct(
+                                isActive: true,
+                                order: state.orders!.data!.orders![index],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   )
+
+                  // SliverPadding(
+                  //   padding: EdgeInsets.symmetric(
+                  //     vertical: AppSizes.geth(context, 0.02),
+                  //   ),
+                  //   sliver: SliverToBoxAdapter(
+                  //     child: state.selectedTab == 0
+                  //         ? Wrap(
+                  //             runSpacing: AppSizes.geth(context, 0.01),
+                  //             spacing: AppSizes.geth(context, 0.01),
+                  //             children: [
+                  //               ...List.generate(
+                  //                state.orders!.data!.orders!.length,
+                  //                 (index) => OrderHistoryProduct(
+                  //                   isActive: false,
+                  //                   order: state.orders!.data!.orders![index],
+                  //                 ),
+                  //               )
+                  //             ],
+                  //           )
+                  //         : Wrap(
+                  //             runSpacing: AppSizes.geth(context, 0.01),
+                  //             spacing: AppSizes.geth(context, 0.01),
+                  //             children: [
+                  //               ...List.generate(
+                  //                 state.orders!.data!.orders!.length,
+                  //                 (index) => OrderHistoryProduct(
+                  //                   isActive: true,
+                  //                   order: state.orders!.data!.orders![index],
+                  //                 ),
+                  //               )
+                  //             ],
+                  //           ),
+                  //   ),
+                  // )
                 ],
               ),
             );
