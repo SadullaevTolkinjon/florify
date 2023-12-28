@@ -29,6 +29,11 @@ class MainApi {
     return data;
   }
 
+  Future<Response> deleteComment(String commentID) async {
+    var data = await _api.delete(path: 'comment/$commentID');
+    return data;
+  }
+
   Future<dio.Response> fetchOrderHistory() async {
     var data = await _api2.get(path: 'orders');
     print(data);

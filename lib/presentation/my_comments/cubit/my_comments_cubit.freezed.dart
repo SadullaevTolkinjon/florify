@@ -19,7 +19,9 @@ mixin _$MyCommentsBuildable {
   bool get loading => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   bool get failed => throw _privateConstructorUsedError;
+  bool get isModalHud => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
+  List<Comment>? get comments => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyCommentsBuildableCopyWith<MyCommentsBuildable> get copyWith =>
@@ -32,7 +34,13 @@ abstract class $MyCommentsBuildableCopyWith<$Res> {
           MyCommentsBuildable value, $Res Function(MyCommentsBuildable) then) =
       _$MyCommentsBuildableCopyWithImpl<$Res, MyCommentsBuildable>;
   @useResult
-  $Res call({bool loading, bool success, bool failed, dynamic error});
+  $Res call(
+      {bool loading,
+      bool success,
+      bool failed,
+      bool isModalHud,
+      dynamic error,
+      List<Comment>? comments});
 }
 
 /// @nodoc
@@ -51,7 +59,9 @@ class _$MyCommentsBuildableCopyWithImpl<$Res, $Val extends MyCommentsBuildable>
     Object? loading = null,
     Object? success = null,
     Object? failed = null,
+    Object? isModalHud = null,
     Object? error = freezed,
+    Object? comments = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -66,10 +76,18 @@ class _$MyCommentsBuildableCopyWithImpl<$Res, $Val extends MyCommentsBuildable>
           ? _value.failed
           : failed // ignore: cast_nullable_to_non_nullable
               as bool,
+      isModalHud: null == isModalHud
+          ? _value.isModalHud
+          : isModalHud // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      comments: freezed == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>?,
     ) as $Val);
   }
 }
@@ -82,7 +100,13 @@ abstract class _$$_MyCommentsBuildableCopyWith<$Res>
       __$$_MyCommentsBuildableCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool success, bool failed, dynamic error});
+  $Res call(
+      {bool loading,
+      bool success,
+      bool failed,
+      bool isModalHud,
+      dynamic error,
+      List<Comment>? comments});
 }
 
 /// @nodoc
@@ -99,7 +123,9 @@ class __$$_MyCommentsBuildableCopyWithImpl<$Res>
     Object? loading = null,
     Object? success = null,
     Object? failed = null,
+    Object? isModalHud = null,
     Object? error = freezed,
+    Object? comments = freezed,
   }) {
     return _then(_$_MyCommentsBuildable(
       loading: null == loading
@@ -114,10 +140,18 @@ class __$$_MyCommentsBuildableCopyWithImpl<$Res>
           ? _value.failed
           : failed // ignore: cast_nullable_to_non_nullable
               as bool,
+      isModalHud: null == isModalHud
+          ? _value.isModalHud
+          : isModalHud // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      comments: freezed == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>?,
     ));
   }
 }
@@ -129,7 +163,10 @@ class _$_MyCommentsBuildable implements _MyCommentsBuildable {
       {this.loading = false,
       this.success = false,
       this.failed = false,
-      this.error});
+      this.isModalHud = false,
+      this.error,
+      final List<Comment>? comments = const []})
+      : _comments = comments;
 
   @override
   @JsonKey()
@@ -141,11 +178,24 @@ class _$_MyCommentsBuildable implements _MyCommentsBuildable {
   @JsonKey()
   final bool failed;
   @override
+  @JsonKey()
+  final bool isModalHud;
+  @override
   final dynamic error;
+  final List<Comment>? _comments;
+  @override
+  @JsonKey()
+  List<Comment>? get comments {
+    final value = _comments;
+    if (value == null) return null;
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'MyCommentsBuildable(loading: $loading, success: $success, failed: $failed, error: $error)';
+    return 'MyCommentsBuildable(loading: $loading, success: $success, failed: $failed, isModalHud: $isModalHud, error: $error, comments: $comments)';
   }
 
   @override
@@ -156,12 +206,21 @@ class _$_MyCommentsBuildable implements _MyCommentsBuildable {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.isModalHud, isModalHud) ||
+                other.isModalHud == isModalHud) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, success, failed,
-      const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      success,
+      failed,
+      isModalHud,
+      const DeepCollectionEquality().hash(error),
+      const DeepCollectionEquality().hash(_comments));
 
   @JsonKey(ignore: true)
   @override
@@ -176,7 +235,9 @@ abstract class _MyCommentsBuildable implements MyCommentsBuildable {
       {final bool loading,
       final bool success,
       final bool failed,
-      final dynamic error}) = _$_MyCommentsBuildable;
+      final bool isModalHud,
+      final dynamic error,
+      final List<Comment>? comments}) = _$_MyCommentsBuildable;
 
   @override
   bool get loading;
@@ -185,7 +246,11 @@ abstract class _MyCommentsBuildable implements MyCommentsBuildable {
   @override
   bool get failed;
   @override
+  bool get isModalHud;
+  @override
   dynamic get error;
+  @override
+  List<Comment>? get comments;
   @override
   @JsonKey(ignore: true)
   _$$_MyCommentsBuildableCopyWith<_$_MyCommentsBuildable> get copyWith =>

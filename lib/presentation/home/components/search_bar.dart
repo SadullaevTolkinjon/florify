@@ -17,8 +17,8 @@ class HomeSearchBar extends StatelessWidget {
         ontap();
       },
       child: Container(
-      //  height: AppSizes.getH(context) * 0.06,
-      height: double.infinity,
+      height: AppSizes.getH(context) * 0.06,
+    
         decoration: BoxDecoration(
           color: ColorConstants.grey,
           borderRadius: const BorderRadius.all(
