@@ -24,8 +24,11 @@ class SearchCubit extends BuildableCubit<SearchState, SearchBuildableState> {
     try {
       final SearchPaginationModel products =
           await _mainRepository.fetchSearchProduct(_search, page);
-     
-      final nextPageKey = products.data!.pagination!.total_pages!<products.data!.pagination!.currentPage!?page+1:null;
+
+      final nextPageKey = products.data!.pagination!.total_pages! <
+              products.data!.pagination!.currentPage!
+          ? page + 1
+          : null;
       build(
         (buildable) => buildable.copyWith(
           products: [...buildable.products ?? [], ...products.data!.records!],
@@ -34,7 +37,6 @@ class SearchCubit extends BuildableCubit<SearchState, SearchBuildableState> {
         ),
       );
     } catch (error) {
-      print(error);
       build((buildable) => buildable.copyWith(error: error));
     }
   }
@@ -43,7 +45,7 @@ class SearchCubit extends BuildableCubit<SearchState, SearchBuildableState> {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
       _search = query;
-
+      controller.refresh();
       build((buildable) => const SearchBuildableState());
     });
   }

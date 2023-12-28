@@ -106,11 +106,16 @@ class MainRepository {
     return CategoryPaginationModel.fromJson(data);
   }
 
+  fetchUserComments(String userId) async {
+    final response = await _mainApi.fetchUserComments(userId);
+    var data = jsonDecode(response.body);
+    return data;
+  }
+
   fetchOrderHistory() async {
-   
     final response = await _mainApi.fetchOrderHistory();
-  
-     Map<String, dynamic> result = Map<String, dynamic>.from(response.data);
+
+    Map<String, dynamic> result = Map<String, dynamic>.from(response.data);
     return OrderHistoryModel.fromJson(result);
   }
 

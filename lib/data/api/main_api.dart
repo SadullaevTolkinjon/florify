@@ -24,10 +24,14 @@ class MainApi {
     return data;
   }
 
+  Future<Response> fetchUserComments(String userId) async {
+    var data = await _api.get(path: 'comment/clientId/$userId');
+    return data;
+  }
+
   Future<dio.Response> fetchOrderHistory() async {
-   
     var data = await _api2.get(path: 'orders');
-  print(data);
+    print(data);
     return data;
   }
 

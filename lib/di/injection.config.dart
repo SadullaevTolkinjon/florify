@@ -21,20 +21,21 @@ import '../data/preferences/token_preferences.dart' as _i5;
 import '../domain/repository/main_repository.dart' as _i12;
 import '../domain/service/main_serivce.dart' as _i13;
 import '../presentation/all_category_product/cubit/all_category_product_cubit.dart'
-    as _i18;
-import '../presentation/auth/sign_up/cubit/sign_up_cubit.dart' as _i16;
-import '../presentation/auth/verfy_sms/cubit/sms_verify_cubit.dart' as _i17;
-import '../presentation/card/cubit/card_cubit.dart' as _i19;
-import '../presentation/catalog/cubit/catalog_cubit.dart' as _i20;
-import '../presentation/favorite/cubit/favorite_cubit.dart' as _i22;
-import '../presentation/home/cubit/home_cubit.dart' as _i23;
+    as _i19;
+import '../presentation/auth/sign_up/cubit/sign_up_cubit.dart' as _i17;
+import '../presentation/auth/verfy_sms/cubit/sms_verify_cubit.dart' as _i18;
+import '../presentation/card/cubit/card_cubit.dart' as _i20;
+import '../presentation/catalog/cubit/catalog_cubit.dart' as _i21;
+import '../presentation/favorite/cubit/favorite_cubit.dart' as _i23;
+import '../presentation/home/cubit/home_cubit.dart' as _i24;
 import '../presentation/language/cubit/language_cubit.dart' as _i3;
+import '../presentation/my_comments/cubit/my_comments_cubit.dart' as _i14;
 import '../presentation/onboarding/cubit/onboarding_cubit.dart' as _i8;
-import '../presentation/order_history/cubit/order_history_cubit.dart' as _i14;
-import '../presentation/product_details/cubit/details_cubit.dart' as _i21;
-import '../presentation/search/cubit/search_cubit.dart' as _i15;
+import '../presentation/order_history/cubit/order_history_cubit.dart' as _i15;
+import '../presentation/product_details/cubit/details_cubit.dart' as _i22;
+import '../presentation/search/cubit/search_cubit.dart' as _i16;
 import '../presentation/splash/cubit/splash_screen_cubit.dart' as _i10;
-import 'data_module.dart' as _i24;
+import 'data_module.dart' as _i25;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -76,40 +77,44 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i11.MainApi>(),
           gh<_i5.TokenPreference>(),
         ));
-    gh.factory<_i14.OrderHistoryCubit>(() => _i14.OrderHistoryCubit(
+    gh.factory<_i14.MyCommentsCubit>(() => _i14.MyCommentsCubit(
           gh<_i12.MainRepository>(),
           gh<_i5.TokenPreference>(),
         ));
-    gh.factory<_i15.SearchCubit>(
-        () => _i15.SearchCubit(gh<_i12.MainRepository>()));
-    gh.factory<_i16.SignUpCubit>(
-        () => _i16.SignUpCubit(gh<_i12.MainRepository>()));
-    gh.factory<_i17.SmsVerifyCubit>(() => _i17.SmsVerifyCubit(
+    gh.factory<_i15.OrderHistoryCubit>(() => _i15.OrderHistoryCubit(
           gh<_i12.MainRepository>(),
           gh<_i5.TokenPreference>(),
         ));
-    gh.factory<_i18.AllCategoryProductCubit>(() => _i18.AllCategoryProductCubit(
+    gh.factory<_i16.SearchCubit>(
+        () => _i16.SearchCubit(gh<_i12.MainRepository>()));
+    gh.factory<_i17.SignUpCubit>(
+        () => _i17.SignUpCubit(gh<_i12.MainRepository>()));
+    gh.factory<_i18.SmsVerifyCubit>(() => _i18.SmsVerifyCubit(
+          gh<_i12.MainRepository>(),
+          gh<_i5.TokenPreference>(),
+        ));
+    gh.factory<_i19.AllCategoryProductCubit>(() => _i19.AllCategoryProductCubit(
           gh<_i13.MainService>(),
           gh<_i5.TokenPreference>(),
           gh<_i12.MainRepository>(),
         ));
-    gh.factory<_i19.CardCubit>(() => _i19.CardCubit(
+    gh.factory<_i20.CardCubit>(() => _i20.CardCubit(
           gh<_i13.MainService>(),
           gh<_i5.TokenPreference>(),
         ));
-    gh.factory<_i20.CatalogCubit>(
-        () => _i20.CatalogCubit(gh<_i13.MainService>()));
-    gh.factory<_i21.DetailsCubit>(() => _i21.DetailsCubit(
-          gh<_i13.MainService>(),
-          gh<_i5.TokenPreference>(),
-          gh<_i12.MainRepository>(),
-        ));
-    gh.factory<_i22.FavoriteCubit>(() => _i22.FavoriteCubit(
+    gh.factory<_i21.CatalogCubit>(
+        () => _i21.CatalogCubit(gh<_i13.MainService>()));
+    gh.factory<_i22.DetailsCubit>(() => _i22.DetailsCubit(
           gh<_i13.MainService>(),
           gh<_i5.TokenPreference>(),
           gh<_i12.MainRepository>(),
         ));
-    gh.factory<_i23.HomeCubit>(() => _i23.HomeCubit(
+    gh.factory<_i23.FavoriteCubit>(() => _i23.FavoriteCubit(
+          gh<_i13.MainService>(),
+          gh<_i5.TokenPreference>(),
+          gh<_i12.MainRepository>(),
+        ));
+    gh.factory<_i24.HomeCubit>(() => _i24.HomeCubit(
           gh<_i13.MainService>(),
           gh<_i5.TokenPreference>(),
           gh<_i12.MainRepository>(),
@@ -118,4 +123,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$DataModule extends _i24.DataModule {}
+class _$DataModule extends _i25.DataModule {}

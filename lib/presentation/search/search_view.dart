@@ -49,8 +49,10 @@ class _SearchViewState extends State<SearchView> {
             controller: _searchController,
             hintText: "Qidiruv",
             onChanged: (query) {
-              context.read<SearchCubit>().onSearchChanged(query,_pagingController);
-          
+              context.read<SearchCubit>().onSearchChanged(
+                    query,
+                    _pagingController
+                  );
             },
           ),
         ),
