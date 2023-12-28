@@ -5,6 +5,7 @@ import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/domain/model/category_pagination_model/category_pagination_model.dart';
 import 'package:florify/domain/model/favorite/favorite_model.dart';
+import 'package:florify/domain/model/my_comments/my_comments_model.dart';
 import 'package:florify/domain/model/order_history/order_history_model.dart';
 import 'package:florify/domain/model/search_pagination/search_pagination_model.dart';
 import 'package:florify/domain/model/user/user_model.dart';
@@ -109,7 +110,12 @@ class MainRepository {
   fetchUserComments(String userId) async {
     final response = await _mainApi.fetchUserComments(userId);
     var data = jsonDecode(response.body);
-    return data;
+    return MyCommmentsModel.fromJson(data);
+  }
+   deleteComment(String commentID) async {
+    final response = await _mainApi.deleteComment(commentID);
+    var data = jsonDecode(response.body);
+    return MyCommmentsModel.fromJson(data);
   }
 
   fetchOrderHistory() async {
