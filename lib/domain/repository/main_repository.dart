@@ -114,8 +114,8 @@ class MainRepository {
   }
    deleteComment(String commentID) async {
     final response = await _mainApi.deleteComment(commentID);
-    var data = jsonDecode(response.body);
-    return MyCommmentsModel.fromJson(data);
+    
+    return response.data;
   }
 
   fetchOrderHistory() async {

@@ -79,28 +79,28 @@ class ServiceApiExample {
     return propagateErrors(response);
   }
 
-  // Future<Response> delete({
-  //   required String path,
-  //   Map<String, Object>? params,
-  //   Map<String, dynamic>? body,
-  // }) async {
-  //   var header = await _headers;
+  Future<Response> delete({
+    required String path,
+    Map<String, Object>? params,
+    Map<String, dynamic>? body,
+  }) async {
+    var header = await _headers;
 
-  //   Response response = await dio.delete(
-  //     "$_host$_root/$path",
-  //     queryParameters:
-  //         params?.map((key, value) => MapEntry(key, value.toString())),
-  //     data: body,
-  //     options: Options(
-  //       validateStatus: (status) => true,
-  //       followRedirects: false,
-  //       headers: header,
-  //       receiveTimeout: const Duration(seconds: 15),
-  //     ),
-  //   );
+    Response response = await dio.delete(
+      "$_host$_root/$path",
+      queryParameters:
+          params?.map((key, value) => MapEntry(key, value.toString())),
+      data: body,
+      options: Options(
+        validateStatus: (status) => true,
+        followRedirects: false,
+        headers: header,
+        receiveTimeout: const Duration(seconds: 15),
+      ),
+    );
 
-  //   return propagateErrors(response);
-  // }
+    return propagateErrors(response);
+  }
 
   Future<Response> put({
     required String path,

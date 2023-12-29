@@ -42,6 +42,7 @@ class MyCommentsPage extends StatelessWidget {
               buildable.error,
               buildable.success,
               buildable.comments,
+              buildable.isModalHud
             ],
             builder: (context, state) {
               if (state.loading) {
@@ -52,32 +53,38 @@ class MyCommentsPage extends StatelessWidget {
                   context.read<MyCommentsCubit>().fetchMyComments();
                 });
               }
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.geth(context, 0.02),
-                ),
-                child: ModalProgressHUD(
-                  inAsyncCall: state.isModalHud,
-                  child: state.comments!.isNotEmpty
-                      ? Column(
-                          children: [
-                            ...List.generate(
-                              state.comments!.length,
-                              (index) => Padding(
-                                padding: EdgeInsets.only(
-                                    top: AppSizes.geth(context, 0.01)),
-                                child: MyCommentsContainer(
-                                  comment: state.comments![index],
-                                  ontap: () {},
+              return ModalProgressHUD(
+                inAsyncCall: state.isModalHud,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizes.geth(context, 0.02),
+                    ),
+                    child: state.comments!.isNotEmpty
+                        ? Column(
+                            children: [
+                              ...List.generate(
+                                state.comments!.length,
+                                (index) => Padding(
+                                  padding: EdgeInsets.only(
+                                      top: AppSizes.geth(context, 0.01)),
+                                  child: MyCommentsContainer(
+                                    comment: state.comments![index],
+                                    ontap: () {
+                                      BlocProvider.of<MyCommentsCubit>(context)
+                                          .deleteComment(
+                                              state.comments![index].id!);
+                                    },
+                                  ),
                                 ),
-                              ),
-                            )
-                          ],
-                        )
-                      : EmptyWidget2(
-                          ontap: () {},
-                          title: "Mening sharhlarim bo'sh",
-                        ),
+                              )
+                            ],
+                          )
+                        : EmptyWidget2(
+                            ontap: () {},
+                            title: "Mening sharhlarim bo'sh",
+                          ),
+                  ),
                 ),
               );
 

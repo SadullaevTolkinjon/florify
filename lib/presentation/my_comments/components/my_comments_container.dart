@@ -87,10 +87,22 @@ class MyCommentsContainer extends StatelessWidget {
               MyPadding(
                 width: AppSizes.geth(context, 0.016),
               ),
-              Icon(
-                Icons.more_vert,
-                size: AppSizes.getw(context, 0.06),
-              )
+              PopupMenuButton(
+                itemBuilder: (context) {
+                  return [
+                    PopupMenuItem(
+                      child: const Text("Delete"),
+                      onTap: () {
+                        ontap();
+                      },
+                    )
+                  ];
+                },
+                icon: Icon(
+                  Icons.more_vert,
+                  size: AppSizes.getw(context, 0.06),
+                ),
+              ),
             ],
           ),
           MyPadding(

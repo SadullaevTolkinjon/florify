@@ -72,35 +72,23 @@ class _OrderHistoryViewState extends State<OrderHistoryView>
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-
                     child: TabBar(
-
                       controller: _tabController,
-
-
                       indicatorColor: const Color(0xFF2473F2),
                       labelStyle: TextStyle(
-
-
                         fontSize: AppSizes.getH(context) * 0.020,
                         color: ColorConstants.blue100,
                       ),
                       indicatorSize: TabBarIndicatorSize.tab,
-
                       unselectedLabelStyle: TextStyle(
                         fontSize: AppSizes.getH(context) * 0.020,
                         color: ColorConstants.black1,
                       ),
-
-
-
-
-
                       labelPadding: const EdgeInsets.symmetric(horizontal: 12),
                       tabs: const <Widget>[
                         Tab(
-
                           text: 'Faol buyurtmalar',
+                          
                         ),
                         Tab(text: 'Hammasi'),
                       ],
@@ -109,7 +97,6 @@ class _OrderHistoryViewState extends State<OrderHistoryView>
 
                   SliverFillRemaining(
                     child: TabBarView(
-
                       controller: _tabController,
                       children: [
                         Wrap(

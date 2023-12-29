@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:florify/constants/api/api_constants.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
@@ -129,16 +130,16 @@ class OrderHistoryProduct extends StatelessWidget {
                                       Container(
                                         height: AppSizes.geth(context, 0.105),
                                         width: AppSizes.geth(context, 0.092),
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(
+                                        decoration:  BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: CachedNetworkImageProvider(
                                              
-                                           //  "${ApiConstants.baseUrl}${order.items![index].product!.images!.first}"
-                                              "https://avatars.mds.yandex.net/i?id=dfde1a6f9d6de55af6cc7e56c0ded5203950bfd9-8179580-images-thumbs&n=13",
+                                            "${ApiConstants.baseUrl}${order.items![index].product!.images!.first.image!}"
+                                         //     "https://avatars.mds.yandex.net/i?id=dfde1a6f9d6de55af6cc7e56c0ded5203950bfd9-8179580-images-thumbs&n=13",
                                             ),
                                           ),
                                         ),
