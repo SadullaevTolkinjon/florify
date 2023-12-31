@@ -59,48 +59,48 @@ class _FavoriteViewState extends State<FavoriteView> {
           return context.read<FavoriteCubit>().getUser() != null
               ? CustomScrollView(
                   slivers: [
-                    SliverPadding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: AppSizes.getH(context) * 0.024,
-                      ),
-                      sliver: SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 6,
-                                  child: CommentsTitleBtn(
-                                    ontap: () {
-                                      BlocProvider.of<FavoriteCubit>(context)
-                                          .changeTabs(0);
-                                    },
-                                    title: "Mening yoqtirganlarim",
-                                    isSelected:
-                                        state.selectedTab == 0 ? true : false,
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 5,
-                                  child: CommentsTitleBtn(
-                                    ontap: () {
-                                      BlocProvider.of<FavoriteCubit>(context)
-                                          .changeTabs(1);
-                                    },
-                                    title: "Sevimli Do'konlar",
-                                    isSelected:
-                                        state.selectedTab == 1 ? true : false,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            MyPadding(
-                              height: AppSizes.getH(context) * 0.016,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // SliverPadding(
+                    //   padding: EdgeInsets.symmetric(
+                    //     horizontal: AppSizes.getH(context) * 0.024,
+                    //   ),
+                    //   sliver: SliverToBoxAdapter(
+                    //     child: Column(
+                    //       children: [
+                    //         Row(
+                    //           children: [
+                    //             Expanded(
+                    //               flex: 6,
+                    //               child: CommentsTitleBtn(
+                    //                 ontap: () {
+                    //                   BlocProvider.of<FavoriteCubit>(context)
+                    //                       .changeTabs(0);
+                    //                 },
+                    //                 title: "Mening yoqtirganlarim",
+                    //                 isSelected:
+                    //                     state.selectedTab == 0 ? true : false,
+                    //               ),
+                    //             ),
+                    //             Expanded(
+                    //               flex: 5,
+                    //               child: CommentsTitleBtn(
+                    //                 ontap: () {
+                    //                   BlocProvider.of<FavoriteCubit>(context)
+                    //                       .changeTabs(1);
+                    //                 },
+                    //                 title: "Sevimli Do'konlar",
+                    //                 isSelected:
+                    //                     state.selectedTab == 1 ? true : false,
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //         MyPadding(
+                    //           height: AppSizes.getH(context) * 0.016,
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                     state.selectedTab == 0
                         ? state.likes.isNotEmpty
                             ? SliverPadding(

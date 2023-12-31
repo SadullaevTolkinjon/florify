@@ -13,5 +13,9 @@ class AllCategoryProductBuildable extends AllCategoryProductState
     CategoryModel? data,
     @Default([]) List<String> likeIds,
     @Default([]) List<FavoriteModel> likes,
+     @Default([]) List<Product?>? products,
+   
+     int? nextPageKey,
+     dynamic pagingError,
   }) = _AllCategoryProductBuildable;
 }

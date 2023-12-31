@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:florify/data/preferences/token_preferences.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/category_pagination_model/category_pagination_model.dart';
 import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/domain/model/user/user_model.dart';
 import 'package:florify/domain/repository/main_repository.dart';
@@ -28,7 +29,7 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
     try {
       CategoryModel data = await _service.getCategoryProducts(id);
       final List<String> likes = await _preference.getLikes() ?? [];
-    
+
       build(
         (buildable) => buildable.copyWith(
           loading: false,
@@ -62,7 +63,8 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
     try {
       UserModel user = await getUser();
       await _repository.dislike(productId, user.data!.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
       List<String> likeIds = await _preference.getLikes() ?? [];
       List<String> listJson =
@@ -82,13 +84,14 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
 
   pressLike(int productId) async {
     build((buildable) => buildable);
-    print('workingggggg');
+
     try {
-     final UserModel user = await getUser();
-     print(user);
+      final UserModel user = await getUser();
+    
       await _repository.pressLike(productId, user.data!.client!.id!);
-   
-      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
+
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
 
       List<String> likeIds = await _preference.getLikes() ?? [];
@@ -103,15 +106,33 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
         ),
       );
     } catch (e) {
-      print(e);
       build((buildable) => buildable.copyWith());
     }
   }
 
   checkLikes() async {
     List<String> likes = await _preference.getLikes();
-    print("---------------");
-    print(likes);
+
     build((buildable) => buildable.copyWith(likeIds: likes));
+  }
+
+  Future fetch(int pageKey, String category_id) async {
+    try {
+      final CategoryPaginationModel data =
+          await _repository.fetchCategoryProducts(category_id, pageKey);
+      List<Product?>? products = data.data!.records!;
+      int? nextPageKey =
+          data.data!.pagination!.total_count! > pageKey ? pageKey + 1 : null;
+
+      build(
+        (buildable) => buildable.copyWith(
+          nextPageKey: nextPageKey!,
+          products: [...buildable.products ?? [], ...products],
+          pagingError: null,
+        ),
+      );
+    } catch (e) {
+      build((buildable) => buildable.copyWith(pagingError: e));
+    }
   }
 }

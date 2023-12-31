@@ -23,6 +23,9 @@ mixin _$AllCategoryProductBuildable {
   CategoryModel? get data => throw _privateConstructorUsedError;
   List<String> get likeIds => throw _privateConstructorUsedError;
   List<FavoriteModel> get likes => throw _privateConstructorUsedError;
+  List<Product?>? get products => throw _privateConstructorUsedError;
+  int? get nextPageKey => throw _privateConstructorUsedError;
+  dynamic get pagingError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AllCategoryProductBuildableCopyWith<AllCategoryProductBuildable>
@@ -44,7 +47,10 @@ abstract class $AllCategoryProductBuildableCopyWith<$Res> {
       dynamic error,
       CategoryModel? data,
       List<String> likeIds,
-      List<FavoriteModel> likes});
+      List<FavoriteModel> likes,
+      List<Product?>? products,
+      int? nextPageKey,
+      dynamic pagingError});
 
   $CategoryModelCopyWith<$Res>? get data;
 }
@@ -70,6 +76,9 @@ class _$AllCategoryProductBuildableCopyWithImpl<$Res,
     Object? data = freezed,
     Object? likeIds = null,
     Object? likes = null,
+    Object? products = freezed,
+    Object? nextPageKey = freezed,
+    Object? pagingError = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -100,6 +109,18 @@ class _$AllCategoryProductBuildableCopyWithImpl<$Res,
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
               as List<FavoriteModel>,
+      products: freezed == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product?>?,
+      nextPageKey: freezed == nextPageKey
+          ? _value.nextPageKey
+          : nextPageKey // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pagingError: freezed == pagingError
+          ? _value.pagingError
+          : pagingError // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 
@@ -132,7 +153,10 @@ abstract class _$$_AllCategoryProductBuildableCopyWith<$Res>
       dynamic error,
       CategoryModel? data,
       List<String> likeIds,
-      List<FavoriteModel> likes});
+      List<FavoriteModel> likes,
+      List<Product?>? products,
+      int? nextPageKey,
+      dynamic pagingError});
 
   @override
   $CategoryModelCopyWith<$Res>? get data;
@@ -158,6 +182,9 @@ class __$$_AllCategoryProductBuildableCopyWithImpl<$Res>
     Object? data = freezed,
     Object? likeIds = null,
     Object? likes = null,
+    Object? products = freezed,
+    Object? nextPageKey = freezed,
+    Object? pagingError = freezed,
   }) {
     return _then(_$_AllCategoryProductBuildable(
       loading: null == loading
@@ -188,6 +215,18 @@ class __$$_AllCategoryProductBuildableCopyWithImpl<$Res>
           ? _value._likes
           : likes // ignore: cast_nullable_to_non_nullable
               as List<FavoriteModel>,
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product?>?,
+      nextPageKey: freezed == nextPageKey
+          ? _value.nextPageKey
+          : nextPageKey // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pagingError: freezed == pagingError
+          ? _value.pagingError
+          : pagingError // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -202,9 +241,13 @@ class _$_AllCategoryProductBuildable implements _AllCategoryProductBuildable {
       this.error,
       this.data,
       final List<String> likeIds = const [],
-      final List<FavoriteModel> likes = const []})
+      final List<FavoriteModel> likes = const [],
+      final List<Product?>? products = const [],
+      this.nextPageKey,
+      this.pagingError})
       : _likeIds = likeIds,
-        _likes = likes;
+        _likes = likes,
+        _products = products;
 
   @override
   @JsonKey()
@@ -237,9 +280,25 @@ class _$_AllCategoryProductBuildable implements _AllCategoryProductBuildable {
     return EqualUnmodifiableListView(_likes);
   }
 
+  final List<Product?>? _products;
+  @override
+  @JsonKey()
+  List<Product?>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final int? nextPageKey;
+  @override
+  final dynamic pagingError;
+
   @override
   String toString() {
-    return 'AllCategoryProductBuildable(loading: $loading, success: $success, failed: $failed, error: $error, data: $data, likeIds: $likeIds, likes: $likes)';
+    return 'AllCategoryProductBuildable(loading: $loading, success: $success, failed: $failed, error: $error, data: $data, likeIds: $likeIds, likes: $likes, products: $products, nextPageKey: $nextPageKey, pagingError: $pagingError)';
   }
 
   @override
@@ -253,7 +312,12 @@ class _$_AllCategoryProductBuildable implements _AllCategoryProductBuildable {
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.data, data) || other.data == data) &&
             const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
-            const DeepCollectionEquality().equals(other._likes, _likes));
+            const DeepCollectionEquality().equals(other._likes, _likes) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.nextPageKey, nextPageKey) ||
+                other.nextPageKey == nextPageKey) &&
+            const DeepCollectionEquality()
+                .equals(other.pagingError, pagingError));
   }
 
   @override
@@ -265,7 +329,10 @@ class _$_AllCategoryProductBuildable implements _AllCategoryProductBuildable {
       const DeepCollectionEquality().hash(error),
       data,
       const DeepCollectionEquality().hash(_likeIds),
-      const DeepCollectionEquality().hash(_likes));
+      const DeepCollectionEquality().hash(_likes),
+      const DeepCollectionEquality().hash(_products),
+      nextPageKey,
+      const DeepCollectionEquality().hash(pagingError));
 
   @JsonKey(ignore: true)
   @override
@@ -284,7 +351,10 @@ abstract class _AllCategoryProductBuildable
       final dynamic error,
       final CategoryModel? data,
       final List<String> likeIds,
-      final List<FavoriteModel> likes}) = _$_AllCategoryProductBuildable;
+      final List<FavoriteModel> likes,
+      final List<Product?>? products,
+      final int? nextPageKey,
+      final dynamic pagingError}) = _$_AllCategoryProductBuildable;
 
   @override
   bool get loading;
@@ -300,6 +370,12 @@ abstract class _AllCategoryProductBuildable
   List<String> get likeIds;
   @override
   List<FavoriteModel> get likes;
+  @override
+  List<Product?>? get products;
+  @override
+  int? get nextPageKey;
+  @override
+  dynamic get pagingError;
   @override
   @JsonKey(ignore: true)
   _$$_AllCategoryProductBuildableCopyWith<_$_AllCategoryProductBuildable>

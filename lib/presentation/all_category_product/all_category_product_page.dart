@@ -15,7 +15,7 @@ class AllCategoryProductPage extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         var cubit = locator<AllCategoryProductCubit>();
-        cubit.fetchProducts(categorydata[1]);
+      
         return cubit;
       },
       child: AllCategoryProductView(
