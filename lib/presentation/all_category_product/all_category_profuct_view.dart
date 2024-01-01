@@ -49,15 +49,25 @@ class _AllCategoryProductViewState extends State<AllCategoryProductView> {
       body: BlocListener<AllCategoryProductCubit, AllCategoryProductState>(
         listener: (context, state) {
           if (state is AllCategoryProductBuildable) {
-            _pagingController.value = PagingState(
-                itemList: state.products,
-                error: state.pagingError,
-                nextPageKey: state.nextPageKey);
+         
+            if (state.nextPageKey != null) {
+              print("successssss<><><><><><><><><><><<>><");
+              _pagingController.appendPage(state.products!, state.nextPageKey);
+            } else if (state.pagingError != null) {
+              _pagingController.error = state.pagingError;
+            } else if (state.nextPageKey == null) {
+             
+              _pagingController.nextPageKey = state.nextPageKey;
+               _pagingController.appendLastPage(state.products!);
+            }
           }
         },
         child: Buildable<AllCategoryProductCubit, AllCategoryProductState,
             AllCategoryProductBuildable>(
-          properties: (buildable) => [buildable.likeIds, buildable.likes],
+          properties: (buildable) => [
+            buildable.likeIds,
+            buildable.likes,
+          ],
           builder: (context, state) {
             return Padding(
               padding: EdgeInsets.symmetric(
@@ -102,16 +112,19 @@ class _AllCategoryProductViewState extends State<AllCategoryProductView> {
                         },
                         product: item!,
                         likeBtn: () {
-                          if (BlocProvider.of<HomeCubit>(context).getUser() !=
+                          if (BlocProvider.of<AllCategoryProductCubit>(context)
+                                  .getUser() !=
                               null) {
                             if (state.likeIds.contains(
                               item.id.toString(),
                             )) {
-                              context.read<HomeCubit>().disLike(
+                              context.read<AllCategoryProductCubit>().disLike(
                                     item.id!,
                                   );
                             } else {
-                              context.read<HomeCubit>().pressLike(item.id!);
+                              context
+                                  .read<AllCategoryProductCubit>()
+                                  .pressLike(item.id!);
                             }
                           }
                         },

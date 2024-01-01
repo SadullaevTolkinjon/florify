@@ -58,16 +58,13 @@ class HomeView extends StatelessWidget {
                 _buildCategories(state.categories),
                 _buildCategoryTitle("Kategoriyalar"),
                 _buildPadding(context, 0.016),
-                _buildHomeCategories(
-                  state.categories,
-                  state.selectedCategory,
-                ),
+                _buildHomeCategories(state.categories, state.selectedCategory),
                 _buildPadding(context, 0.012),
                 state.categories.isNotEmpty
                     ? _buildProducts(
                         state.categories[state.selectedCategory].id!,
                         state.likeIds,
-                      )
+                        state.categories[state.selectedCategory].uz ?? "")
                     : SliverToBoxAdapter(
                         child: EmptyWidget2(
                           ontap: () {},
@@ -90,13 +87,13 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildProducts(String categoryId, List<String> likeIds) {
-    print("buildddd--------------->>>>>>>");
+  Widget _buildProducts(
+      String categoryId, List<String> likeIds, String categoryName) {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, __) {
-      print("her");
       return HomeProducts(
         likes: likeIds,
         categoryId: categoryId,
+        categoryName: categoryName,
       );
     });
   }
@@ -117,13 +114,13 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildHomeProducts(
-      List<CategoryModel> categories, int index, List<String> likes) {
-    return HomeProducts(
-      likes: likes,
-      categoryId: categories[index].id!,
-    );
-  }
+  // Widget _buildHomeProducts(
+  //     List<CategoryModel> categories, int index, List<String> likes) {
+  //   return HomeProducts(
+  //     likes: likes,
+  //     categoryId: categories[index].id!,
+  //   );
+  // }
 
   Widget _buildHomeCategories(List<CategoryModel> categories, int index) {
     return HomeCategories(

@@ -48,6 +48,8 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
         loading: true, savedToCard: false, product_is_exist_in_card: false));
     try {
       var data = await _service.getProductDetails(productId);
+      print("-------------------------------");
+      print(data);
       List<String> likes = await _preference.getLikes();
       build(
         (buildable) => buildable.copyWith(
@@ -61,8 +63,6 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
         ),
       );
     } catch (e) {
-      print("----------------");
-      print(e);
       build(
         (buildable) => buildable.copyWith(
           loading: false,
@@ -137,8 +137,9 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
   fetchRecentlyProducts() async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
+      final UserModel user = await getUser();
       final List<RecentlyProductModel> recentlyProducts =
-          await _service.fetchRecentlyProducts();
+          await _service.fetchRecentlyProducts(user.data!.client!.id!);
       build((buildable) => buildable.copyWith(
           loading: false, success: true, recentlyProducts: recentlyProducts));
     } catch (e) {
@@ -157,7 +158,8 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
     try {
       UserModel user = await getUser();
       await _repository.dislike(productId, user.data!.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
       List<String> likeIds = await _preference.getLikes() ?? [];
       List<String> listJson =

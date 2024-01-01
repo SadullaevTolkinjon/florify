@@ -1,4 +1,5 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
+import 'package:florify/constants/navigator/navigator_const.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/presentation/favorite/components/store_container.dart';
 import 'package:florify/presentation/home/cubit/home_cubit.dart';
@@ -41,7 +42,9 @@ class HomeStoresProduct extends StatelessWidget {
                 (context, index) => StoreContainer(
                   store: state.stores[index],
                   ontap: () {
-                    
+                    Navigator.pushNamed(context, NavigatorConst.shopDetails,
+                        arguments: state.stores[index].id,
+                        );
                   },
                 ),
                 childCount: state.stores.length,

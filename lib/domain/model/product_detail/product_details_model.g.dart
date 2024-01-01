@@ -30,12 +30,13 @@ _$_ProductDetailModel _$$_ProductDetailModelFromJson(
           : Salesman.fromJson(json['salesman'] as Map<String, dynamic>),
       category: json['category'] == null
           ? null
-          : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
-      image: (json['image'] as List<dynamic>?)
+          : ProductDetailCategory.fromJson(
+              json['category'] as Map<String, dynamic>),
+      images: (json['images'] as List<dynamic>?)
           ?.map((e) => ProductImage.fromJson(e as Map<String, dynamic>))
           .toList(),
       like: json['like'] as List<dynamic>?,
-      soldProduct: json['soldProduct'] as List<dynamic>?,
+      comments: json['comments'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$$_ProductDetailModelToJson(
@@ -54,9 +55,9 @@ Map<String, dynamic> _$$_ProductDetailModelToJson(
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'salesman': instance.salesman,
       'category': instance.category,
-      'image': instance.image,
+      'images': instance.images,
       'like': instance.like,
-      'soldProduct': instance.soldProduct,
+      'comments': instance.comments,
     };
 
 _$_Salesman _$$_SalesmanFromJson(Map<String, dynamic> json) => _$_Salesman(
@@ -90,4 +91,34 @@ Map<String, dynamic> _$$_SalesmanToJson(_$_Salesman instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'products': instance.products,
+    };
+
+_$_ProductDetailCategory _$$_ProductDetailCategoryFromJson(
+        Map<String, dynamic> json) =>
+    _$_ProductDetailCategory(
+      id: json['id'] as String?,
+      uz: json['uz'] as String?,
+      ru: json['ru'] as String?,
+      uzDescription: json['uzDescription'],
+      ruDescription: json['ruDescription'],
+      image: json['image'] as String?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$$_ProductDetailCategoryToJson(
+        _$_ProductDetailCategory instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'uz': instance.uz,
+      'ru': instance.ru,
+      'uzDescription': instance.uzDescription,
+      'ruDescription': instance.ruDescription,
+      'image': instance.image,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
     };

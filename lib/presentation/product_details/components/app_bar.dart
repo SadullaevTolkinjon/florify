@@ -42,22 +42,22 @@ class ProductDetailsAppbar extends StatelessWidget {
                 width: double.infinity,
                 child: Stack(
                   children: [
-                    PageView.builder(
-                      itemBuilder: (context, index) => SizedBox(
-                        height: double.infinity,
-                        width: double.infinity,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl:
-                              "${ApiConstants.baseUrl}${product.image![index].image}",
-                        ),
-                      ),
-                      itemCount: product.image!.length,
-                      onPageChanged: (index) {
-                        BlocProvider.of<DetailsCubit>(context)
-                            .changeImages(index);
-                      },
-                    ),
+                    // PageView.builder(
+                    //   itemBuilder: (context, index) => SizedBox(
+                    //     height: double.infinity,
+                    //     width: double.infinity,
+                    //     child: CachedNetworkImage(
+                    //       fit: BoxFit.cover,
+                    //       imageUrl:
+                    //           "${ApiConstants.baseUrl}${product.images![index].image}",
+                    //     ),
+                    //   ),
+                    //   itemCount: product.images!.length,
+                    //   onPageChanged: (index) {
+                    //     BlocProvider.of<DetailsCubit>(context)
+                    //         .changeImages(index);
+                    //   },
+                    // ),
                     SafeArea(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -135,7 +135,7 @@ class ProductDetailsAppbar extends StatelessWidget {
                           ),
                         ),
                         child: DotsIndicator(
-                          dotsCount: product.image!.length,
+                          dotsCount: product.images!.length,
                           position: state.currentIndex,
                           decorator: DotsDecorator(
                             activeColor: ColorConstants.black,

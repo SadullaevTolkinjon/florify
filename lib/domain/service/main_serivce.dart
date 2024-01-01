@@ -33,7 +33,9 @@ class MainService {
   getProductDetails(int id) async {
     final response = await _mainApi.fetchProductDetails(id);
     var data = jsonDecode(response.body);
-    return ProductDetailModel.fromJson(data);
+    return ProductDetailModel.fromJson(data["data"][
+      ""
+    ]);
   }
 
   renderToProductJson(List<String> listJson) {
@@ -67,8 +69,8 @@ class MainService {
         data["data"]["salesmans"].map((e) => Salesman.fromJson(e)));
   }
 
-  fetchRecentlyProducts() async {
-    final response = await _mainApi.fetchRecentlyProducts();
+  fetchRecentlyProducts(String clientID) async {
+    final response = await _mainApi.fetchRecentlyProducts(clientID);
 
     Iterable list = jsonDecode(response.body);
     return List<RecentlyProductModel>.from(

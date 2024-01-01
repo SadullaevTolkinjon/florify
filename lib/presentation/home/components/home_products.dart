@@ -10,13 +10,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeProducts extends StatefulWidget {
-  const HomeProducts({
-    super.key,
-    required this.likes,
-    required this.categoryId,
-  });
+  const HomeProducts(
+      {super.key,
+      required this.likes,
+      required this.categoryId,
+      required this.categoryName});
   final List<String> likes;
   final String categoryId;
+  final String categoryName;
   @override
   State<HomeProducts> createState() => _HomeProductsState();
 }
@@ -37,11 +38,13 @@ class _HomeProductsState extends State<HomeProducts> {
     return BlocListener<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is HomeBuildableState) {
-          if (state.nextPageKey == null) {
-            _pagingController.error = state.pagingError;
-          } else {
-            _pagingController.nextPageKey = state.nextPageKey;
+          if (state.nextPageKey != null) {
             _pagingController.appendPage(state.products!, state.nextPageKey);
+          } else if (state.pagingError != null) {
+            _pagingController.error = state.pagingError;
+          } else if (state.nextPageKey == null) {
+            _pagingController.nextPageKey = state.nextPageKey;
+            _pagingController.appendLastPage(state.products!);
           }
         }
       },
@@ -51,12 +54,16 @@ class _HomeProductsState extends State<HomeProducts> {
           crossAxisCount: 2,
           mainAxisExtent: AppSizes.getH(context) * 0.31,
           crossAxisSpacing: AppSizes.geth(context, 0.01),
-          mainAxisSpacing: AppSizes.geth(context, 0.01,),
-         // childAspectRatio: 0.7
+          mainAxisSpacing: AppSizes.geth(context, 0.01),
+          // childAspectRatio: 0.7
         ),
         builderDelegate: PagedChildBuilderDelegate<Product?>(
           firstPageProgressIndicatorBuilder: (context) => const LoaderWidget(),
           newPageProgressIndicatorBuilder: (context) => const LoaderWidget(),
+          noItemsFoundIndicatorBuilder: (context) => EmptyWidget2(
+            ontap: () {},
+            title: widget.categoryName,
+          ),
           itemBuilder: (context, item, index) => ProductContainer(
             ontap: () async {
               await Navigator.pushNamed(

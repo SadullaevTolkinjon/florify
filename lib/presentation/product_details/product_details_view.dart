@@ -71,10 +71,10 @@ class ProductDetailsView extends StatelessWidget {
                 flex: 9,
                 child: CustomScrollView(
                   slivers: [
-                    ProductDetailsAppbar(
-                      product: state.product!,
-                      likeIds: state.likeIds,
-                    ),
+                    // ProductDetailsAppbar(
+                    //   product: state.product!,
+                    //   likeIds: state.likeIds,
+                    // ),
                     ProductDetailsWidget(
                       product: state.product!,
                     ),
@@ -86,7 +86,9 @@ class ProductDetailsView extends StatelessWidget {
                       product: state.product!,
                     ),
                     const RelatedProducts2(title: "O'xshash mahsulotlar"),
-                    const RelatedProducts(title: "Yaqinda ko'rilganlar"),
+                    context.read<DetailsCubit>().getUser() != null
+                        ? const RelatedProducts(title: "Yaqinda ko'rilganlar")
+                        : const SliverToBoxAdapter(),
                   ],
                 ),
               ),

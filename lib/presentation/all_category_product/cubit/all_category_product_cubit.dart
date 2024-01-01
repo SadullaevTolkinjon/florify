@@ -87,7 +87,7 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
 
     try {
       final UserModel user = await getUser();
-    
+
       await _repository.pressLike(productId, user.data!.client!.id!);
 
       List<FavoriteModel> likes =
@@ -120,19 +120,22 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
     try {
       final CategoryPaginationModel data =
           await _repository.fetchCategoryProducts(category_id, pageKey);
-      List<Product?>? products = data.data!.records!;
-      int? nextPageKey =
-          data.data!.pagination!.total_count! > pageKey ? pageKey + 1 : null;
+      List<String> likes = await _preference.getLikes();
+
+      int? nextPageKey = data.data!.records!.isNotEmpty ? pageKey + 1 : null;
 
       build(
         (buildable) => buildable.copyWith(
-          nextPageKey: nextPageKey!,
-          products: [...buildable.products ?? [], ...products],
-          pagingError: null,
-        ),
+            nextPageKey: nextPageKey,
+            products: data.data!.records ?? [],
+            pagingError: null,
+            likeIds: likes),
       );
     } catch (e) {
-      build((buildable) => buildable.copyWith(pagingError: e));
+      build((buildable) => buildable.copyWith(
+            pagingError: e,
+            nextPageKey: null,
+          ));
     }
   }
 }

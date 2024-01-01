@@ -140,23 +140,25 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
     }
   }
 
-  Future fetch(int pageKey, String category_id) async {
+  final int pageSize = 10;
+  Future fetch(int pageKey, String categoryId) async {
     try {
       final CategoryPaginationModel data =
-          await _repository.fetchCategoryProducts(category_id, pageKey);
-      List<Product?>? products = data.data!.records!;
-      int? nextPageKey =
-          data.data!.pagination!.total_count!>pageKey ? pageKey + 1 : null;
-          print("nexpage--------------${nextPageKey}");
+          await _repository.fetchCategoryProducts(categoryId, pageKey);
+    
+
+      int? nextPageKey = data.data!.records!.isNotEmpty ? pageKey + 1 : null;
+      print("---------------------------??????????");
+      print("nextpage key ${nextPageKey}");
       build(
         (buildable) => buildable.copyWith(
-           nextPageKey: nextPageKey!,
-            products: [...buildable.products ?? [], ...products],
-            pagingError: null,
-           ),
+          nextPageKey: nextPageKey,
+          products: data.data!.records??[],
+          pagingError: null,
+        ),
       );
     } catch (e) {
-      build((buildable) => buildable.copyWith(pagingError: e));
+      build((buildable) => buildable.copyWith(pagingError: e,nextPageKey: null));
     }
   }
 }

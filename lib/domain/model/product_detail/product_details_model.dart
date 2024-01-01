@@ -20,10 +20,10 @@ class ProductDetailModel with _$ProductDetailModel {
     DateTime? createdAt,
     DateTime? updatedAt,
     Salesman? salesman,
-    CategoryModel? category,
-    List<ProductImage>? image,
+    ProductDetailCategory? category,
+    List<ProductImage>? images,
     List<dynamic>? like,
-    List<dynamic>? soldProduct,
+    List<dynamic>? comments,
   }) = _ProductDetailModel;
 
   factory ProductDetailModel.fromJson(Map<String, Object?> json) =>
@@ -47,4 +47,21 @@ class Salesman with _$Salesman {
 
   factory Salesman.fromJson(Map<String, Object?> json) =>
       _$SalesmanFromJson(json);
+}
+
+@freezed
+class ProductDetailCategory with _$ProductDetailCategory {
+  const factory ProductDetailCategory({
+    String? id,
+    String? uz,
+    String? ru,
+    dynamic uzDescription,
+    dynamic ruDescription,
+    String? image,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) = _ProductDetailCategory;
+
+  factory ProductDetailCategory.fromJson(Map<String, Object?> json) =>
+      _$ProductDetailCategoryFromJson(json);
 }
