@@ -12,6 +12,8 @@ import 'package:florify/domain/model/search_pagination/search_pagination_model.d
 import 'package:florify/domain/model/user/user_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/main_api.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 @Injectable()
 class MainRepository {
@@ -120,11 +122,16 @@ class MainRepository {
     return response.data;
   }
 
+  writeComment(int producId, int rating, String text, String clientId) async {
+    final response =
+        await _mainApi.writeComment(producId, rating, text, clientId);
+    return response.body;
+  }
+
   fetchOrderHistory() async {
     final response = await _mainApi.fetchOrderHistory();
-
-    Map<String, dynamic> result = Map<String, dynamic>.from(response.data);
-    return OrderHistoryModel.fromJson(result);
+    Iterable list = jsonDecode(response.body);
+    return List<OrderProduct>.from(list.map((e) => OrderProduct.fromJson(e)));
   }
 
   fetchShopDetails(String salesmanId) async {
@@ -140,4 +147,40 @@ class MainRepository {
 
     return SearchPaginationModel.fromJson(result);
   }
+   void shareProduct(String shareLink) {
+    Share.share(
+      'Check out this product: $shareLink',
+    );
+  }
+    launchInstagram() async {
+   var url = 'https://www.instagram.com/florify.uz/';
+
+if (await canLaunchUrl(Uri.parse(url))) {
+  await launchUrl(
+    Uri.parse(url),
+  
+  );
+} else {
+  throw 'There was a problem to open the url: $url';
+}
+  }
+
+   launchTelegram() async {
+    const url = 'https://t.me/'; // Replace with the Telegram URL or username
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await canLaunchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+    Future<void> makePhoneCall(String phoneNumber) async {
+    try {
+      final Uri launchUri = Uri(
+        scheme: 'tel',
+        path: phoneNumber,
+      );
+      await launchUrl(launchUri);
+    } catch (e) {}
+  }
+
 }

@@ -4,6 +4,7 @@ import 'package:florify/presentation/order_history/components/order_history_prod
 import 'package:florify/presentation/order_history/cubit/order_history_cubit.dart';
 import 'package:florify/presentation/product_details/components/desc_title_btn.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
+import 'package:florify/presentation/widgets/empty_widget.dart';
 import 'package:florify/presentation/widgets/error_widget.dart';
 import 'package:florify/presentation/widgets/loader_widget.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView>
             buildable.failed,
             buildable.error,
             buildable.orders,
+            buildable.active_orders
           ],
           builder: (context, state) {
             if (state.loading) {
@@ -75,6 +77,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView>
                     child: TabBar(
                       controller: _tabController,
                       indicatorColor: const Color(0xFF2473F2),
+                      labelColor: ColorConstants.black1,
                       labelStyle: TextStyle(
                         fontSize: AppSizes.getH(context) * 0.020,
                         color: ColorConstants.blue100,
@@ -88,7 +91,7 @@ class _OrderHistoryViewState extends State<OrderHistoryView>
                       tabs: const <Widget>[
                         Tab(
                           text: 'Faol buyurtmalar',
-                          
+                          // child: Text("data"),
                         ),
                         Tab(text: 'Hammasi'),
                       ],
@@ -99,32 +102,42 @@ class _OrderHistoryViewState extends State<OrderHistoryView>
                     child: TabBarView(
                       controller: _tabController,
                       children: [
-                        Wrap(
-                          runSpacing: AppSizes.geth(context, 0.01),
-                          spacing: AppSizes.geth(context, 0.01),
-                          children: [
-                            ...List.generate(
-                              state.orders!.data!.orders!.length,
-                              (index) => OrderHistoryProduct(
-                                isActive: false,
-                                order: state.orders!.data!.orders![index],
+                        state.active_orders.isNotEmpty
+                            ? Wrap(
+                                runSpacing: AppSizes.geth(context, 0.01),
+                                spacing: AppSizes.geth(context, 0.01),
+                                children: [
+                                  ...List.generate(
+                                    state.orders.length,
+                                    (index) => OrderHistoryProduct(
+                                      isActive: false,
+                                      order: state.active_orders[index],
+                                    ),
+                                  )
+                                ],
+                              )
+                            : EmptyWidget2(
+                                ontap: () {},
+                                title: "Faol buyurtmalar",
                               ),
-                            )
-                          ],
-                        ),
-                        Wrap(
-                          runSpacing: AppSizes.geth(context, 0.01),
-                          spacing: AppSizes.geth(context, 0.01),
-                          children: [
-                            ...List.generate(
-                              state.orders!.data!.orders!.length,
-                              (index) => OrderHistoryProduct(
-                                isActive: true,
-                                order: state.orders!.data!.orders![index],
+                        state.orders.isNotEmpty
+                            ? Wrap(
+                                runSpacing: AppSizes.geth(context, 0.01),
+                                spacing: AppSizes.geth(context, 0.01),
+                                children: [
+                                  ...List.generate(
+                                    state.orders.length,
+                                    (index) => OrderHistoryProduct(
+                                      isActive: true,
+                                      order: state.orders[index],
+                                    ),
+                                  )
+                                ],
+                              )
+                            : EmptyWidget2(
+                                ontap: () {},
+                                title: "Barcha buyurtmalar",
                               ),
-                            )
-                          ],
-                        ),
                       ],
                     ),
                   )

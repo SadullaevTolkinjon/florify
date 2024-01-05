@@ -21,7 +21,8 @@ class HomeBuildableState extends HomeState with _$HomeBuildableState {
     @Default([]) List<FavoriteModel> likes,
     @Default([]) List<Product?>? products,
     @Default("") String? categoryId,
-     int? nextPageKey,
-     dynamic pagingError,
+    int? nextPageKey,
+    dynamic pagingError,
+    UserModel? user,
   }) = _HomeBuildableState;
 }

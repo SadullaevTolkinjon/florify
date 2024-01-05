@@ -1,7 +1,9 @@
 import 'package:florify/constants/behaviour/app_behaviour.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/presentation/card/cubit/card_cubit.dart';
+import 'package:florify/presentation/example/example.dart';
 import 'package:florify/presentation/favorite/cubit/favorite_cubit.dart';
+import 'package:florify/presentation/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

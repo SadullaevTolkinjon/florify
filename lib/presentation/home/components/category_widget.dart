@@ -10,6 +10,7 @@ class CategoryWidget extends StatelessWidget {
   final List<CategoryModel> categories;
   @override
   Widget build(BuildContext context) {
+   
     return SliverPadding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       sliver: SliverToBoxAdapter(

@@ -27,6 +27,7 @@ class _FavoriteViewState extends State<FavoriteView> {
   @override
   void initState() {
   if(context.read<FavoriteCubit>().getUser()!=null){
+  
      context.read<FavoriteCubit>().fetchLikes();
   }
     super.initState();

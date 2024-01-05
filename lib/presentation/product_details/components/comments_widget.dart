@@ -1,13 +1,14 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
+import 'package:florify/domain/model/my_comments/my_comments_model.dart';
 import 'package:florify/presentation/widgets/elevated_btn.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CommentsWidget extends StatelessWidget {
-  const CommentsWidget({super.key});
-
+  const CommentsWidget({super.key, required this.comments});
+  final List<Comment> comments;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,7 +16,7 @@ class CommentsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ...List.generate(
-          4,
+          comments.length,
           (index) => Padding(
             padding: EdgeInsets.only(bottom: AppSizes.geth(context, 0.02)),
             child: SizedBox(
@@ -91,9 +92,9 @@ class CommentsWidget extends StatelessWidget {
                   MyPadding(
                     height: AppSizes.geth(context, 0.01),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Text(
-                      "Огромная благодарность за подаренный праздник души!!!Все прошло исключительно на высшем уровне,расстояние не помеха порадовать родную душу!!!!",
+                      comments[index].text ?? "",
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),

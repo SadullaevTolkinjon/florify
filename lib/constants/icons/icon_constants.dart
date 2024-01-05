@@ -39,4 +39,5 @@ class IconConstants {
   static const String no_check = "assets/icons/no_check.svg";
    static const String card_ = "assets/icons/card_.svg";
      static const String tabriknoma = "assets/icons/tabriknoma.svg";
+      static const String share_store = "assets/icons/share_store.svg";
 }

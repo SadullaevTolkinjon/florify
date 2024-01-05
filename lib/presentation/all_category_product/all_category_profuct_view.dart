@@ -43,22 +43,25 @@ class _AllCategoryProductViewState extends State<AllCategoryProductView> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        leading: GestureDetector(
+          child: const Icon(Icons.arrow_back),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(widget.categoryName),
       ),
       body: BlocListener<AllCategoryProductCubit, AllCategoryProductState>(
         listener: (context, state) {
           if (state is AllCategoryProductBuildable) {
-         
             if (state.nextPageKey != null) {
-              print("successssss<><><><><><><><><><><<>><");
               _pagingController.appendPage(state.products!, state.nextPageKey);
             } else if (state.pagingError != null) {
               _pagingController.error = state.pagingError;
             } else if (state.nextPageKey == null) {
-             
               _pagingController.nextPageKey = state.nextPageKey;
-               _pagingController.appendLastPage(state.products!);
+              _pagingController.appendLastPage(state.products!);
             }
           }
         },
@@ -70,72 +73,70 @@ class _AllCategoryProductViewState extends State<AllCategoryProductView> {
           ],
           builder: (context, state) {
             return Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.geth(context, 0.02)),
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: MyPadding(height: AppSizes.geth(context, 0.02)),
-                  ),
-                  PagedSliverGrid<int, Product?>(
-                    pagingController: _pagingController,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: AppSizes.getH(context) * 0.31,
-                      crossAxisSpacing: AppSizes.geth(context, 0.01),
-                      mainAxisSpacing: AppSizes.geth(
-                        context,
-                        0.01,
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.geth(context, 0.014)),
+                child: Column(children: [
+                  MyPadding(height: AppSizes.geth(context, 0.02)),
+
+                  Expanded(
+                    child: PagedGridView<int, Product?>(
+                      pagingController: _pagingController,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisExtent: AppSizes.getH(context) * 0.31,
+                        crossAxisSpacing: AppSizes.geth(context, 0.01),
+                        mainAxisSpacing: AppSizes.geth(context, 0.01),
+                        // childAspectRatio: 0.7
                       ),
-                      // childAspectRatio: 0.7
-                    ),
-                    builderDelegate: PagedChildBuilderDelegate<Product?>(
-                      firstPageProgressIndicatorBuilder: (context) =>
-                          const LoaderWidget(),
-                      newPageProgressIndicatorBuilder: (context) =>
-                          const LoaderWidget(),
-                      noItemsFoundIndicatorBuilder: (context) => EmptyWidget2(
-                        ontap: () {},
-                        title: state.data!.uz ?? "",
-                      ),
-                      itemBuilder: (context, item, index) => ProductContainer(
-                        ontap: () async {
-                          await Navigator.pushNamed(
-                            context,
-                            NavigatorConst.productDetails,
-                            arguments: item.id,
-                          ).then(
-                            (value) {
-                              BlocProvider.of<HomeCubit>(context).checkLikes();
-                            },
-                          );
-                        },
-                        product: item!,
-                        likeBtn: () {
-                          if (BlocProvider.of<AllCategoryProductCubit>(context)
-                                  .getUser() !=
-                              null) {
-                            if (state.likeIds.contains(
-                              item.id.toString(),
-                            )) {
-                              context.read<AllCategoryProductCubit>().disLike(
-                                    item.id!,
-                                  );
-                            } else {
-                              context
-                                  .read<AllCategoryProductCubit>()
-                                  .pressLike(item.id!);
+                      builderDelegate: PagedChildBuilderDelegate<Product?>(
+                        firstPageProgressIndicatorBuilder: (context) =>
+                            const LoaderWidget(),
+                        newPageProgressIndicatorBuilder: (context) =>
+                            const LoaderWidget(),
+                        noItemsFoundIndicatorBuilder: (context) => EmptyWidget2(
+                            ontap: () {}, title: state.data!.uz ?? ""),
+                        itemBuilder: (context, item, index) => ProductContainer(
+                          ontap: () async {
+                            await Navigator.pushNamed(
+                              context,
+                              NavigatorConst.productDetails,
+                              arguments: item.id,
+                            ).then(
+                              (value) {
+                                BlocProvider.of<AllCategoryProductCubit>(
+                                        context)
+                                    .checkLikes();
+                              },
+                            );
+                          },
+                          product: item!,
+                          likeBtn: () {
+                            if (BlocProvider.of<AllCategoryProductCubit>(
+                                        context)
+                                    .getUser() !=
+                                null) {
+                              if (state.likeIds.contains(
+                                item.id.toString(),
+                              )) {
+                                context.read<AllCategoryProductCubit>().disLike(
+                                      item.id!,
+                                    );
+                              } else {
+                                context
+                                    .read<AllCategoryProductCubit>()
+                                    .pressLike(item.id!);
+                              }
                             }
-                          }
-                        },
-                        isLike: state.likeIds.contains(
-                          item.id.toString(),
-                        )
-                            ? true
-                            : false,
+                          },
+                          isLike: state.likeIds.contains(
+                            item.id.toString(),
+                          )
+                              ? true
+                              : false,
+                        ),
                       ),
                     ),
-                  ),
+                  )
                   // state.data!.products!.isNotEmpty
                   //     ? SliverGrid(
                   //         delegate: SliverChildBuilderDelegate(
@@ -192,13 +193,26 @@ class _AllCategoryProductViewState extends State<AllCategoryProductView> {
                   //           ontap: () {},
                   //           title: state.data!.uz ?? "",
                   //         ),
-                  //       )
-                ],
-              ),
-            );
+                  //       )],)
+
+                  // CustomScrollView(
+                  //   slivers: [
+                  //     SliverToBoxAdapter(
+                  //       child:,
+                  //     ),
+
+                  //   ],
+                  // ),
+                ]));
           },
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
   }
 }

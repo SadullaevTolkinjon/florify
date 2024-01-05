@@ -6,6 +6,7 @@ import 'package:florify/constants/icons/icon_constants.dart';
 import 'package:florify/data/local/permanent_db.dart';
 import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/product_detail/product_details_model.dart';
+import 'package:florify/domain/repository/main_repository.dart';
 import 'package:florify/presentation/product_details/cubit/details_cubit.dart';
 import 'package:florify/presentation/widgets/buildable.dart';
 import 'package:florify/presentation/widgets/custom_icon_btn.dart';
@@ -20,13 +21,13 @@ import '../../../constants/color/color_const.dart';
 class ProductDetailsAppbar extends StatelessWidget {
   const ProductDetailsAppbar(
       {super.key, required this.product, required this.likeIds});
-  final ProductDetailModel product;
+  final ProductDetailsData product;
   final List<String> likeIds;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        var cubit =locator<DetailsCubit>();
+        var cubit = locator<DetailsCubit>();
         cubit.checkLikes();
         return cubit;
       },
@@ -38,26 +39,26 @@ class ProductDetailsAppbar extends StatelessWidget {
           builder: (context, state) {
             return SliverToBoxAdapter(
               child: SizedBox(
-                height: AppSizes.getH(context) * 0.40,
+                height: AppSizes.getH(context) * 0.35,
                 width: double.infinity,
                 child: Stack(
                   children: [
-                    // PageView.builder(
-                    //   itemBuilder: (context, index) => SizedBox(
-                    //     height: double.infinity,
-                    //     width: double.infinity,
-                    //     child: CachedNetworkImage(
-                    //       fit: BoxFit.cover,
-                    //       imageUrl:
-                    //           "${ApiConstants.baseUrl}${product.images![index].image}",
-                    //     ),
-                    //   ),
-                    //   itemCount: product.images!.length,
-                    //   onPageChanged: (index) {
-                    //     BlocProvider.of<DetailsCubit>(context)
-                    //         .changeImages(index);
-                    //   },
-                    // ),
+                    PageView.builder(
+                      itemBuilder: (context, index) => SizedBox(
+                        height: double.infinity,
+                        width: double.infinity,
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl:
+                              "${ApiConstants.baseUrl}${product.product!.images![index].image}",
+                        ),
+                      ),
+                      itemCount: product.product!.images!.length,
+                      onPageChanged: (index) {
+                        BlocProvider.of<DetailsCubit>(context)
+                            .changeImages(index);
+                      },
+                    ),
                     SafeArea(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
@@ -83,18 +84,18 @@ class ProductDetailsAppbar extends StatelessWidget {
                                             .read<DetailsCubit>()
                                             .getUser() !=
                                         null) {
-                                      state.likeIds
-                                              .contains(product.id.toString())
+                                      state.likeIds.contains(
+                                              product.product!.id.toString())
                                           ? context
                                               .read<DetailsCubit>()
-                                              .disLike(product.id!)
+                                              .disLike(product.product!.id!)
                                           : context
                                               .read<DetailsCubit>()
-                                              .pressLike(product.id!);
+                                              .pressLike(product.product!.id!);
                                     }
                                   },
-                                  icon: state.likeIds
-                                          .contains(product.id.toString())
+                                  icon: state.likeIds.contains(
+                                          product.product!.id.toString())
                                       ? Icon(
                                           Icons.favorite,
                                           color: ColorConstants.kRed,
@@ -108,8 +109,7 @@ class ProductDetailsAppbar extends StatelessWidget {
                                 ),
                                 CustomIconBtn(
                                   ontap: () {
-                                    BlocProvider.of<DetailsCubit>(context)
-                                        .share("Something");
+                                  locator<MainRepository>().shareProduct(product.share_link!);
                                   },
                                   icon: SvgPicture.asset(
                                     IconConstants.share,
@@ -135,7 +135,7 @@ class ProductDetailsAppbar extends StatelessWidget {
                           ),
                         ),
                         child: DotsIndicator(
-                          dotsCount: product.images!.length,
+                          dotsCount: product.product!.images!.length,
                           position: state.currentIndex,
                           decorator: DotsDecorator(
                             activeColor: ColorConstants.black,

@@ -14,7 +14,7 @@ import '../../widgets/elevated_btn.dart';
 
 class HomeFloatingBtn extends StatelessWidget {
   const HomeFloatingBtn({super.key, required this.product});
-  final ProductDetailModel product;
+  final ProductDetailsData product;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -49,7 +49,7 @@ class HomeFloatingBtn extends StatelessWidget {
                       height: AppSizes.getH(context) * 0.004,
                     ),
                     Text(
-                      "${product.price??0} so'm",
+                      "${  product.product!.price??0} so'm",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -78,18 +78,18 @@ class HomeFloatingBtn extends StatelessWidget {
                     // List<ProductImage>? image,
                     BlocProvider.of<DetailsCubit>(context).saveToCard(
                       Product(
-                          id: product.id,
-                          name: product.name,
-                          description: product.description,
-                          price: product.price,
-                          quantity: product.quantity,
-                          color: product.color,
-                          date: product.date,
-                          salesman_id: product.salesman_id,
-                          category_id: product.category_id,
-                          created_at: product.createdAt,
-                          updated_at: product.updatedAt,
-                          images: product.images),
+                          id:   product.product!.id,
+                          name:   product.product!.name,
+                          description:   product.product!.description,
+                          price:   product.product!.price,
+                          quantity:   product.product!.quantity,
+                          color:   product.product!.color,
+                          date:   product.product!.date,
+                          salesman_id:   product.product!.salesman_id,
+                          category_id:   product.product!.category_id,
+                          created_at:   product.product!.createdAt,
+                          updated_at:   product.product!.updatedAt,
+                          images:   product.product!.images),
                     );
                   },
                   height: double.infinity,

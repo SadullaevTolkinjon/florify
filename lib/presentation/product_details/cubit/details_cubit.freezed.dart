@@ -24,7 +24,8 @@ mixin _$DetailsBuildable {
   bool get isUser => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
   int get selectedTab => throw _privateConstructorUsedError;
-  ProductDetailModel? get product => throw _privateConstructorUsedError;
+  ProductDetailsData? get productDetailsData =>
+      throw _privateConstructorUsedError;
   bool get savedToCard => throw _privateConstructorUsedError;
   bool get product_is_exist_in_card => throw _privateConstructorUsedError;
   List<RecentlyProductModel> get recentlyProducts =>
@@ -52,14 +53,14 @@ abstract class $DetailsBuildableCopyWith<$Res> {
       bool isUser,
       int currentIndex,
       int selectedTab,
-      ProductDetailModel? product,
+      ProductDetailsData? productDetailsData,
       bool savedToCard,
       bool product_is_exist_in_card,
       List<RecentlyProductModel> recentlyProducts,
       List<String> likeIds,
       List<FavoriteModel> likes});
 
-  $ProductDetailModelCopyWith<$Res>? get product;
+  $ProductDetailsDataCopyWith<$Res>? get productDetailsData;
 }
 
 /// @nodoc
@@ -83,7 +84,7 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
     Object? isUser = null,
     Object? currentIndex = null,
     Object? selectedTab = null,
-    Object? product = freezed,
+    Object? productDetailsData = freezed,
     Object? savedToCard = null,
     Object? product_is_exist_in_card = null,
     Object? recentlyProducts = null,
@@ -123,10 +124,10 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as int,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductDetailModel?,
+      productDetailsData: freezed == productDetailsData
+          ? _value.productDetailsData
+          : productDetailsData // ignore: cast_nullable_to_non_nullable
+              as ProductDetailsData?,
       savedToCard: null == savedToCard
           ? _value.savedToCard
           : savedToCard // ignore: cast_nullable_to_non_nullable
@@ -152,13 +153,14 @@ class _$DetailsBuildableCopyWithImpl<$Res, $Val extends DetailsBuildable>
 
   @override
   @pragma('vm:prefer-inline')
-  $ProductDetailModelCopyWith<$Res>? get product {
-    if (_value.product == null) {
+  $ProductDetailsDataCopyWith<$Res>? get productDetailsData {
+    if (_value.productDetailsData == null) {
       return null;
     }
 
-    return $ProductDetailModelCopyWith<$Res>(_value.product!, (value) {
-      return _then(_value.copyWith(product: value) as $Val);
+    return $ProductDetailsDataCopyWith<$Res>(_value.productDetailsData!,
+        (value) {
+      return _then(_value.copyWith(productDetailsData: value) as $Val);
     });
   }
 }
@@ -180,7 +182,7 @@ abstract class _$$_DetailsBuildableCopyWith<$Res>
       bool isUser,
       int currentIndex,
       int selectedTab,
-      ProductDetailModel? product,
+      ProductDetailsData? productDetailsData,
       bool savedToCard,
       bool product_is_exist_in_card,
       List<RecentlyProductModel> recentlyProducts,
@@ -188,7 +190,7 @@ abstract class _$$_DetailsBuildableCopyWith<$Res>
       List<FavoriteModel> likes});
 
   @override
-  $ProductDetailModelCopyWith<$Res>? get product;
+  $ProductDetailsDataCopyWith<$Res>? get productDetailsData;
 }
 
 /// @nodoc
@@ -210,7 +212,7 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
     Object? isUser = null,
     Object? currentIndex = null,
     Object? selectedTab = null,
-    Object? product = freezed,
+    Object? productDetailsData = freezed,
     Object? savedToCard = null,
     Object? product_is_exist_in_card = null,
     Object? recentlyProducts = null,
@@ -250,10 +252,10 @@ class __$$_DetailsBuildableCopyWithImpl<$Res>
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as int,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductDetailModel?,
+      productDetailsData: freezed == productDetailsData
+          ? _value.productDetailsData
+          : productDetailsData // ignore: cast_nullable_to_non_nullable
+              as ProductDetailsData?,
       savedToCard: null == savedToCard
           ? _value.savedToCard
           : savedToCard // ignore: cast_nullable_to_non_nullable
@@ -290,7 +292,7 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       this.isUser = false,
       this.currentIndex = 0,
       this.selectedTab = 0,
-      this.product,
+      this.productDetailsData,
       this.savedToCard = false,
       this.product_is_exist_in_card = false,
       final List<RecentlyProductModel> recentlyProducts = const [],
@@ -324,7 +326,7 @@ class _$_DetailsBuildable implements _DetailsBuildable {
   @JsonKey()
   final int selectedTab;
   @override
-  final ProductDetailModel? product;
+  final ProductDetailsData? productDetailsData;
   @override
   @JsonKey()
   final bool savedToCard;
@@ -361,7 +363,7 @@ class _$_DetailsBuildable implements _DetailsBuildable {
 
   @override
   String toString() {
-    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab, product: $product, savedToCard: $savedToCard, product_is_exist_in_card: $product_is_exist_in_card, recentlyProducts: $recentlyProducts, likeIds: $likeIds, likes: $likes)';
+    return 'DetailsBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isUser: $isUser, currentIndex: $currentIndex, selectedTab: $selectedTab, productDetailsData: $productDetailsData, savedToCard: $savedToCard, product_is_exist_in_card: $product_is_exist_in_card, recentlyProducts: $recentlyProducts, likeIds: $likeIds, likes: $likes)';
   }
 
   @override
@@ -380,7 +382,8 @@ class _$_DetailsBuildable implements _DetailsBuildable {
                 other.currentIndex == currentIndex) &&
             (identical(other.selectedTab, selectedTab) ||
                 other.selectedTab == selectedTab) &&
-            (identical(other.product, product) || other.product == product) &&
+            (identical(other.productDetailsData, productDetailsData) ||
+                other.productDetailsData == productDetailsData) &&
             (identical(other.savedToCard, savedToCard) ||
                 other.savedToCard == savedToCard) &&
             (identical(
@@ -403,7 +406,7 @@ class _$_DetailsBuildable implements _DetailsBuildable {
       isUser,
       currentIndex,
       selectedTab,
-      product,
+      productDetailsData,
       savedToCard,
       product_is_exist_in_card,
       const DeepCollectionEquality().hash(_recentlyProducts),
@@ -427,7 +430,7 @@ abstract class _DetailsBuildable implements DetailsBuildable {
       final bool isUser,
       final int currentIndex,
       final int selectedTab,
-      final ProductDetailModel? product,
+      final ProductDetailsData? productDetailsData,
       final bool savedToCard,
       final bool product_is_exist_in_card,
       final List<RecentlyProductModel> recentlyProducts,
@@ -451,7 +454,7 @@ abstract class _DetailsBuildable implements DetailsBuildable {
   @override
   int get selectedTab;
   @override
-  ProductDetailModel? get product;
+  ProductDetailsData? get productDetailsData;
   @override
   bool get savedToCard;
   @override

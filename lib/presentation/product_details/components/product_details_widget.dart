@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
   const ProductDetailsWidget({super.key, required this.product});
-  final ProductDetailModel product;
+  final ProductDetailsData product;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -19,7 +19,7 @@ class ProductDetailsWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              product.name ?? "",
+              product.product!.name ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -30,13 +30,8 @@ class ProductDetailsWidget extends StatelessWidget {
             MyPadding(
               height: AppSizes.getH(context) * 0.016,
             ),
-            Wrap( 
-              runSpacing: AppSizes.getW(context) * 0.008,
-              spacing: AppSizes.getW(context) * 0.008,
-              children: [
-                ...List.generate(
-                  5,
-                  (index) => Container(
+
+             Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(
@@ -50,24 +45,50 @@ class ProductDetailsWidget extends StatelessWidget {
                       horizontal: AppSizes.getH(context) * .012,
                     ),
                     child: Text(
-                      "Bayramona",
+                     product.product!.category!.uz??"",
                       style: TextStyle(
                         fontSize: AppSizes.getH(context) * 0.014,
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
+            // Wrap( 
+            //   runSpacing: AppSizes.getW(context) * 0.008,
+            //   spacing: AppSizes.getW(context) * 0.008,
+            //   children: [
+            //     ...List.generate(
+            //       5,
+            //       (index) => Container(
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.all(
+            //             Radius.circular(
+            //               AppSizes.getH(context) * 0.010,
+            //             ),
+            //           ),
+            //           color: ColorConstants.orange.withOpacity(0.2),
+            //         ),
+            //         padding: EdgeInsets.symmetric(
+            //           vertical: AppSizes.getH(context) * .004,
+            //           horizontal: AppSizes.getH(context) * .012,
+            //         ),
+            //         child: Text(
+            //           "Bayramona",
+            //           style: TextStyle(
+            //             fontSize: AppSizes.getH(context) * 0.014,
+            //           ),
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
             MyPadding(
               height: AppSizes.getH(context) * 0.024,
             ),
             Row(
               children: [
-                const InfoDetailsContainer(
+                 InfoDetailsContainer(
                   iconPath: IconConstants.star,
                   title: "Sharhlar",
-                  count: "30",
+                  count:"${ product.product!.comments!.length}",
                 ),
                 MyPadding(
                   width: AppSizes.getH(context) * 0.030,
@@ -75,7 +96,7 @@ class ProductDetailsWidget extends StatelessWidget {
                 InfoDetailsContainer(
                   iconPath: IconConstants.shopping,
                   title: "Mavjud",
-                  count: "${product.quantity ?? 0}",
+                  count: "${  product.product!.quantity ?? 0}",
                 ),
                 MyPadding(
                   width: AppSizes.getH(context) * 0.030,

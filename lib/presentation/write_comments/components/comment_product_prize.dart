@@ -2,15 +2,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
+import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/presentation/card/components/korzina_product_container.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 
 class CommentProductPrize extends StatelessWidget {
   const CommentProductPrize({
-    super.key,
+    super.key,required this.product
   });
-
+final Product product;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -39,8 +40,8 @@ class CommentProductPrize extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Gullar va shokolad",
-                maxLines: 1,
+               product.name??"",
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     fontSize: AppSizes.geth(context, 0.019),
@@ -50,15 +51,15 @@ class CommentProductPrize extends StatelessWidget {
               MyPadding(
                 height: AppSizes.geth(context, 0.016),
               ),
-              SizedBox(
-                width: AppSizes.geth(context, 0.14),
-                child: const ShopNameWidget(
-                  shopName: "Store: Fendi",
-                ),
-              ),
-              MyPadding(
-                height: AppSizes.geth(context, 0.016),
-              ),
+              // SizedBox(
+              //   width: AppSizes.geth(context, 0.14),
+              //   child: const ShopNameWidget(
+              //     shopName: "Store: Fendi",
+              //   ),
+              // ),
+              // MyPadding(
+              //   height: AppSizes.geth(context, 0.016),
+              // ),
             ],
           ),
         )

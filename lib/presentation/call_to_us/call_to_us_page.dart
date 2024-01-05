@@ -1,5 +1,7 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/icons/icon_constants.dart';
+import 'package:florify/di/injection.dart';
+import 'package:florify/domain/repository/main_repository.dart';
 import 'package:florify/presentation/call_to_us/components/social_btns.dart';
 import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,9 @@ class CallToUsPage extends StatelessWidget {
             Row(
               children: [
                 SocialBtn(
-                  ontap: () {},
+                  ontap: () {
+                    locator<MainRepository>().launchInstagram();
+                  },
                   title: 'Instagram',
                   iconPath: IconConstants.instagram,
                 ),
@@ -71,7 +75,10 @@ class CallToUsPage extends StatelessWidget {
                   width: AppSizes.geth(context, 0.03),
                 ),
                 SocialBtn(
-                  ontap: () {},
+                  ontap: () {
+
+                    locator<MainRepository>().makePhoneCall("+998 99 269 11 01");
+                  },
                   title: 'Aloqa uchun',
                   iconPath: IconConstants.whatsap,
                 )

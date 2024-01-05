@@ -33,9 +33,7 @@ class MainService {
   getProductDetails(int id) async {
     final response = await _mainApi.fetchProductDetails(id);
     var data = jsonDecode(response.body);
-    return ProductDetailModel.fromJson(data["data"][
-      ""
-    ]);
+    return ProductDetailsModel.fromJson(data);
   }
 
   renderToProductJson(List<String> listJson) {

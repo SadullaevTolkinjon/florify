@@ -239,4 +239,32 @@ class ServiceApiExample {
     print('Response: ${response.data}');
     return propagateErrors(response);
   }
+
+  Future uploadmultipleimage({required String path, var formData}) async {
+    final headers = await _headersMultipart;
+
+    Response response = await dio.post(
+      "$_host$_root/$path",
+      data: formData,
+      options: Options(
+        headers: headers,
+        followRedirects: false,
+        validateStatus: (status) => true,
+      ),
+      onSendProgress: (received, total) {
+        if (total != -1) {}
+      },
+    );
+
+    return propagateErrors(response);
+  }
+
+  Future<Map<String, String>> get _headersMultipart async {
+    final headers = <String, String>{
+      "Content-Type": "multipart/form-data",
+      HttpHeaders.acceptHeader: "application/json",
+    };
+
+    return headers;
+  }
 }

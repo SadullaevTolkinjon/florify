@@ -31,14 +31,18 @@ class SimilarProductsContainer extends StatelessWidget {
                   Radius.circular(8),
                 ),
               ),
-              child: CachedNetworkImage(
+              child:ClipRRect(
+                  borderRadius: const BorderRadius.all(
+                  Radius.circular(8),
+                ),
+                child:  CachedNetworkImage(
                 imageUrl: recentlyProduct.product!.images!.isNotEmpty
                     ?
                     //${ApiConstants.baseUrl}
                     "${ApiConstants.baseUrl}${recentlyProduct.product!.images!.first.image}"
                     : "",
                 fit: BoxFit.cover,
-              ),
+              ),)
             ),
             MyPadding(
               height: AppSizes.getH(context) * 0.016,

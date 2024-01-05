@@ -47,135 +47,139 @@ class ProductContainer extends StatelessWidget {
                 onTap: () {
                   ontap();
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0XFFD9D9D9).withOpacity(0.2),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        AppSizes.getH(context) * 0.01,
+                child: Hero(
+                  tag: product.id.toString(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0XFFD9D9D9).withOpacity(0.2),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          AppSizes.getH(context) * 0.01,
+                        ),
                       ),
                     ),
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppSizes.getW(context) * 0.014,
-                    vertical: AppSizes.getW(context) * 0.016,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: AppSizes.getH(context) * 0.16,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(
-                              AppSizes.getH(context) * 0.008,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizes.getW(context) * 0.014,
+                      vertical: AppSizes.getW(context) * 0.016,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: AppSizes.getH(context) * 0.16,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                AppSizes.getH(context) * 0.008,
+                              ),
+                            ),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: CachedNetworkImageProvider(
+                                "${ApiConstants.baseUrl}${product.images!.first.image}",
+                              ),
                             ),
                           ),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: CachedNetworkImageProvider(
-                              "${ApiConstants.baseUrl}${product.images!.first.image}",
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                right: 10,
+                                top: 10,
+                                child: LikeBtn(
+                                    ontap: () {
+                                      if (context
+                                              .read<FavoriteCubit>()
+                                              .getUser() !=
+                                          null) {
+                                        likeBtn();
+                                      }
+                                    },
+                                    isLike: isLike
+                                    // ? true
+                                    // : false
+
+                                    // state.likeIds!.contains(
+                                    //         product.id.toString())
+                                    // ? true
+                                    // : false
+
+                                    ),
+                              )
+                            ],
+                          ),
+                        ),
+                        MyPadding(
+                          height: AppSizes.getH(context) * 0.015,
+                        ),
+                        Text(
+                          product.name ?? "",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: AppSizes.getH(context) * 0.016,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        _buildPadding(context, 0.01),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: ColorConstants.yellow,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(5),
                             ),
                           ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              right: 10,
-                              top: 10,
-                              child: LikeBtn(
-                                  ontap: () {
-                                    if (context
-                                            .read<FavoriteCubit>()
-                                            .getUser() !=
-                                        null) {
-                                      likeBtn();
-                                    }
-                                  },
-                                  isLike: isLike
-                                  // ? true
-                                  // : false
-
-                                  // state.likeIds!.contains(
-                                  //         product.id.toString())
-                                  // ? true
-                                  // : false
-
-                                  ),
-                            )
-                          ],
-                        ),
-                      ),
-                      MyPadding(
-                        height: AppSizes.getH(context) * 0.015,
-                      ),
-                      Text(
-                        product.name ?? "",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontSize: AppSizes.getH(context) * 0.016,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      _buildPadding(context, 0.01),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: ColorConstants.yellow,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                IconConstants.card,
+                                height: AppSizes.geth(context, 0.020),
+                                width: AppSizes.geth(context, 0.030),
+                              ),
+                              const MyPadding(
+                                width: 8.0,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  "${product.quantity ?? 0} ta buyurtma",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: AppSizes.geth(context, 0.018),
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        child: Row(
+                        const Spacer(),
+                        Row(
                           children: [
-                            SvgPicture.asset(
-                              IconConstants.card,
-                              height: AppSizes.geth(context, 0.020),
-                              width: AppSizes.geth(context, 0.030),
+                            Expanded(
+                              child: Text(
+                                "${product.price ?? 0} so‘m",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: AppSizes.getH(context) * 0.018,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ),
                             const MyPadding(
                               width: 8.0,
                             ),
-                            Expanded(
-                              child: Text(
-                                "${product.quantity ?? 0} ta buyurtma",
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: TextStyle(
-                                    fontSize: AppSizes.geth(context, 0.018),fontWeight: FontWeight.w500),
-                              ),
+                            AddToCardBtn(
+                              ontap: () {},
                             )
                           ],
-                        ),
-                      ),
-                      const Spacer(),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "${product.price ?? 0} so‘m",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: AppSizes.getH(context) * 0.018,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          const MyPadding(
-                            width: 8.0,
-                          ),
-                          AddToCardBtn(
-                            ontap: () {},
-                          )
-                        ],
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );

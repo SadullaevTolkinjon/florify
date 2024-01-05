@@ -14,18 +14,399 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProductDetailModel _$ProductDetailModelFromJson(Map<String, dynamic> json) {
-  return _ProductDetailModel.fromJson(json);
+ProductDetailsModel _$ProductDetailsModelFromJson(Map<String, dynamic> json) {
+  return _ProductDetailsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProductDetailModel {
+mixin _$ProductDetailsModel {
+  int? get statusCode => throw _privateConstructorUsedError;
+  ProductDetailsData? get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductDetailsModelCopyWith<ProductDetailsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductDetailsModelCopyWith<$Res> {
+  factory $ProductDetailsModelCopyWith(
+          ProductDetailsModel value, $Res Function(ProductDetailsModel) then) =
+      _$ProductDetailsModelCopyWithImpl<$Res, ProductDetailsModel>;
+  @useResult
+  $Res call({int? statusCode, ProductDetailsData? data});
+
+  $ProductDetailsDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
+    implements $ProductDetailsModelCopyWith<$Res> {
+  _$ProductDetailsModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statusCode = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ProductDetailsData?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductDetailsDataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $ProductDetailsDataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_ProductDetailsModelCopyWith<$Res>
+    implements $ProductDetailsModelCopyWith<$Res> {
+  factory _$$_ProductDetailsModelCopyWith(_$_ProductDetailsModel value,
+          $Res Function(_$_ProductDetailsModel) then) =
+      __$$_ProductDetailsModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int? statusCode, ProductDetailsData? data});
+
+  @override
+  $ProductDetailsDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$$_ProductDetailsModelCopyWithImpl<$Res>
+    extends _$ProductDetailsModelCopyWithImpl<$Res, _$_ProductDetailsModel>
+    implements _$$_ProductDetailsModelCopyWith<$Res> {
+  __$$_ProductDetailsModelCopyWithImpl(_$_ProductDetailsModel _value,
+      $Res Function(_$_ProductDetailsModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statusCode = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_$_ProductDetailsModel(
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ProductDetailsData?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ProductDetailsModel implements _ProductDetailsModel {
+  const _$_ProductDetailsModel({this.statusCode, this.data});
+
+  factory _$_ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ProductDetailsModelFromJson(json);
+
+  @override
+  final int? statusCode;
+  @override
+  final ProductDetailsData? data;
+
+  @override
+  String toString() {
+    return 'ProductDetailsModel(statusCode: $statusCode, data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProductDetailsModel &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, statusCode, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProductDetailsModelCopyWith<_$_ProductDetailsModel> get copyWith =>
+      __$$_ProductDetailsModelCopyWithImpl<_$_ProductDetailsModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProductDetailsModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProductDetailsModel implements ProductDetailsModel {
+  const factory _ProductDetailsModel(
+      {final int? statusCode,
+      final ProductDetailsData? data}) = _$_ProductDetailsModel;
+
+  factory _ProductDetailsModel.fromJson(Map<String, dynamic> json) =
+      _$_ProductDetailsModel.fromJson;
+
+  @override
+  int? get statusCode;
+  @override
+  ProductDetailsData? get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProductDetailsModelCopyWith<_$_ProductDetailsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProductDetailsData _$ProductDetailsDataFromJson(Map<String, dynamic> json) {
+  return _ProductDetailsData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProductDetailsData {
+  DetailsProduct? get product => throw _privateConstructorUsedError;
+  String? get share_link => throw _privateConstructorUsedError;
+  List<Product>? get similar_products => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductDetailsDataCopyWith<ProductDetailsData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductDetailsDataCopyWith<$Res> {
+  factory $ProductDetailsDataCopyWith(
+          ProductDetailsData value, $Res Function(ProductDetailsData) then) =
+      _$ProductDetailsDataCopyWithImpl<$Res, ProductDetailsData>;
+  @useResult
+  $Res call(
+      {DetailsProduct? product,
+      String? share_link,
+      List<Product>? similar_products});
+
+  $DetailsProductCopyWith<$Res>? get product;
+}
+
+/// @nodoc
+class _$ProductDetailsDataCopyWithImpl<$Res, $Val extends ProductDetailsData>
+    implements $ProductDetailsDataCopyWith<$Res> {
+  _$ProductDetailsDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product = freezed,
+    Object? share_link = freezed,
+    Object? similar_products = freezed,
+  }) {
+    return _then(_value.copyWith(
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as DetailsProduct?,
+      share_link: freezed == share_link
+          ? _value.share_link
+          : share_link // ignore: cast_nullable_to_non_nullable
+              as String?,
+      similar_products: freezed == similar_products
+          ? _value.similar_products
+          : similar_products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DetailsProductCopyWith<$Res>? get product {
+    if (_value.product == null) {
+      return null;
+    }
+
+    return $DetailsProductCopyWith<$Res>(_value.product!, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_ProductDetailsDataCopyWith<$Res>
+    implements $ProductDetailsDataCopyWith<$Res> {
+  factory _$$_ProductDetailsDataCopyWith(_$_ProductDetailsData value,
+          $Res Function(_$_ProductDetailsData) then) =
+      __$$_ProductDetailsDataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {DetailsProduct? product,
+      String? share_link,
+      List<Product>? similar_products});
+
+  @override
+  $DetailsProductCopyWith<$Res>? get product;
+}
+
+/// @nodoc
+class __$$_ProductDetailsDataCopyWithImpl<$Res>
+    extends _$ProductDetailsDataCopyWithImpl<$Res, _$_ProductDetailsData>
+    implements _$$_ProductDetailsDataCopyWith<$Res> {
+  __$$_ProductDetailsDataCopyWithImpl(
+      _$_ProductDetailsData _value, $Res Function(_$_ProductDetailsData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product = freezed,
+    Object? share_link = freezed,
+    Object? similar_products = freezed,
+  }) {
+    return _then(_$_ProductDetailsData(
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as DetailsProduct?,
+      share_link: freezed == share_link
+          ? _value.share_link
+          : share_link // ignore: cast_nullable_to_non_nullable
+              as String?,
+      similar_products: freezed == similar_products
+          ? _value._similar_products
+          : similar_products // ignore: cast_nullable_to_non_nullable
+              as List<Product>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ProductDetailsData implements _ProductDetailsData {
+  const _$_ProductDetailsData(
+      {this.product, this.share_link, final List<Product>? similar_products})
+      : _similar_products = similar_products;
+
+  factory _$_ProductDetailsData.fromJson(Map<String, dynamic> json) =>
+      _$$_ProductDetailsDataFromJson(json);
+
+  @override
+  final DetailsProduct? product;
+  @override
+  final String? share_link;
+  final List<Product>? _similar_products;
+  @override
+  List<Product>? get similar_products {
+    final value = _similar_products;
+    if (value == null) return null;
+    if (_similar_products is EqualUnmodifiableListView)
+      return _similar_products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'ProductDetailsData(product: $product, share_link: $share_link, similar_products: $similar_products)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProductDetailsData &&
+            (identical(other.product, product) || other.product == product) &&
+            (identical(other.share_link, share_link) ||
+                other.share_link == share_link) &&
+            const DeepCollectionEquality()
+                .equals(other._similar_products, _similar_products));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, product, share_link,
+      const DeepCollectionEquality().hash(_similar_products));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProductDetailsDataCopyWith<_$_ProductDetailsData> get copyWith =>
+      __$$_ProductDetailsDataCopyWithImpl<_$_ProductDetailsData>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProductDetailsDataToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProductDetailsData implements ProductDetailsData {
+  const factory _ProductDetailsData(
+      {final DetailsProduct? product,
+      final String? share_link,
+      final List<Product>? similar_products}) = _$_ProductDetailsData;
+
+  factory _ProductDetailsData.fromJson(Map<String, dynamic> json) =
+      _$_ProductDetailsData.fromJson;
+
+  @override
+  DetailsProduct? get product;
+  @override
+  String? get share_link;
+  @override
+  List<Product>? get similar_products;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProductDetailsDataCopyWith<_$_ProductDetailsData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DetailsProduct _$DetailsProductFromJson(Map<String, dynamic> json) {
+  return _DetailsProduct.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DetailsProduct {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
-  String? get color => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  dynamic get color => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
   String? get salesman_id => throw _privateConstructorUsedError;
   String? get category_id => throw _privateConstructorUsedError;
@@ -34,28 +415,28 @@ mixin _$ProductDetailModel {
   Salesman? get salesman => throw _privateConstructorUsedError;
   ProductDetailCategory? get category => throw _privateConstructorUsedError;
   List<ProductImage>? get images => throw _privateConstructorUsedError;
-  List<dynamic>? get like => throw _privateConstructorUsedError;
-  List<dynamic>? get comments => throw _privateConstructorUsedError;
+  List<dynamic>? get likes => throw _privateConstructorUsedError;
+  List<Comment>? get comments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProductDetailModelCopyWith<ProductDetailModel> get copyWith =>
+  $DetailsProductCopyWith<DetailsProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductDetailModelCopyWith<$Res> {
-  factory $ProductDetailModelCopyWith(
-          ProductDetailModel value, $Res Function(ProductDetailModel) then) =
-      _$ProductDetailModelCopyWithImpl<$Res, ProductDetailModel>;
+abstract class $DetailsProductCopyWith<$Res> {
+  factory $DetailsProductCopyWith(
+          DetailsProduct value, $Res Function(DetailsProduct) then) =
+      _$DetailsProductCopyWithImpl<$Res, DetailsProduct>;
   @useResult
   $Res call(
       {int? id,
       String? name,
-      String? description,
       int? price,
       int? quantity,
-      String? color,
+      String? description,
+      dynamic color,
       DateTime? date,
       String? salesman_id,
       String? category_id,
@@ -64,17 +445,17 @@ abstract class $ProductDetailModelCopyWith<$Res> {
       Salesman? salesman,
       ProductDetailCategory? category,
       List<ProductImage>? images,
-      List<dynamic>? like,
-      List<dynamic>? comments});
+      List<dynamic>? likes,
+      List<Comment>? comments});
 
   $SalesmanCopyWith<$Res>? get salesman;
   $ProductDetailCategoryCopyWith<$Res>? get category;
 }
 
 /// @nodoc
-class _$ProductDetailModelCopyWithImpl<$Res, $Val extends ProductDetailModel>
-    implements $ProductDetailModelCopyWith<$Res> {
-  _$ProductDetailModelCopyWithImpl(this._value, this._then);
+class _$DetailsProductCopyWithImpl<$Res, $Val extends DetailsProduct>
+    implements $DetailsProductCopyWith<$Res> {
+  _$DetailsProductCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,9 +467,9 @@ class _$ProductDetailModelCopyWithImpl<$Res, $Val extends ProductDetailModel>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? description = freezed,
     Object? price = freezed,
     Object? quantity = freezed,
+    Object? description = freezed,
     Object? color = freezed,
     Object? date = freezed,
     Object? salesman_id = freezed,
@@ -98,7 +479,7 @@ class _$ProductDetailModelCopyWithImpl<$Res, $Val extends ProductDetailModel>
     Object? salesman = freezed,
     Object? category = freezed,
     Object? images = freezed,
-    Object? like = freezed,
+    Object? likes = freezed,
     Object? comments = freezed,
   }) {
     return _then(_value.copyWith(
@@ -110,10 +491,6 @@ class _$ProductDetailModelCopyWithImpl<$Res, $Val extends ProductDetailModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -122,10 +499,14 @@ class _$ProductDetailModelCopyWithImpl<$Res, $Val extends ProductDetailModel>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -158,14 +539,14 @@ class _$ProductDetailModelCopyWithImpl<$Res, $Val extends ProductDetailModel>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<ProductImage>?,
-      like: freezed == like
-          ? _value.like
-          : like // ignore: cast_nullable_to_non_nullable
+      likes: freezed == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
       comments: freezed == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<Comment>?,
     ) as $Val);
   }
 
@@ -195,20 +576,20 @@ class _$ProductDetailModelCopyWithImpl<$Res, $Val extends ProductDetailModel>
 }
 
 /// @nodoc
-abstract class _$$_ProductDetailModelCopyWith<$Res>
-    implements $ProductDetailModelCopyWith<$Res> {
-  factory _$$_ProductDetailModelCopyWith(_$_ProductDetailModel value,
-          $Res Function(_$_ProductDetailModel) then) =
-      __$$_ProductDetailModelCopyWithImpl<$Res>;
+abstract class _$$_DetailsProductCopyWith<$Res>
+    implements $DetailsProductCopyWith<$Res> {
+  factory _$$_DetailsProductCopyWith(
+          _$_DetailsProduct value, $Res Function(_$_DetailsProduct) then) =
+      __$$_DetailsProductCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {int? id,
       String? name,
-      String? description,
       int? price,
       int? quantity,
-      String? color,
+      String? description,
+      dynamic color,
       DateTime? date,
       String? salesman_id,
       String? category_id,
@@ -217,8 +598,8 @@ abstract class _$$_ProductDetailModelCopyWith<$Res>
       Salesman? salesman,
       ProductDetailCategory? category,
       List<ProductImage>? images,
-      List<dynamic>? like,
-      List<dynamic>? comments});
+      List<dynamic>? likes,
+      List<Comment>? comments});
 
   @override
   $SalesmanCopyWith<$Res>? get salesman;
@@ -227,11 +608,11 @@ abstract class _$$_ProductDetailModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductDetailModelCopyWithImpl<$Res>
-    extends _$ProductDetailModelCopyWithImpl<$Res, _$_ProductDetailModel>
-    implements _$$_ProductDetailModelCopyWith<$Res> {
-  __$$_ProductDetailModelCopyWithImpl(
-      _$_ProductDetailModel _value, $Res Function(_$_ProductDetailModel) _then)
+class __$$_DetailsProductCopyWithImpl<$Res>
+    extends _$DetailsProductCopyWithImpl<$Res, _$_DetailsProduct>
+    implements _$$_DetailsProductCopyWith<$Res> {
+  __$$_DetailsProductCopyWithImpl(
+      _$_DetailsProduct _value, $Res Function(_$_DetailsProduct) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -239,9 +620,9 @@ class __$$_ProductDetailModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? description = freezed,
     Object? price = freezed,
     Object? quantity = freezed,
+    Object? description = freezed,
     Object? color = freezed,
     Object? date = freezed,
     Object? salesman_id = freezed,
@@ -251,10 +632,10 @@ class __$$_ProductDetailModelCopyWithImpl<$Res>
     Object? salesman = freezed,
     Object? category = freezed,
     Object? images = freezed,
-    Object? like = freezed,
+    Object? likes = freezed,
     Object? comments = freezed,
   }) {
-    return _then(_$_ProductDetailModel(
+    return _then(_$_DetailsProduct(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -262,10 +643,6 @@ class __$$_ProductDetailModelCopyWithImpl<$Res>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String?,
       price: freezed == price
           ? _value.price
@@ -275,10 +652,14 @@ class __$$_ProductDetailModelCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -311,27 +692,27 @@ class __$$_ProductDetailModelCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<ProductImage>?,
-      like: freezed == like
-          ? _value._like
-          : like // ignore: cast_nullable_to_non_nullable
+      likes: freezed == likes
+          ? _value._likes
+          : likes // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
       comments: freezed == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<Comment>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductDetailModel implements _ProductDetailModel {
-  const _$_ProductDetailModel(
+class _$_DetailsProduct implements _DetailsProduct {
+  const _$_DetailsProduct(
       {this.id,
       this.name,
-      this.description,
       this.price,
       this.quantity,
+      this.description,
       this.color,
       this.date,
       this.salesman_id,
@@ -341,27 +722,27 @@ class _$_ProductDetailModel implements _ProductDetailModel {
       this.salesman,
       this.category,
       final List<ProductImage>? images,
-      final List<dynamic>? like,
-      final List<dynamic>? comments})
+      final List<dynamic>? likes,
+      final List<Comment>? comments})
       : _images = images,
-        _like = like,
+        _likes = likes,
         _comments = comments;
 
-  factory _$_ProductDetailModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductDetailModelFromJson(json);
+  factory _$_DetailsProduct.fromJson(Map<String, dynamic> json) =>
+      _$$_DetailsProductFromJson(json);
 
   @override
   final int? id;
   @override
   final String? name;
   @override
-  final String? description;
-  @override
   final int? price;
   @override
   final int? quantity;
   @override
-  final String? color;
+  final String? description;
+  @override
+  final dynamic color;
   @override
   final DateTime? date;
   @override
@@ -386,19 +767,19 @@ class _$_ProductDetailModel implements _ProductDetailModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<dynamic>? _like;
+  final List<dynamic>? _likes;
   @override
-  List<dynamic>? get like {
-    final value = _like;
+  List<dynamic>? get likes {
+    final value = _likes;
     if (value == null) return null;
-    if (_like is EqualUnmodifiableListView) return _like;
+    if (_likes is EqualUnmodifiableListView) return _likes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<dynamic>? _comments;
+  final List<Comment>? _comments;
   @override
-  List<dynamic>? get comments {
+  List<Comment>? get comments {
     final value = _comments;
     if (value == null) return null;
     if (_comments is EqualUnmodifiableListView) return _comments;
@@ -408,22 +789,22 @@ class _$_ProductDetailModel implements _ProductDetailModel {
 
   @override
   String toString() {
-    return 'ProductDetailModel(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, createdAt: $createdAt, updatedAt: $updatedAt, salesman: $salesman, category: $category, images: $images, like: $like, comments: $comments)';
+    return 'DetailsProduct(id: $id, name: $name, price: $price, quantity: $quantity, description: $description, color: $color, date: $date, salesman_id: $salesman_id, category_id: $category_id, createdAt: $createdAt, updatedAt: $updatedAt, salesman: $salesman, category: $category, images: $images, likes: $likes, comments: $comments)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductDetailModel &&
+            other is _$_DetailsProduct &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
-            (identical(other.color, color) || other.color == color) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality().equals(other.color, color) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.salesman_id, salesman_id) ||
                 other.salesman_id == salesman_id) &&
@@ -438,7 +819,7 @@ class _$_ProductDetailModel implements _ProductDetailModel {
             (identical(other.category, category) ||
                 other.category == category) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality().equals(other._like, _like) &&
+            const DeepCollectionEquality().equals(other._likes, _likes) &&
             const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
@@ -448,10 +829,10 @@ class _$_ProductDetailModel implements _ProductDetailModel {
       runtimeType,
       id,
       name,
-      description,
       price,
       quantity,
-      color,
+      description,
+      const DeepCollectionEquality().hash(color),
       date,
       salesman_id,
       category_id,
@@ -460,32 +841,31 @@ class _$_ProductDetailModel implements _ProductDetailModel {
       salesman,
       category,
       const DeepCollectionEquality().hash(_images),
-      const DeepCollectionEquality().hash(_like),
+      const DeepCollectionEquality().hash(_likes),
       const DeepCollectionEquality().hash(_comments));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductDetailModelCopyWith<_$_ProductDetailModel> get copyWith =>
-      __$$_ProductDetailModelCopyWithImpl<_$_ProductDetailModel>(
-          this, _$identity);
+  _$$_DetailsProductCopyWith<_$_DetailsProduct> get copyWith =>
+      __$$_DetailsProductCopyWithImpl<_$_DetailsProduct>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductDetailModelToJson(
+    return _$$_DetailsProductToJson(
       this,
     );
   }
 }
 
-abstract class _ProductDetailModel implements ProductDetailModel {
-  const factory _ProductDetailModel(
+abstract class _DetailsProduct implements DetailsProduct {
+  const factory _DetailsProduct(
       {final int? id,
       final String? name,
-      final String? description,
       final int? price,
       final int? quantity,
-      final String? color,
+      final String? description,
+      final dynamic color,
       final DateTime? date,
       final String? salesman_id,
       final String? category_id,
@@ -494,24 +874,24 @@ abstract class _ProductDetailModel implements ProductDetailModel {
       final Salesman? salesman,
       final ProductDetailCategory? category,
       final List<ProductImage>? images,
-      final List<dynamic>? like,
-      final List<dynamic>? comments}) = _$_ProductDetailModel;
+      final List<dynamic>? likes,
+      final List<Comment>? comments}) = _$_DetailsProduct;
 
-  factory _ProductDetailModel.fromJson(Map<String, dynamic> json) =
-      _$_ProductDetailModel.fromJson;
+  factory _DetailsProduct.fromJson(Map<String, dynamic> json) =
+      _$_DetailsProduct.fromJson;
 
   @override
   int? get id;
   @override
   String? get name;
   @override
-  String? get description;
-  @override
   int? get price;
   @override
   int? get quantity;
   @override
-  String? get color;
+  String? get description;
+  @override
+  dynamic get color;
   @override
   DateTime? get date;
   @override
@@ -529,12 +909,308 @@ abstract class _ProductDetailModel implements ProductDetailModel {
   @override
   List<ProductImage>? get images;
   @override
-  List<dynamic>? get like;
+  List<dynamic>? get likes;
   @override
-  List<dynamic>? get comments;
+  List<Comment>? get comments;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductDetailModelCopyWith<_$_ProductDetailModel> get copyWith =>
+  _$$_DetailsProductCopyWith<_$_DetailsProduct> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProductDetailCategory _$ProductDetailCategoryFromJson(
+    Map<String, dynamic> json) {
+  return _ProductDetailCategory.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProductDetailCategory {
+  String? get id => throw _privateConstructorUsedError;
+  String? get uz => throw _privateConstructorUsedError;
+  String? get ru => throw _privateConstructorUsedError;
+  dynamic get uz_description => throw _privateConstructorUsedError;
+  dynamic get ru_description => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductDetailCategoryCopyWith<ProductDetailCategory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductDetailCategoryCopyWith<$Res> {
+  factory $ProductDetailCategoryCopyWith(ProductDetailCategory value,
+          $Res Function(ProductDetailCategory) then) =
+      _$ProductDetailCategoryCopyWithImpl<$Res, ProductDetailCategory>;
+  @useResult
+  $Res call(
+      {String? id,
+      String? uz,
+      String? ru,
+      dynamic uz_description,
+      dynamic ru_description,
+      String? image,
+      DateTime? createdAt,
+      DateTime? updatedAt});
+}
+
+/// @nodoc
+class _$ProductDetailCategoryCopyWithImpl<$Res,
+        $Val extends ProductDetailCategory>
+    implements $ProductDetailCategoryCopyWith<$Res> {
+  _$ProductDetailCategoryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? uz = freezed,
+    Object? ru = freezed,
+    Object? uz_description = freezed,
+    Object? ru_description = freezed,
+    Object? image = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uz: freezed == uz
+          ? _value.uz
+          : uz // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ru: freezed == ru
+          ? _value.ru
+          : ru // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uz_description: freezed == uz_description
+          ? _value.uz_description
+          : uz_description // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      ru_description: freezed == ru_description
+          ? _value.ru_description
+          : ru_description // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ProductDetailCategoryCopyWith<$Res>
+    implements $ProductDetailCategoryCopyWith<$Res> {
+  factory _$$_ProductDetailCategoryCopyWith(_$_ProductDetailCategory value,
+          $Res Function(_$_ProductDetailCategory) then) =
+      __$$_ProductDetailCategoryCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? id,
+      String? uz,
+      String? ru,
+      dynamic uz_description,
+      dynamic ru_description,
+      String? image,
+      DateTime? createdAt,
+      DateTime? updatedAt});
+}
+
+/// @nodoc
+class __$$_ProductDetailCategoryCopyWithImpl<$Res>
+    extends _$ProductDetailCategoryCopyWithImpl<$Res, _$_ProductDetailCategory>
+    implements _$$_ProductDetailCategoryCopyWith<$Res> {
+  __$$_ProductDetailCategoryCopyWithImpl(_$_ProductDetailCategory _value,
+      $Res Function(_$_ProductDetailCategory) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? uz = freezed,
+    Object? ru = freezed,
+    Object? uz_description = freezed,
+    Object? ru_description = freezed,
+    Object? image = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_$_ProductDetailCategory(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uz: freezed == uz
+          ? _value.uz
+          : uz // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ru: freezed == ru
+          ? _value.ru
+          : ru // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uz_description: freezed == uz_description
+          ? _value.uz_description
+          : uz_description // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      ru_description: freezed == ru_description
+          ? _value.ru_description
+          : ru_description // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ProductDetailCategory implements _ProductDetailCategory {
+  const _$_ProductDetailCategory(
+      {this.id,
+      this.uz,
+      this.ru,
+      this.uz_description,
+      this.ru_description,
+      this.image,
+      this.createdAt,
+      this.updatedAt});
+
+  factory _$_ProductDetailCategory.fromJson(Map<String, dynamic> json) =>
+      _$$_ProductDetailCategoryFromJson(json);
+
+  @override
+  final String? id;
+  @override
+  final String? uz;
+  @override
+  final String? ru;
+  @override
+  final dynamic uz_description;
+  @override
+  final dynamic ru_description;
+  @override
+  final String? image;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
+
+  @override
+  String toString() {
+    return 'ProductDetailCategory(id: $id, uz: $uz, ru: $ru, uz_description: $uz_description, ru_description: $ru_description, image: $image, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProductDetailCategory &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.uz, uz) || other.uz == uz) &&
+            (identical(other.ru, ru) || other.ru == ru) &&
+            const DeepCollectionEquality()
+                .equals(other.uz_description, uz_description) &&
+            const DeepCollectionEquality()
+                .equals(other.ru_description, ru_description) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      uz,
+      ru,
+      const DeepCollectionEquality().hash(uz_description),
+      const DeepCollectionEquality().hash(ru_description),
+      image,
+      createdAt,
+      updatedAt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProductDetailCategoryCopyWith<_$_ProductDetailCategory> get copyWith =>
+      __$$_ProductDetailCategoryCopyWithImpl<_$_ProductDetailCategory>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProductDetailCategoryToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProductDetailCategory implements ProductDetailCategory {
+  const factory _ProductDetailCategory(
+      {final String? id,
+      final String? uz,
+      final String? ru,
+      final dynamic uz_description,
+      final dynamic ru_description,
+      final String? image,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$_ProductDetailCategory;
+
+  factory _ProductDetailCategory.fromJson(Map<String, dynamic> json) =
+      _$_ProductDetailCategory.fromJson;
+
+  @override
+  String? get id;
+  @override
+  String? get uz;
+  @override
+  String? get ru;
+  @override
+  dynamic get uz_description;
+  @override
+  dynamic get ru_description;
+  @override
+  String? get image;
+  @override
+  DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProductDetailCategoryCopyWith<_$_ProductDetailCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -875,301 +1551,5 @@ abstract class _Salesman implements Salesman {
   @override
   @JsonKey(ignore: true)
   _$$_SalesmanCopyWith<_$_Salesman> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ProductDetailCategory _$ProductDetailCategoryFromJson(
-    Map<String, dynamic> json) {
-  return _ProductDetailCategory.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ProductDetailCategory {
-  String? get id => throw _privateConstructorUsedError;
-  String? get uz => throw _privateConstructorUsedError;
-  String? get ru => throw _privateConstructorUsedError;
-  dynamic get uzDescription => throw _privateConstructorUsedError;
-  dynamic get ruDescription => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ProductDetailCategoryCopyWith<ProductDetailCategory> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProductDetailCategoryCopyWith<$Res> {
-  factory $ProductDetailCategoryCopyWith(ProductDetailCategory value,
-          $Res Function(ProductDetailCategory) then) =
-      _$ProductDetailCategoryCopyWithImpl<$Res, ProductDetailCategory>;
-  @useResult
-  $Res call(
-      {String? id,
-      String? uz,
-      String? ru,
-      dynamic uzDescription,
-      dynamic ruDescription,
-      String? image,
-      DateTime? createdAt,
-      DateTime? updatedAt});
-}
-
-/// @nodoc
-class _$ProductDetailCategoryCopyWithImpl<$Res,
-        $Val extends ProductDetailCategory>
-    implements $ProductDetailCategoryCopyWith<$Res> {
-  _$ProductDetailCategoryCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? uz = freezed,
-    Object? ru = freezed,
-    Object? uzDescription = freezed,
-    Object? ruDescription = freezed,
-    Object? image = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uz: freezed == uz
-          ? _value.uz
-          : uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ru: freezed == ru
-          ? _value.ru
-          : ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uzDescription: freezed == uzDescription
-          ? _value.uzDescription
-          : uzDescription // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      ruDescription: freezed == ruDescription
-          ? _value.ruDescription
-          : ruDescription // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_ProductDetailCategoryCopyWith<$Res>
-    implements $ProductDetailCategoryCopyWith<$Res> {
-  factory _$$_ProductDetailCategoryCopyWith(_$_ProductDetailCategory value,
-          $Res Function(_$_ProductDetailCategory) then) =
-      __$$_ProductDetailCategoryCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? id,
-      String? uz,
-      String? ru,
-      dynamic uzDescription,
-      dynamic ruDescription,
-      String? image,
-      DateTime? createdAt,
-      DateTime? updatedAt});
-}
-
-/// @nodoc
-class __$$_ProductDetailCategoryCopyWithImpl<$Res>
-    extends _$ProductDetailCategoryCopyWithImpl<$Res, _$_ProductDetailCategory>
-    implements _$$_ProductDetailCategoryCopyWith<$Res> {
-  __$$_ProductDetailCategoryCopyWithImpl(_$_ProductDetailCategory _value,
-      $Res Function(_$_ProductDetailCategory) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? uz = freezed,
-    Object? ru = freezed,
-    Object? uzDescription = freezed,
-    Object? ruDescription = freezed,
-    Object? image = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-  }) {
-    return _then(_$_ProductDetailCategory(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uz: freezed == uz
-          ? _value.uz
-          : uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ru: freezed == ru
-          ? _value.ru
-          : ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uzDescription: freezed == uzDescription
-          ? _value.uzDescription
-          : uzDescription // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      ruDescription: freezed == ruDescription
-          ? _value.ruDescription
-          : ruDescription // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_ProductDetailCategory implements _ProductDetailCategory {
-  const _$_ProductDetailCategory(
-      {this.id,
-      this.uz,
-      this.ru,
-      this.uzDescription,
-      this.ruDescription,
-      this.image,
-      this.createdAt,
-      this.updatedAt});
-
-  factory _$_ProductDetailCategory.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductDetailCategoryFromJson(json);
-
-  @override
-  final String? id;
-  @override
-  final String? uz;
-  @override
-  final String? ru;
-  @override
-  final dynamic uzDescription;
-  @override
-  final dynamic ruDescription;
-  @override
-  final String? image;
-  @override
-  final DateTime? createdAt;
-  @override
-  final DateTime? updatedAt;
-
-  @override
-  String toString() {
-    return 'ProductDetailCategory(id: $id, uz: $uz, ru: $ru, uzDescription: $uzDescription, ruDescription: $ruDescription, image: $image, createdAt: $createdAt, updatedAt: $updatedAt)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ProductDetailCategory &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.uz, uz) || other.uz == uz) &&
-            (identical(other.ru, ru) || other.ru == ru) &&
-            const DeepCollectionEquality()
-                .equals(other.uzDescription, uzDescription) &&
-            const DeepCollectionEquality()
-                .equals(other.ruDescription, ruDescription) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      uz,
-      ru,
-      const DeepCollectionEquality().hash(uzDescription),
-      const DeepCollectionEquality().hash(ruDescription),
-      image,
-      createdAt,
-      updatedAt);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ProductDetailCategoryCopyWith<_$_ProductDetailCategory> get copyWith =>
-      __$$_ProductDetailCategoryCopyWithImpl<_$_ProductDetailCategory>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ProductDetailCategoryToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ProductDetailCategory implements ProductDetailCategory {
-  const factory _ProductDetailCategory(
-      {final String? id,
-      final String? uz,
-      final String? ru,
-      final dynamic uzDescription,
-      final dynamic ruDescription,
-      final String? image,
-      final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$_ProductDetailCategory;
-
-  factory _ProductDetailCategory.fromJson(Map<String, dynamic> json) =
-      _$_ProductDetailCategory.fromJson;
-
-  @override
-  String? get id;
-  @override
-  String? get uz;
-  @override
-  String? get ru;
-  @override
-  dynamic get uzDescription;
-  @override
-  dynamic get ruDescription;
-  @override
-  String? get image;
-  @override
-  DateTime? get createdAt;
-  @override
-  DateTime? get updatedAt;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ProductDetailCategoryCopyWith<_$_ProductDetailCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }

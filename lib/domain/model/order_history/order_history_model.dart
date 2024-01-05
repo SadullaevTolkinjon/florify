@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/user/user_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'order_history_model.freezed.dart';
 part 'order_history_model.g.dart';
@@ -42,16 +43,15 @@ class OrderProduct with _$OrderProduct {
     String? payment_type,
     DateTime? createdAt,
     DateTime? updatedAt,
+    Client? client,
   }) = _OrderProduct;
-  factory OrderProduct.fromJson(Map<String, Object?> json) => _$OrderProductFromJson(json);
+  factory OrderProduct.fromJson(Map<String, Object?> json) =>
+      _$OrderProductFromJson(json);
 }
 
 @freezed
 class Item with _$Item {
-  const factory Item({
-    int? quantity,
-    int? product_id,
-    Product? product
-  }) = _Item;
+  const factory Item({int? quantity, int? product_id, Product? product}) =
+      _Item;
   factory Item.fromJson(Map<String, Object?> json) => _$ItemFromJson(json);
 }

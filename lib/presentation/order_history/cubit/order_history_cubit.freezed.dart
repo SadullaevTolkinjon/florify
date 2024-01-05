@@ -23,7 +23,8 @@ mixin _$OrderHistoryBuildable {
   dynamic get error => throw _privateConstructorUsedError;
   int get selectedTab => throw _privateConstructorUsedError;
   bool get isExpanded => throw _privateConstructorUsedError;
-  OrderHistoryModel? get orders => throw _privateConstructorUsedError;
+  List<OrderProduct> get orders => throw _privateConstructorUsedError;
+  List<OrderProduct> get active_orders => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderHistoryBuildableCopyWith<OrderHistoryBuildable> get copyWith =>
@@ -44,9 +45,8 @@ abstract class $OrderHistoryBuildableCopyWith<$Res> {
       dynamic error,
       int selectedTab,
       bool isExpanded,
-      OrderHistoryModel? orders});
-
-  $OrderHistoryModelCopyWith<$Res>? get orders;
+      List<OrderProduct> orders,
+      List<OrderProduct> active_orders});
 }
 
 /// @nodoc
@@ -70,7 +70,8 @@ class _$OrderHistoryBuildableCopyWithImpl<$Res,
     Object? error = freezed,
     Object? selectedTab = null,
     Object? isExpanded = null,
-    Object? orders = freezed,
+    Object? orders = null,
+    Object? active_orders = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -101,23 +102,15 @@ class _$OrderHistoryBuildableCopyWithImpl<$Res,
           ? _value.isExpanded
           : isExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
-      orders: freezed == orders
+      orders: null == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
-              as OrderHistoryModel?,
+              as List<OrderProduct>,
+      active_orders: null == active_orders
+          ? _value.active_orders
+          : active_orders // ignore: cast_nullable_to_non_nullable
+              as List<OrderProduct>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $OrderHistoryModelCopyWith<$Res>? get orders {
-    if (_value.orders == null) {
-      return null;
-    }
-
-    return $OrderHistoryModelCopyWith<$Res>(_value.orders!, (value) {
-      return _then(_value.copyWith(orders: value) as $Val);
-    });
   }
 }
 
@@ -137,10 +130,8 @@ abstract class _$$_OrderHistoryBuildableCopyWith<$Res>
       dynamic error,
       int selectedTab,
       bool isExpanded,
-      OrderHistoryModel? orders});
-
-  @override
-  $OrderHistoryModelCopyWith<$Res>? get orders;
+      List<OrderProduct> orders,
+      List<OrderProduct> active_orders});
 }
 
 /// @nodoc
@@ -161,7 +152,8 @@ class __$$_OrderHistoryBuildableCopyWithImpl<$Res>
     Object? error = freezed,
     Object? selectedTab = null,
     Object? isExpanded = null,
-    Object? orders = freezed,
+    Object? orders = null,
+    Object? active_orders = null,
   }) {
     return _then(_$_OrderHistoryBuildable(
       loading: null == loading
@@ -192,10 +184,14 @@ class __$$_OrderHistoryBuildableCopyWithImpl<$Res>
           ? _value.isExpanded
           : isExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
-      orders: freezed == orders
-          ? _value.orders
+      orders: null == orders
+          ? _value._orders
           : orders // ignore: cast_nullable_to_non_nullable
-              as OrderHistoryModel?,
+              as List<OrderProduct>,
+      active_orders: null == active_orders
+          ? _value._active_orders
+          : active_orders // ignore: cast_nullable_to_non_nullable
+              as List<OrderProduct>,
     ));
   }
 }
@@ -211,7 +207,10 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
       this.error,
       this.selectedTab = 0,
       this.isExpanded = false,
-      this.orders});
+      final List<OrderProduct> orders = const [],
+      final List<OrderProduct> active_orders = const []})
+      : _orders = orders,
+        _active_orders = active_orders;
 
   @override
   @JsonKey()
@@ -233,12 +232,27 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
   @override
   @JsonKey()
   final bool isExpanded;
+  final List<OrderProduct> _orders;
   @override
-  final OrderHistoryModel? orders;
+  @JsonKey()
+  List<OrderProduct> get orders {
+    if (_orders is EqualUnmodifiableListView) return _orders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orders);
+  }
+
+  final List<OrderProduct> _active_orders;
+  @override
+  @JsonKey()
+  List<OrderProduct> get active_orders {
+    if (_active_orders is EqualUnmodifiableListView) return _active_orders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_active_orders);
+  }
 
   @override
   String toString() {
-    return 'OrderHistoryBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, selectedTab: $selectedTab, isExpanded: $isExpanded, orders: $orders)';
+    return 'OrderHistoryBuildable(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, selectedTab: $selectedTab, isExpanded: $isExpanded, orders: $orders, active_orders: $active_orders)';
   }
 
   @override
@@ -256,7 +270,9 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
                 other.selectedTab == selectedTab) &&
             (identical(other.isExpanded, isExpanded) ||
                 other.isExpanded == isExpanded) &&
-            (identical(other.orders, orders) || other.orders == orders));
+            const DeepCollectionEquality().equals(other._orders, _orders) &&
+            const DeepCollectionEquality()
+                .equals(other._active_orders, _active_orders));
   }
 
   @override
@@ -269,7 +285,8 @@ class _$_OrderHistoryBuildable implements _OrderHistoryBuildable {
       const DeepCollectionEquality().hash(error),
       selectedTab,
       isExpanded,
-      orders);
+      const DeepCollectionEquality().hash(_orders),
+      const DeepCollectionEquality().hash(_active_orders));
 
   @JsonKey(ignore: true)
   @override
@@ -288,7 +305,8 @@ abstract class _OrderHistoryBuildable implements OrderHistoryBuildable {
       final dynamic error,
       final int selectedTab,
       final bool isExpanded,
-      final OrderHistoryModel? orders}) = _$_OrderHistoryBuildable;
+      final List<OrderProduct> orders,
+      final List<OrderProduct> active_orders}) = _$_OrderHistoryBuildable;
 
   @override
   bool get loading;
@@ -305,7 +323,9 @@ abstract class _OrderHistoryBuildable implements OrderHistoryBuildable {
   @override
   bool get isExpanded;
   @override
-  OrderHistoryModel? get orders;
+  List<OrderProduct> get orders;
+  @override
+  List<OrderProduct> get active_orders;
   @override
   @JsonKey(ignore: true)
   _$$_OrderHistoryBuildableCopyWith<_$_OrderHistoryBuildable> get copyWith =>

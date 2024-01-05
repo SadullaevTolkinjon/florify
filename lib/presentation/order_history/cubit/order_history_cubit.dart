@@ -31,20 +31,19 @@ class OrderHistoryCubit
     build((buildable) =>
         buildable.copyWith(loading: true, failed: false, success: false));
     try {
-    
+      final List<OrderProduct> orders = await _repository.fetchOrderHistory();
+      List<OrderProduct> active_orders = await getactiveOrders(orders);
 
-      final OrderHistoryModel orders =
-          await _repository.fetchOrderHistory();
       build(
         (buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          failed: false,
-          orders: orders,
-        ),
+            loading: false,
+            success: true,
+            failed: false,
+            orders: orders,
+            active_orders: active_orders),
       );
     } catch (e) {
-      
+      print(e);
       build(
         (buildable) => buildable.copyWith(
           loading: false,
@@ -54,6 +53,16 @@ class OrderHistoryCubit
         ),
       );
     }
+  }
+
+  Future<List<OrderProduct>> getactiveOrders(List<OrderProduct> data) async {
+    List<OrderProduct> orders = [];
+    for (var element in data) {
+      if (element.status == "PENDING") {
+        orders.add(element);
+      }
+    }
+    return orders;
   }
 
   getUser() async {

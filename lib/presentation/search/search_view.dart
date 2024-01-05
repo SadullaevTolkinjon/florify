@@ -19,14 +19,13 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
+  final int _pageKey = 1;
   final PagingController<int, Product?> _pagingController =
       PagingController(firstPageKey: 1);
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      context.read<SearchCubit>().fetch(
-            pageKey,
-          );
+      context.read<SearchCubit>().fetch(pageKey,"");
     });
     super.initState();
   }
@@ -49,21 +48,24 @@ class _SearchViewState extends State<SearchView> {
             controller: _searchController,
             hintText: "Qidiruv",
             onChanged: (query) {
-              context.read<SearchCubit>().onSearchChanged(
-                    query,
-                    _pagingController
-                  );
-            },
+              context.read<SearchCubit>().onSearchChanged(query,_pageKey);
+              _pagingController.refresh();
+             
+            }
           ),
         ),
         body: BlocListener<SearchCubit, SearchState>(
           listener: (context, state) {
             if (state is SearchBuildableState) {
-              _pagingController.value = PagingState(
-                  nextPageKey: state.nextPageKey,
-                  itemList: state.products,
-                  error: state.error);
-            }
+          if (state.nextPageKey != null) {
+            _pagingController.appendPage(state.products!, state.nextPageKey);
+          } else if (state.error != null) {
+            _pagingController.error = state.error;
+          } else if (state.nextPageKey == null) {
+            // _pagingController.nextPageKey = state.nextPageKey;
+            _pagingController.appendLastPage(state.products!);
+          }
+        }
           },
           child: Padding(
             padding: EdgeInsets.symmetric(

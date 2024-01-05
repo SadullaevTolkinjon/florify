@@ -41,6 +41,7 @@ class Api {
     final uri = Uri.https(_host, "$_root/$path",
         params?.map((key, value) => MapEntry(key, value.toString())));
     final headers = await _headersWithToken;
+    print(headers);
     final result =
         await _httpClient.get(uri, headers: headers).timeout(_timeout);
     return propagateErrors(result);
@@ -108,7 +109,7 @@ class Api {
 
     final token = await clientId();
     headers["Authorization"] = "Bearer $token";
-    print(headers);
+   
     return headers;
   }
 
@@ -117,7 +118,7 @@ class Api {
     var user = await _token.getUser();
     if (user != null) {
       final usermodel = UserModel.fromJson(jsonDecode(user));
-      data = usermodel.data!.client!.id!.toString();
+      data = usermodel.token!;
     } else {
       data = null;
     }

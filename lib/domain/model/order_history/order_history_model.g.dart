@@ -57,6 +57,9 @@ _$_OrderProduct _$$_OrderProductFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
+      client: json['client'] == null
+          ? null
+          : Client.fromJson(json['client'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_OrderProductToJson(_$_OrderProduct instance) =>
@@ -78,6 +81,7 @@ Map<String, dynamic> _$$_OrderProductToJson(_$_OrderProduct instance) =>
       'payment_type': instance.payment_type,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'client': instance.client,
     };
 
 _$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(

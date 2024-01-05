@@ -1,7 +1,5 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
-import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
-import 'package:florify/domain/model/favorite/favorite_model.dart';
 import 'package:florify/presentation/home/components/app_bar.dart';
 import 'package:florify/presentation/home/components/category_title.dart';
 import 'package:florify/presentation/home/components/category_widget.dart';
@@ -49,32 +47,36 @@ class HomeView extends StatelessWidget {
               },
             );
           }
+
           return Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: AppSizes.getW(context) * 0.019),
             child: CustomScrollView(
               slivers: [
                 _buildAppBar(),
-                _buildCategories(state.categories),
+                // _buildCategories(state.categories),
+                CategoryWidget(categories: state.categories),
                 _buildCategoryTitle("Kategoriyalar"),
                 _buildPadding(context, 0.016),
-                _buildHomeCategories(state.categories, state.selectedCategory),
+
+                HomeCategories(
+                    categories: state.categories,
+                    selectedCategory: state.selectedCategory),
                 _buildPadding(context, 0.012),
                 state.categories.isNotEmpty
-                    ? _buildProducts(
-                        state.categories[state.selectedCategory].id!,
-                        state.likeIds,
-                        state.categories[state.selectedCategory].uz ?? "")
+                    ? HomeProducts(
+                        likes: state.likeIds,
+                        categoryId:
+                            state.categories[state.selectedCategory].id!,
+                        categoryName:
+                            state.categories[state.selectedCategory].uz ?? "",
+                      )
                     : SliverToBoxAdapter(
                         child: EmptyWidget2(
                           ontap: () {},
                         ),
                       ),
-                // _buildHomeProducts(
-                //   state.categories,
-                //   currentIndex,
-                //   state.likeIds,
-                // ),
+
                 _buildPadding(context, 0.02),
                 _buildCategoryTitle("Magazinlar"),
                 _buildPadding(context, 0.016),

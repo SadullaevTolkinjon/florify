@@ -1,8 +1,12 @@
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
+import 'package:florify/di/injection.dart';
 import 'package:florify/domain/model/category_model/category_model.dart';
+import 'package:florify/domain/model/category_pagination_model/category_pagination_model.dart';
+import 'package:florify/domain/repository/main_repository.dart';
 import 'package:florify/presentation/home/cubit/home_cubit.dart';
 import 'package:florify/presentation/widgets/empty_widget.dart';
+import 'package:florify/presentation/widgets/error_widget.dart';
 import 'package:florify/presentation/widgets/loader_widget.dart';
 import 'package:florify/presentation/widgets/product_container.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +14,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class HomeProducts extends StatefulWidget {
-  const HomeProducts(
-      {super.key,
-      required this.likes,
-      required this.categoryId,
-      required this.categoryName});
+  const HomeProducts({
+    super.key,
+    required this.likes,
+    required this.categoryId,
+    required this.categoryName,
+  });
   final List<String> likes;
   final String categoryId;
   final String categoryName;
@@ -22,19 +27,38 @@ class HomeProducts extends StatefulWidget {
   State<HomeProducts> createState() => _HomeProductsState();
 }
 
-class _HomeProductsState extends State<HomeProducts> {
+class _HomeProductsState extends State<HomeProducts>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   final PagingController<int, Product?> _pagingController =
       PagingController(firstPageKey: 1);
+  late String _previousCategoryId;
   @override
   void initState() {
+    _previousCategoryId = widget.categoryId;
     _pagingController.addPageRequestListener((pageKey) {
-      context.read<HomeCubit>().fetch(pageKey, widget.categoryId);
+      context.read<HomeCubit>().fetch(pageKey, widget.categoryId); // F
     });
     super.initState();
   }
 
   @override
+  void didUpdateWidget(covariant HomeProducts oldWidget) {
+      super.didUpdateWidget(oldWidget);
+    if (_previousCategoryId != widget.categoryId) {
+      _previousCategoryId = widget.categoryId;
+      _pagingController.itemList = []; // Clear previous data=
+      context.read<HomeCubit>().fetch(
+          1, widget.categoryId); // Fetch new data based on the new category
+    }
+
+  
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocListener<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is HomeBuildableState) {
@@ -43,7 +67,7 @@ class _HomeProductsState extends State<HomeProducts> {
           } else if (state.pagingError != null) {
             _pagingController.error = state.pagingError;
           } else if (state.nextPageKey == null) {
-            _pagingController.nextPageKey = state.nextPageKey;
+            // _pagingController.nextPageKey = state.nextPageKey;
             _pagingController.appendLastPage(state.products!);
           }
         }
@@ -63,6 +87,11 @@ class _HomeProductsState extends State<HomeProducts> {
           noItemsFoundIndicatorBuilder: (context) => EmptyWidget2(
             ontap: () {},
             title: widget.categoryName,
+          ),
+          firstPageErrorIndicatorBuilder: (context) => ErrorWidgetCustom(
+            ontap: () {
+              _pagingController.refresh();
+            },
           ),
           itemBuilder: (context, item, index) => ProductContainer(
             ontap: () async {

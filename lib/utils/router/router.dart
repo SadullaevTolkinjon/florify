@@ -1,3 +1,4 @@
+import 'package:florify/domain/model/category_model/category_model.dart';
 import 'package:florify/presentation/all_category_product/all_category_product_page.dart';
 import 'package:florify/presentation/auth/sign_up/sign_in_page.dart';
 import 'package:florify/presentation/auth/verfy_sms/verfy_sms_page.dart';
@@ -101,7 +102,7 @@ class OngenerateRoutes {
         );
       case NavigatorConst.writeCommentsPage:
         return sampleRoute(
-          const WriteCommentsPage(),
+           WriteCommentsPage(product: args as Product,),
         );
       case NavigatorConst.searchPage:
         return sampleRoute(

@@ -36,6 +36,9 @@ builtBottomBar() {
           if (value == 3) {
             BlocProvider.of<FavoriteCubit>(context).fetchLikes2();
           }
+          if (value == 4) {
+            BlocProvider.of<HomeCubit>(context).checkUser();
+          }
         },
         items: [
           BottomNavigationBarItem(

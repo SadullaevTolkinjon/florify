@@ -13,7 +13,7 @@ class DetailsBuildable extends DetailsState with _$DetailsBuildable {
     @Default(false) bool isUser,
     @Default(0) int currentIndex,
     @Default(0) int selectedTab,
-    ProductDetailModel? product,
+    ProductDetailsData? productDetailsData,
     @Default(false) bool savedToCard,
     @Default(false) bool product_is_exist_in_card,
     @Default([]) List<RecentlyProductModel> recentlyProducts,

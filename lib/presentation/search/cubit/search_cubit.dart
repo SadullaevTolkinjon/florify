@@ -20,33 +20,29 @@ class SearchCubit extends BuildableCubit<SearchState, SearchBuildableState> {
   final int _size = 10;
   String _search = "";
   Timer? _debounce;
-  fetch(int page) async {
+  fetch(int page, String query) async {
     try {
       final SearchPaginationModel products =
-          await _mainRepository.fetchSearchProduct(_search, page);
+          await _mainRepository.fetchSearchProduct(query, page);
 
-      final nextPageKey = products.data!.pagination!.total_pages! <
-              products.data!.pagination!.currentPage!
-          ? page + 1
-          : null;
+      int? nextPageKey = products.data!.records!.isNotEmpty ? page + 1 : null;
       build(
         (buildable) => buildable.copyWith(
-          products: [...buildable.products ?? [], ...products.data!.records!],
+          products: products.data!.records!,
           nextPageKey: nextPageKey,
           error: null,
         ),
       );
     } catch (error) {
-      build((buildable) => buildable.copyWith(error: error));
+      build((buildable) => buildable.copyWith(error: error, nextPageKey: null));
     }
   }
 
-  onSearchChanged(String query, PagingController controller) {
+  onSearchChanged(String query, int page) async {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      _search = query;
-      controller.refresh();
-      build((buildable) => const SearchBuildableState());
+    _debounce = Timer(const Duration(milliseconds: 500), () async {
+      print("-=======");
+      fetch(page, query);
     });
   }
 

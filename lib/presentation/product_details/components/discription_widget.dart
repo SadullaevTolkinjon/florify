@@ -14,7 +14,7 @@ import '../../../constants/app_sizes/app_sizes_const.dart';
 
 class DiscriptionWidget extends StatelessWidget {
   const DiscriptionWidget({super.key, required this.product});
-  final ProductDetailModel product;
+  final ProductDetailsData product;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -68,7 +68,7 @@ class DiscriptionWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ExpandableText(
-                                product.description ?? "",
+                                  product.product!.description ?? "",
                                 expandText: 'batafsil',
                                 collapseText: 'kamroq',
                                 maxLines: 4,
@@ -83,7 +83,7 @@ class DiscriptionWidget extends StatelessWidget {
                               )
                             ],
                           )
-                        : const CommentsWidget()
+                        :  CommentsWidget(comments: product.product!.comments??[],)
                   ],
                 ),
               ),

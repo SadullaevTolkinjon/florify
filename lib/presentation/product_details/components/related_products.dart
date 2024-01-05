@@ -92,8 +92,9 @@ class RelatedProducts extends StatelessWidget {
 }
 
 class RelatedProducts2 extends StatelessWidget {
-  const RelatedProducts2({super.key, required this.title});
+  const RelatedProducts2({super.key, required this.title,required this.similarProducts});
   final String title;
+  final List<Product> similarProducts;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -126,15 +127,11 @@ class RelatedProducts2 extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: SimilarProductsContainer(
-                        recentlyProduct: const RecentlyProductModel(
+                        recentlyProduct:  RecentlyProductModel(
                           product: Product(
-                            price: 100,
-                            name: "Gullar va yana gullar",
-                            images: [
-                              ProductImage(
-                                  image:
-                                      "https://content2.flowwow-images.com/data/flowers/524x524/43/1663859071_23692043.jpg")
-                            ],
+                            price: similarProducts[index].price??0,
+                            name: similarProducts[index].name??"",
+                            images: similarProducts[index].images
                           ),
                         ),
                         ontap: () {
@@ -147,7 +144,7 @@ class RelatedProducts2 extends StatelessWidget {
                       ),
                     );
                   },
-                  // itemCount: state.recentlyProducts.length,
+                  itemCount: similarProducts.length,
                   scrollDirection: Axis.horizontal,
                 ),
               )

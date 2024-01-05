@@ -351,6 +351,7 @@ mixin _$OrderProduct {
   String? get payment_type => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  Client? get client => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -381,7 +382,10 @@ abstract class $OrderProductCopyWith<$Res> {
       String? delivery_time,
       String? payment_type,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      Client? client});
+
+  $ClientCopyWith<$Res>? get client;
 }
 
 /// @nodoc
@@ -414,6 +418,7 @@ class _$OrderProductCopyWithImpl<$Res, $Val extends OrderProduct>
     Object? payment_type = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? client = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -484,7 +489,23 @@ class _$OrderProductCopyWithImpl<$Res, $Val extends OrderProduct>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      client: freezed == client
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
+              as Client?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientCopyWith<$Res>? get client {
+    if (_value.client == null) {
+      return null;
+    }
+
+    return $ClientCopyWith<$Res>(_value.client!, (value) {
+      return _then(_value.copyWith(client: value) as $Val);
+    });
   }
 }
 
@@ -513,7 +534,11 @@ abstract class _$$_OrderProductCopyWith<$Res>
       String? delivery_time,
       String? payment_type,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      Client? client});
+
+  @override
+  $ClientCopyWith<$Res>? get client;
 }
 
 /// @nodoc
@@ -544,6 +569,7 @@ class __$$_OrderProductCopyWithImpl<$Res>
     Object? payment_type = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? client = freezed,
   }) {
     return _then(_$_OrderProduct(
       id: freezed == id
@@ -614,6 +640,10 @@ class __$$_OrderProductCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      client: freezed == client
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
+              as Client?,
     ));
   }
 }
@@ -638,7 +668,8 @@ class _$_OrderProduct implements _OrderProduct {
       this.delivery_time,
       this.payment_type,
       this.createdAt,
-      this.updatedAt})
+      this.updatedAt,
+      this.client})
       : _items = items;
 
   factory _$_OrderProduct.fromJson(Map<String, dynamic> json) =>
@@ -686,10 +717,12 @@ class _$_OrderProduct implements _OrderProduct {
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
+  @override
+  final Client? client;
 
   @override
   String toString() {
-    return 'OrderProduct(id: $id, client_id: $client_id, items: $items, status: $status, totalAmount: $totalAmount, to_whom_bouquet: $to_whom_bouquet, customer_firstname: $customer_firstname, customer_lastname: $customer_lastname, customer_phone: $customer_phone, receiver_name: $receiver_name, receiver_phone: $receiver_phone, full_address: $full_address, comment_for_courier: $comment_for_courier, delivery_time: $delivery_time, payment_type: $payment_type, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'OrderProduct(id: $id, client_id: $client_id, items: $items, status: $status, totalAmount: $totalAmount, to_whom_bouquet: $to_whom_bouquet, customer_firstname: $customer_firstname, customer_lastname: $customer_lastname, customer_phone: $customer_phone, receiver_name: $receiver_name, receiver_phone: $receiver_phone, full_address: $full_address, comment_for_courier: $comment_for_courier, delivery_time: $delivery_time, payment_type: $payment_type, createdAt: $createdAt, updatedAt: $updatedAt, client: $client)';
   }
 
   @override
@@ -727,7 +760,8 @@ class _$_OrderProduct implements _OrderProduct {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.client, client) || other.client == client));
   }
 
   @JsonKey(ignore: true)
@@ -750,7 +784,8 @@ class _$_OrderProduct implements _OrderProduct {
       delivery_time,
       payment_type,
       createdAt,
-      updatedAt);
+      updatedAt,
+      client);
 
   @JsonKey(ignore: true)
   @override
@@ -784,7 +819,8 @@ abstract class _OrderProduct implements OrderProduct {
       final String? delivery_time,
       final String? payment_type,
       final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$_OrderProduct;
+      final DateTime? updatedAt,
+      final Client? client}) = _$_OrderProduct;
 
   factory _OrderProduct.fromJson(Map<String, dynamic> json) =
       _$_OrderProduct.fromJson;
@@ -823,6 +859,8 @@ abstract class _OrderProduct implements OrderProduct {
   DateTime? get createdAt;
   @override
   DateTime? get updatedAt;
+  @override
+  Client? get client;
   @override
   @JsonKey(ignore: true)
   _$$_OrderProductCopyWith<_$_OrderProduct> get copyWith =>

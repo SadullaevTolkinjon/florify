@@ -9,7 +9,7 @@ import 'package:flutter_svg/svg.dart';
 
 class SendSmthToShop extends StatelessWidget {
   const SendSmthToShop({super.key, required this.product});
-  final ProductDetailModel product;
+  final ProductDetailsData product;
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
@@ -36,8 +36,8 @@ class SendSmthToShop extends StatelessWidget {
                   IconConstants.shop_icon,
                 ),
                 title: Text(
-                  product.salesman != null
-                      ? "${product.salesman!.username ?? "No shop name"}"
+                    product.product!.salesman != null
+                      ? "${  product.product!.salesman!.username ?? "No shop name"}"
                       : "No shop name",
                   style: TextStyle(
                     fontSize: AppSizes.getH(context) * 0.018,

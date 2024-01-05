@@ -13,6 +13,7 @@ class OrderHistoryBuildable extends OrderHistoryState
     dynamic error,
     @Default(0) int selectedTab,
     @Default(false) bool isExpanded,
-    OrderHistoryModel? orders,
+     @Default([]) List<OrderProduct> orders,
+      @Default([]) List<OrderProduct> active_orders,
   }) = _OrderHistoryBuildable;
 }

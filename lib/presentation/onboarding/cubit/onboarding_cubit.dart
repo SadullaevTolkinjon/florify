@@ -16,8 +16,9 @@ class OnboardingCubit
       final TokenPreference _preference;
   OnboardingCubit(this._preference) : super(const OnboardingBuildable());
 
-  changeOnboarding(BuildContext context)async {
-    int currentindex = buildable.currentIndex + 1;
+  changeOnboarding(BuildContext context,int index)async {
+    print(index);
+    int currentindex = index;
     int selectedTab = buildable.selectedTab + 35;
     if (currentindex < 3) {
       build(

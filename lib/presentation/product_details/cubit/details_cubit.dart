@@ -47,22 +47,25 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildable> {
     build((buildable) => buildable.copyWith(
         loading: true, savedToCard: false, product_is_exist_in_card: false));
     try {
-      var data = await _service.getProductDetails(productId);
+      final ProductDetailsModel data =
+          await _service.getProductDetails(productId);
       print("-------------------------------");
       print(data);
-      List<String> likes = await _preference.getLikes();
+      List<String> likes = await _preference.getLikes()??[];
       build(
         (buildable) => buildable.copyWith(
           loading: false,
           success: true,
           failed: false,
-          product: data,
+          productDetailsData: data.data,
           savedToCard: false,
           product_is_exist_in_card: false,
           likeIds: likes,
         ),
       );
     } catch (e) {
+      print("errprrrrrrrrrrrrr");
+      print(e);
       build(
         (buildable) => buildable.copyWith(
           loading: false,

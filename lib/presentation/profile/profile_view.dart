@@ -3,12 +3,11 @@ import 'dart:ui';
 import 'package:florify/constants/app_sizes/app_sizes_const.dart';
 import 'package:florify/constants/color/color_const.dart';
 import 'package:florify/constants/navigator/navigator_const.dart';
+import 'package:florify/domain/model/user/user_model.dart';
 import 'package:florify/presentation/language/choose_language.dart';
-import 'package:florify/presentation/language/components/select_lang_btn.dart';
 import 'package:florify/presentation/profile/components/image_app_bar.dart';
 import 'package:florify/presentation/profile/components/loagout_widget.dart';
 import 'package:florify/presentation/profile/components/logout_btn.dart';
-import 'package:florify/presentation/profile/components/logout_want_btn.dart';
 import 'package:florify/presentation/profile/components/name_title.dart';
 import 'package:florify/presentation/profile/components/profile_btn.dart';
 import 'package:florify/presentation/widgets/modal_bootom_sheet.dart';
@@ -16,8 +15,8 @@ import 'package:florify/presentation/widgets/my_padding.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
-
+  const ProfileView({super.key, required this.userModel});
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

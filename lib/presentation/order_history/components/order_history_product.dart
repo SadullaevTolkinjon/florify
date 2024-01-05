@@ -17,10 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderHistoryProduct extends StatelessWidget {
-  const OrderHistoryProduct({
-    super.key,
-    required this.isActive,required this.order
-  });
+  const OrderHistoryProduct(
+      {super.key, required this.isActive, required this.order});
   final bool isActive;
   final OrderProduct order;
   @override
@@ -70,17 +68,17 @@ class OrderHistoryProduct extends StatelessWidget {
                       ),
                     ],
                   ),
-                   TitleRowOrderHistory(
+                  TitleRowOrderHistory(
                     title: "Yetkazish sanasi",
-                    subtitle: order.delivery_time??"",
+                    subtitle: order.delivery_time ?? "",
                   ),
-                   TitleRowOrderHistory(
+                  TitleRowOrderHistory(
                     title: "Topshirilgan joy",
-                    subtitle: order.full_address??"",
+                    subtitle: order.full_address ?? "",
                   ),
-                   TitleRowOrderHistory(
+                  TitleRowOrderHistory(
                     title: "Umumiy summa",
-                    subtitle: "${order.totalAmount??0} so‘m",
+                    subtitle: "${order.totalAmount ?? 0} so‘m",
                   ),
                   MyPadding(
                     height: AppSizes.geth(context, 0.02),
@@ -130,16 +128,15 @@ class OrderHistoryProduct extends StatelessWidget {
                                       Container(
                                         height: AppSizes.geth(context, 0.105),
                                         width: AppSizes.geth(context, 0.092),
-                                        decoration:  BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: CachedNetworkImageProvider(
-                                             
-                                            "${ApiConstants.baseUrl}${order.items![index].product!.images!.first.image!}"
-                                         //     "https://avatars.mds.yandex.net/i?id=dfde1a6f9d6de55af6cc7e56c0ded5203950bfd9-8179580-images-thumbs&n=13",
+                                              // "${ApiConstants.baseUrl}${order.items![index].product!.images!.first.image!}"
+                                              "https://avatars.mds.yandex.net/i?id=dfde1a6f9d6de55af6cc7e56c0ded5203950bfd9-8179580-images-thumbs&n=13",
                                             ),
                                           ),
                                         ),
@@ -155,7 +152,9 @@ class OrderHistoryProduct extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                            order.items![index].product!.name??"",
+                                              order.items![index].product!
+                                                      .name ??
+                                                  "",
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
@@ -180,7 +179,7 @@ class OrderHistoryProduct extends StatelessWidget {
                                                   AppSizes.geth(context, 0.016),
                                             ),
                                             Text(
-                                              "${order.items![index].quantity} x ${order.items![index].product!.price??"0"} so‘m",
+                                              "${order.items![index].quantity} x ${order.items![index].product!.price ?? "0"} so‘m",
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
@@ -202,9 +201,11 @@ class OrderHistoryProduct extends StatelessWidget {
                                           child: ElevatedBtnWidget(
                                               ontap: () {
                                                 Navigator.pushNamed(
-                                                    context,
-                                                    NavigatorConst
-                                                        .writeCommentsPage);
+                                                  context,
+                                                  NavigatorConst
+                                                      .writeCommentsPage,
+                                                      arguments: order.items![index].product
+                                                );
                                               },
                                               height:
                                                   AppSizes.geth(context, 0.045),
@@ -236,22 +237,22 @@ class OrderHistoryProduct extends StatelessWidget {
                   MyPadding(
                     height: AppSizes.geth(context, 0.02),
                   ),
-                  isActive
-                      ? Center(
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              "Elektron chek",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: AppSizes.geth(context, 0.016),
-                                  fontWeight: FontWeight.w600,
-                                  color: ColorConstants.selectedNavBarColor),
-                            ),
-                          ),
-                        )
-                      : const SizedBox()
+                  // isActive
+                  //     ? Center(
+                  //         child: GestureDetector(
+                  //           onTap: () {},
+                  //           child: Text(
+                  //             "Elektron chek",
+                  //             maxLines: 1,
+                  //             overflow: TextOverflow.ellipsis,
+                  //             style: TextStyle(
+                  //                 fontSize: AppSizes.geth(context, 0.016),
+                  //                 fontWeight: FontWeight.w600,
+                  //                 color: ColorConstants.selectedNavBarColor),
+                  //           ),
+                  //         ),
+                  //       )
+                  //     : const SizedBox()
                 ],
               ),
             );

@@ -161,4 +161,23 @@ class HomeCubit extends BuildableCubit<HomeState, HomeBuildableState> {
       build((buildable) => buildable.copyWith(pagingError: e,nextPageKey: null));
     }
   }
+
+  checkUser() async {
+    
+    try {
+     
+      final user = await _preference.getUser();
+      UserModel? renderData;
+      if (user != null) {
+        Map<String, dynamic> json = jsonDecode(user);
+        renderData = UserModel.fromJson(json);
+      }
+
+      build((buildable) =>
+          buildable.copyWith(user: renderData, loading: false));
+    } catch (e) {
+      build((buildable) => buildable.copyWith(
+          loading: false, failed: true, error: e.toString()));
+    }
+  }
 }

@@ -43,7 +43,7 @@ class ProductDetailsView extends StatelessWidget {
           buildable.failed,
           buildable.success,
           buildable.isModal_hud,
-          buildable.product,
+          buildable.productDetailsData,
           buildable.likeIds,
           buildable.likes
         ],
@@ -71,21 +71,25 @@ class ProductDetailsView extends StatelessWidget {
                 flex: 9,
                 child: CustomScrollView(
                   slivers: [
-                    // ProductDetailsAppbar(
-                    //   product: state.product!,
-                    //   likeIds: state.likeIds,
-                    // ),
+                    ProductDetailsAppbar(
+                      product: state.productDetailsData!,
+                      likeIds: state.likeIds,
+                    ),
                     ProductDetailsWidget(
-                      product: state.product!,
+                      product: state.productDetailsData!,
                     ),
                     DiscriptionWidget(
-                      product: state.product!,
+                      product: state.productDetailsData!,
                     ),
                     const ShopNameTitle(),
                     SendSmthToShop(
-                      product: state.product!,
+                      product: state.productDetailsData!,
                     ),
-                    const RelatedProducts2(title: "O'xshash mahsulotlar"),
+                state.productDetailsData!.similar_products!.isNotEmpty?    RelatedProducts2(
+                      title: "O'xshash mahsulotlar",
+                      similarProducts:
+                          state.productDetailsData!.similar_products ?? [],
+                    ):const SliverToBoxAdapter(),
                     context.read<DetailsCubit>().getUser() != null
                         ? const RelatedProducts(title: "Yaqinda ko'rilganlar")
                         : const SliverToBoxAdapter(),
@@ -93,7 +97,7 @@ class ProductDetailsView extends StatelessWidget {
                 ),
               ),
               HomeFloatingBtn(
-                product: state.product!,
+                product: state.productDetailsData!,
               )
             ],
           );

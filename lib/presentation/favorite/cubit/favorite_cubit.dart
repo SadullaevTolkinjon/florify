@@ -41,20 +41,18 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
         loading: true,
       ),
     );
-    UserModel user = await getUser();
-    try {
-      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
+    UserModel? user = await getUser();
+   if(user!=null){
+     try {
+    final  List<FavoriteModel> likes =
+          await _service.fetchLikes(user!.data!.client!.id!) ?? [];
       await locator<MainRepository>().setLikeIds(likes);
       List<String> listJson =
           likes.map((product) => jsonEncode(product.toJson())).toList();
       await _preference.setFavorites(listJson);
       build(
         (buildable) => buildable.copyWith(
-          failed: false,
-          success: true,
-          loading: false,
-          likes: likes,
-        ),
+            failed: false, success: true, loading: false, likes: likes),
       );
     } catch (e) {
       print(e);
@@ -66,7 +64,12 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
           error: e.toString(),
         ),
       );
+    } finally {
+      build((buildable) => buildable.copyWith(loading: false));
     }
+   }else{
+    build((buildable) => buildable.copyWith(loading: false));
+   }
   }
 
   fetchLikes2() async {
@@ -75,7 +78,8 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
     );
     UserModel user = await getUser();
     try {
-      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
       List<String> listJson =
           likes.map((product) => jsonEncode(product.toJson())).toList();
@@ -103,7 +107,6 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
       UserModel user = UserModel.fromJson(jsonDecode(data));
       return user;
     }
-    
   }
 
   disLike(int productId) async {
@@ -111,7 +114,8 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
     try {
       UserModel user = await getUser();
       await _repository.dislike(productId, user.data!.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
       List<String> likeIds = await _preference.getLikes() ?? [];
       List<String> listJson =
@@ -134,7 +138,8 @@ class FavoriteCubit extends BuildableCubit<FavoriteState, FavoriteBuildable> {
     try {
       UserModel user = await getUser();
       await _repository.pressLike(productId, user.data!.client!.id!);
-      List<FavoriteModel> likes = await _service.fetchLikes(user.data!.client!.id!);
+      List<FavoriteModel> likes =
+          await _service.fetchLikes(user.data!.client!.id!);
       await locator<MainRepository>().setLikeIds(likes);
 
       List<String> likeIds = await _preference.getLikes() ?? [];

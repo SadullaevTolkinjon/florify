@@ -120,7 +120,7 @@ class AllCategoryProductCubit extends BuildableCubit<AllCategoryProductState,
     try {
       final CategoryPaginationModel data =
           await _repository.fetchCategoryProducts(category_id, pageKey);
-      List<String> likes = await _preference.getLikes();
+      List<String> likes = await _preference.getLikes()??[];
 
       int? nextPageKey = data.data!.records!.isNotEmpty ? pageKey + 1 : null;
 

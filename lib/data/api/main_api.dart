@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:florify/data/api/dio_api.dart';
 import 'package:http/http.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:injectable/injectable.dart';
 import 'package:florify/data/api/api.dart';
 import 'package:dio/dio.dart' as dio;
@@ -34,12 +37,11 @@ class MainApi {
     return data;
   }
 
-  Future<dio.Response> fetchOrderHistory() async {
-    var data = await _api2.get(path: 'orders');
+  Future<Response> fetchOrderHistory() async {
+    var data = await _api.getWithToken(path: 'orders');
     print(data);
     return data;
   }
-
 
   Future<dio.Response> fetchSearchProducts(String query, int page) async {
     final params = {"search/": page, "query": query};
@@ -53,12 +55,26 @@ class MainApi {
     var data = await _api.get(path: 'category/$id');
     return data;
   }
+
+  Future<Response> writeComment(
+      int producId, int rating, String text, String clientId) async {
+    final body = {
+      "text": text,
+      "rate": rating,
+      "client_id": clientId,
+      "product_id": producId
+    };
+    var data = await _api.post(path: 'comment', body: body);
+    return data;
+  }
+
   Future<Response> fetchShopDetails(String id) async {
     var data = await _api.get(path: 'salesman/$id');
     return data;
   }
+
   Future<Response> fetchProductDetails(int id) async {
-    var data = await _api.get(path: 'product/id/$id');
+    var data = await _api.get(path: 'product/details/$id');
     return data;
   }
 
@@ -117,6 +133,28 @@ class MainApi {
 
   Future<Response> fetchRecentlyProducts(String clientId) async {
     var data = await _api.get(path: 'watched/clientId/$clientId');
+    return data;
+  }
+
+  Future<dio.Response> updateProfile(
+      {File? photo, String? name, String? phone, int? gender}) async {
+    var image = photo != null
+        ? await dio.MultipartFile.fromFile(photo.path,
+            filename: photo.path.split('/').last,
+            contentType: MediaType('image', 'jpg'))
+        : null;
+
+    final dio.FormData formData = dio.FormData.fromMap({
+      "photo": image,
+      "name": phone,
+      "phone": name,
+      "gender": gender,
+    });
+
+    var data = await _api2.uploadmultipleimage(
+      path: "client/profile/update",
+      formData: formData,
+    );
     return data;
   }
 }

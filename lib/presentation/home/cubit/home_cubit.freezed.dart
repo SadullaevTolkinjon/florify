@@ -34,6 +34,7 @@ mixin _$HomeBuildableState {
   String? get categoryId => throw _privateConstructorUsedError;
   int? get nextPageKey => throw _privateConstructorUsedError;
   dynamic get pagingError => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeBuildableStateCopyWith<HomeBuildableState> get copyWith =>
@@ -64,7 +65,10 @@ abstract class $HomeBuildableStateCopyWith<$Res> {
       List<Product?>? products,
       String? categoryId,
       int? nextPageKey,
-      dynamic pagingError});
+      dynamic pagingError,
+      UserModel? user});
+
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -98,6 +102,7 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
     Object? categoryId = freezed,
     Object? nextPageKey = freezed,
     Object? pagingError = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -172,7 +177,23 @@ class _$HomeBuildableStateCopyWithImpl<$Res, $Val extends HomeBuildableState>
           ? _value.pagingError
           : pagingError // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -202,7 +223,11 @@ abstract class _$$_HomeBuildableStateCopyWith<$Res>
       List<Product?>? products,
       String? categoryId,
       int? nextPageKey,
-      dynamic pagingError});
+      dynamic pagingError,
+      UserModel? user});
+
+  @override
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -234,6 +259,7 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
     Object? categoryId = freezed,
     Object? nextPageKey = freezed,
     Object? pagingError = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$_HomeBuildableState(
       loading: null == loading
@@ -308,6 +334,10 @@ class __$$_HomeBuildableStateCopyWithImpl<$Res>
           ? _value.pagingError
           : pagingError // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ));
   }
 }
@@ -333,7 +363,8 @@ class _$_HomeBuildableState implements _HomeBuildableState {
       final List<Product?>? products = const [],
       this.categoryId = "",
       this.nextPageKey,
-      this.pagingError})
+      this.pagingError,
+      this.user})
       : _data = data,
         _categories = categories,
         _stores = stores,
@@ -430,10 +461,12 @@ class _$_HomeBuildableState implements _HomeBuildableState {
   final int? nextPageKey;
   @override
   final dynamic pagingError;
+  @override
+  final UserModel? user;
 
   @override
   String toString() {
-    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory, stores: $stores, likeIds: $likeIds, likes: $likes, products: $products, categoryId: $categoryId, nextPageKey: $nextPageKey, pagingError: $pagingError)';
+    return 'HomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, categories: $categories, selectedCategory: $selectedCategory, stores: $stores, likeIds: $likeIds, likes: $likes, products: $products, categoryId: $categoryId, nextPageKey: $nextPageKey, pagingError: $pagingError, user: $user)';
   }
 
   @override
@@ -466,30 +499,33 @@ class _$_HomeBuildableState implements _HomeBuildableState {
             (identical(other.nextPageKey, nextPageKey) ||
                 other.nextPageKey == nextPageKey) &&
             const DeepCollectionEquality()
-                .equals(other.pagingError, pagingError));
+                .equals(other.pagingError, pagingError) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      loading,
-      isModal_hud,
-      success,
-      failed,
-      const DeepCollectionEquality().hash(error),
-      isSuccess,
-      isUser,
-      currentIndex,
-      const DeepCollectionEquality().hash(_data),
-      const DeepCollectionEquality().hash(_categories),
-      selectedCategory,
-      const DeepCollectionEquality().hash(_stores),
-      const DeepCollectionEquality().hash(_likeIds),
-      const DeepCollectionEquality().hash(_likes),
-      const DeepCollectionEquality().hash(_products),
-      categoryId,
-      nextPageKey,
-      const DeepCollectionEquality().hash(pagingError));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        loading,
+        isModal_hud,
+        success,
+        failed,
+        const DeepCollectionEquality().hash(error),
+        isSuccess,
+        isUser,
+        currentIndex,
+        const DeepCollectionEquality().hash(_data),
+        const DeepCollectionEquality().hash(_categories),
+        selectedCategory,
+        const DeepCollectionEquality().hash(_stores),
+        const DeepCollectionEquality().hash(_likeIds),
+        const DeepCollectionEquality().hash(_likes),
+        const DeepCollectionEquality().hash(_products),
+        categoryId,
+        nextPageKey,
+        const DeepCollectionEquality().hash(pagingError),
+        user
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -518,7 +554,8 @@ abstract class _HomeBuildableState implements HomeBuildableState {
       final List<Product?>? products,
       final String? categoryId,
       final int? nextPageKey,
-      final dynamic pagingError}) = _$_HomeBuildableState;
+      final dynamic pagingError,
+      final UserModel? user}) = _$_HomeBuildableState;
 
   @override
   bool get loading;
@@ -556,6 +593,8 @@ abstract class _HomeBuildableState implements HomeBuildableState {
   int? get nextPageKey;
   @override
   dynamic get pagingError;
+  @override
+  UserModel? get user;
   @override
   @JsonKey(ignore: true)
   _$$_HomeBuildableStateCopyWith<_$_HomeBuildableState> get copyWith =>

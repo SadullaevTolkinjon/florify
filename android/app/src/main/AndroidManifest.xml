@@ -1,8 +1,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" /> 
+    <queries>
+     <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="sms" />
+      </intent>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="tel" />
+     </intent>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="instagram" />
+     </intent>
+    </queries>
     <application
         android:label="florify"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/florify">
         <activity
             android:name=".MainActivity"
             android:exported="true"
